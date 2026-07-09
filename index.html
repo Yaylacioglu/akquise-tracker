@@ -269,11 +269,30 @@
     <div class="mark">AT</div>
     <h1 id="lockTitle">Akquise Tracker</h1>
     <p id="lockSub">Melde dich an, um fortzufahren</p>
-    <input type="email" id="emailInput" placeholder="E-Mail" autocomplete="username">
-    <input type="password" id="pwInput" placeholder="Passwort" autocomplete="current-password">
-    <div class="lockError" id="lockError"></div>
-    <button class="primary" id="lockBtn">Anmelden</button>
-    <div class="lockHint"><span id="lockToggleText">Noch kein Konto?</span> <a href="#" id="lockToggleLink">Konto erstellen</a></div>
+
+    <div id="authBox">
+      <input type="email" id="emailInput" placeholder="E-Mail" autocomplete="username">
+      <input type="password" id="pwInput" placeholder="Passwort" autocomplete="current-password">
+      <div class="lockError" id="lockError"></div>
+      <button class="primary" id="lockBtn">Anmelden</button>
+      <div class="lockHint"><span id="lockToggleText">Noch kein Konto?</span> <a href="#" id="lockToggleLink">Konto erstellen</a></div>
+      <div class="lockHint"><a href="#" id="forgotLink">Passwort vergessen?</a></div>
+    </div>
+
+    <div id="forgotBox" style="display:none;">
+      <p style="color:var(--ink-soft);font-size:13px;margin:4px 0 14px;">Gib deine E-Mail ein, wir schicken dir einen Link zum Zurücksetzen.</p>
+      <input type="email" id="forgotEmailInput" placeholder="E-Mail">
+      <div class="lockError" id="forgotError"></div>
+      <button class="primary" id="forgotSendBtn">Link senden</button>
+      <div class="lockHint"><a href="#" id="forgotBackLink">Zurück zum Login</a></div>
+    </div>
+
+    <div id="recoveryBox" style="display:none;">
+      <p style="color:var(--ink-soft);font-size:13px;margin:4px 0 14px;">Neues Passwort festlegen.</p>
+      <input type="password" id="newPasswordInput" placeholder="Neues Passwort (min. 6 Zeichen)">
+      <div class="lockError" id="recoveryError"></div>
+      <button class="primary" id="newPasswordBtn">Neues Passwort speichern</button>
+    </div>
   </div>
 </div>
 
@@ -562,6 +581,11 @@ async function dbDeleteMany(ids){
 
 /* ---------------- AUTH ---------------- */
 async function initAuth(){
+  sb.auth.onAuthStateChange((event, session)=>{
+    if(event === 'PASSWORD_RECOVERY'){
+      showLockMode('recovery');
+    }
+  });
   try{
     const { data } = await sb.auth.getSession();
     if(data && data.session && data.session.user){
@@ -571,6 +595,14 @@ async function initAuth(){
     }
   }catch(e){ console.error('Sitzungsprüfung fehlgeschlagen', e); }
   setupLockScreenHandlers();
+}
+
+function showLockMode(mode){
+  document.getElementById('authBox').style.display = mode === 'auth' ? 'block' : 'none';
+  document.getElementById('forgotBox').style.display = mode === 'forgot' ? 'block' : 'none';
+  document.getElementById('recoveryBox').style.display = mode === 'recovery' ? 'block' : 'none';
+  document.getElementById('lockScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
 }
 
 function setupLockScreenHandlers(){
@@ -620,6 +652,66 @@ function setupLockScreenHandlers(){
   };
   pwInput.onkeydown = (e)=>{ if(e.key==='Enter') btn.click(); };
   emailInput.onkeydown = (e)=>{ if(e.key==='Enter') pwInput.focus(); };
+
+  /* ---- Passwort vergessen ---- */
+  const forgotLink = document.getElementById('forgotLink');
+  const forgotBackLink = document.getElementById('forgotBackLink');
+  const forgotSendBtn = document.getElementById('forgotSendBtn');
+  const forgotEmailInput = document.getElementById('forgotEmailInput');
+  const forgotErr = document.getElementById('forgotError');
+
+  forgotLink.onclick = (e)=>{
+    e.preventDefault();
+    forgotErr.textContent = '';
+    forgotEmailInput.value = emailInput.value.trim();
+    showLockMode('forgot');
+  };
+  forgotBackLink.onclick = (e)=>{
+    e.preventDefault();
+    showLockMode('auth');
+  };
+  forgotSendBtn.onclick = async ()=>{
+    const email = forgotEmailInput.value.trim();
+    if(!email){ forgotErr.textContent = 'Bitte E-Mail eingeben.'; return; }
+    forgotErr.textContent = '';
+    forgotSendBtn.disabled = true;
+    try{
+      const redirectTo = window.location.href.split('#')[0].split('?')[0];
+      const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo });
+      if(error){ forgotErr.textContent = 'Fehler: ' + error.message; return; }
+      forgotErr.style.color = 'var(--sage-dark)';
+      forgotErr.textContent = 'Mail verschickt. Prüfe dein Postfach und klick auf den Link darin.';
+    }catch(ex){
+      forgotErr.textContent = 'Unerwarteter Fehler: ' + ex.message;
+    }finally{
+      forgotSendBtn.disabled = false;
+    }
+  };
+  forgotEmailInput.onkeydown = (e)=>{ if(e.key==='Enter') forgotSendBtn.click(); };
+
+  /* ---- Neues Passwort nach Klick auf Mail-Link ---- */
+  const newPasswordInput = document.getElementById('newPasswordInput');
+  const newPasswordBtn = document.getElementById('newPasswordBtn');
+  const recoveryErr = document.getElementById('recoveryError');
+
+  newPasswordBtn.onclick = async ()=>{
+    const newPw = newPasswordInput.value;
+    if(!newPw || newPw.length < 6){ recoveryErr.textContent = 'Mindestens 6 Zeichen.'; return; }
+    recoveryErr.textContent = '';
+    newPasswordBtn.disabled = true;
+    try{
+      const { data, error } = await sb.auth.updateUser({ password: newPw });
+      if(error){ recoveryErr.textContent = 'Fehler: ' + error.message; return; }
+      currentUser = data.user;
+      newPasswordInput.value = '';
+      await enterApp();
+    }catch(ex){
+      recoveryErr.textContent = 'Unerwarteter Fehler: ' + ex.message;
+    }finally{
+      newPasswordBtn.disabled = false;
+    }
+  };
+  newPasswordInput.onkeydown = (e)=>{ if(e.key==='Enter') newPasswordBtn.click(); };
 }
 
 async function enterApp(){
@@ -634,11 +726,10 @@ document.getElementById('logoutBtn').onclick = async ()=>{
   await sb.auth.signOut();
   currentUser = null;
   contacts = [];
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('lockScreen').style.display = 'flex';
   document.getElementById('emailInput').value = '';
   document.getElementById('pwInput').value = '';
   document.getElementById('lockError').textContent = '';
+  showLockMode('auth');
 };
 
 /* ---------------- Tabs ---------------- */
