@@ -1,0 +1,26 @@
+name: Tägliche Erinnerungs-Mail
+ 
+on:
+  schedule:
+    # 06:00 UTC = 08:00 Uhr in Deutschland (Sommerzeit) / 07:00 Uhr (Winterzeit)
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+ 
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+ 
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+ 
+      - name: Erinnerungs-Skript ausführen
+        env:
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TARGET_EMAIL: 'Athanasia.Tsapkini@provinzial.de'
+        run: node scripts/send-reminders.mjs
