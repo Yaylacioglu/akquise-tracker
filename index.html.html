@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akquise Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2A41;
+    --navy-light:#2E4057;
+    --paper:#F7F4EE;
+    --paper-card:#FFFFFF;
+    --amber:#E0973A;
+    --amber-light:#FBEBD5;
+    --amber-dark:#8A5A16;
+    --sage:#6B8F71;
+    --sage-light:#E4EEE3;
+    --sage-dark:#3D5A41;
+    --terracotta:#C1554A;
+    --terracotta-light:#F6E2DF;
+    --terracotta-dark:#7C332B;
+    --ink:#1B2A41;
+    --ink-soft:#5B6472;
+    --ink-faint:#8B93A1;
+    --line:#E3DFD5;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  /* ---------- Login ---------- */
+  #lockScreen{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--navy);
+    padding:24px;
+  }
+  .lockBox{
+    background:var(--paper-card);
+    width:100%;max-width:380px;
+    border-radius:16px;
+    padding:36px 32px;
+    text-align:center;
+  }
+  .lockBox .mark{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--amber-light);color:var(--amber-dark);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:22px;
+    margin:0 auto 18px;
+  }
+  .lockBox h1{font-size:24px;margin:0 0 6px;font-weight:600;color:var(--navy);}
+  .lockBox p{color:var(--ink-soft);font-size:14px;margin:0 0 24px;}
+  .lockBox input{
+    width:100%;padding:13px 14px;border-radius:8px;
+    border:1px solid var(--line);font-size:15px;margin-bottom:12px;
+    outline:none;background:var(--paper);
+  }
+  .lockBox input:focus{border-color:var(--amber);}
+  .lockBox button.primary{
+    width:100%;padding:13px 14px;border-radius:8px;border:none;
+    background:var(--navy);color:#fff;font-size:15px;font-weight:600;
+    margin-top:4px;
+  }
+  .lockBox button.primary:hover{background:var(--navy-light);}
+  .lockError{color:var(--terracotta-dark);font-size:13px;margin:-4px 0 12px;min-height:16px;}
+  .lockHint{font-size:12px;color:var(--ink-faint);margin-top:16px;}
+
+  /* ---------- App shell ---------- */
+  #app{display:none;min-height:100vh;}
+  header.top{
+    background:var(--navy);color:#fff;
+    padding:20px 28px 0;
+  }
+  .topRow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;color:var(--navy);font-size:16px;
+  }
+  .brand h1{font-size:19px;margin:0;font-weight:600;}
+  .logoutBtn{
+    background:transparent;border:1px solid rgba(255,255,255,0.25);color:#fff;
+    padding:8px 14px;border-radius:8px;font-size:13px;
+  }
+  .logoutBtn:hover{background:rgba(255,255,255,0.1);}
+
+  .statBar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.12);border-radius:10px 10px 0 0;overflow:hidden;}
+  .statCell{background:var(--navy-light);padding:14px 16px;}
+  .statCell .num{font-size:22px;font-weight:700;font-family:'Fraunces',serif;}
+  .statCell .lbl{font-size:12px;color:rgba(255,255,255,0.65);margin-top:2px;}
+  .statCell.warn .num{color:var(--amber);}
+  .statCell.danger .num{color:#E9938B;}
+
+  nav.tabs{
+    display:flex;gap:4px;background:var(--paper-card);
+    padding:0 28px;border-bottom:1px solid var(--line);
+    overflow-x:auto;
+  }
+  nav.tabs button{
+    background:none;border:none;padding:14px 16px;font-size:14px;
+    color:var(--ink-soft);font-weight:500;border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  nav.tabs button.active{color:var(--navy);border-bottom-color:var(--amber);font-weight:600;}
+
+  main{padding:24px 28px 60px;max-width:1000px;margin:0 auto;}
+
+  .rowBetween{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .sectionTitle{font-size:20px;font-weight:600;margin:0;}
+  .subText{color:var(--ink-soft);font-size:13.5px;margin:4px 0 0;}
+
+  .btn{
+    border-radius:8px;border:1px solid var(--line);background:var(--paper-card);
+    padding:9px 15px;font-size:13.5px;font-weight:500;color:var(--ink);
+  }
+  .btn:hover{border-color:var(--ink-faint);}
+  .btn.primary{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .btn.primary:hover{background:var(--navy-light);}
+  .btn.danger{color:var(--terracotta-dark);border-color:var(--terracotta-light);}
+  .btn.danger:hover{background:var(--terracotta-light);}
+  .btn.sm{padding:6px 11px;font-size:12.5px;}
+
+  .filterRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .filterRow input[type=text]{
+    flex:1;min-width:180px;padding:10px 13px;border-radius:8px;border:1px solid var(--line);
+    font-size:14px;background:var(--paper-card);
+  }
+  .filterRow select{
+    padding:10px 13px;border-radius:8px;border:1px solid var(--line);font-size:14px;background:var(--paper-card);
+  }
+
+  .quickAddRow{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .quickAddRow input{
+    flex:1;min-width:200px;padding:10px 13px;border-radius:8px;border:1px solid var(--line);
+    font-size:14px;background:var(--paper-card);
+  }
+  .quickHint{font-size:12px;color:var(--ink-faint);margin:-10px 0 16px;}
+
+  .quickActions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .qbtn{
+    border-radius:6px;border:1px solid var(--line);background:var(--paper);
+    padding:5px 10px;font-size:12px;font-weight:500;color:var(--ink-soft);
+  }
+  .qbtn.qb-no:hover{background:var(--terracotta-light);color:var(--terracotta-dark);border-color:var(--terracotta-light);}
+  .qbtn.qb-yes:hover{background:var(--sage-light);color:var(--sage-dark);border-color:var(--sage-light);}
+  .qbtn.qb-miss:hover{background:var(--amber-light);color:var(--amber-dark);border-color:var(--amber-light);}
+
+  .fieldLabelRow{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+  .fieldLabelRow label{margin-bottom:0;}
+  .micBtn{
+    border:1px solid var(--line);background:var(--paper-card);border-radius:6px;
+    padding:3px 8px;font-size:11.5px;color:var(--ink-soft);
+  }
+  .micBtn.recording{background:var(--terracotta-light);color:var(--terracotta-dark);border-color:var(--terracotta-light);}
+
+  .selectWrap{display:flex;align-items:flex-start;padding-top:2px;margin-right:2px;}
+  .selectWrap input{width:17px;height:17px;cursor:pointer;accent-color:var(--navy);}
+
+  .bulkBar{
+    display:none;align-items:center;gap:10px;flex-wrap:wrap;
+    background:var(--amber-light);border:1px solid var(--amber);border-radius:10px;
+    padding:10px 14px;margin-bottom:14px;
+  }
+  .bulkBar .bulkCount{font-size:13.5px;font-weight:600;color:var(--amber-dark);margin-right:4px;}
+  .bulkBar select{padding:7px 10px;border-radius:8px;border:1px solid var(--line);font-size:13px;background:var(--paper-card);}
+
+  .empty{
+    text-align:center;padding:50px 20px;color:var(--ink-soft);
+  }
+  .empty .mark{font-size:34px;margin-bottom:10px;}
+
+  .card{
+    background:var(--paper-card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:border-color .15s;
+  }
+  .card:hover{border-color:var(--ink-faint);}
+  .cardTop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .cardTop h3{margin:0;font-size:16px;font-weight:600;}
+  .cardMeta{font-size:13px;color:var(--ink-soft);margin-top:3px;}
+  .badge{
+    display:inline-block;padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap;
+  }
+  .cardBottom{display:flex;justify-content:space-between;align-items:center;margin-top:12px;flex-wrap:wrap;gap:8px;}
+  .reminderTag{font-size:12.5px;display:flex;align-items:center;gap:5px;}
+  .reminderTag.today{color:var(--amber-dark);font-weight:600;}
+  .reminderTag.overdue{color:var(--terracotta-dark);font-weight:600;}
+  .reminderTag.future{color:var(--ink-faint);}
+  .dot{width:6px;height:6px;border-radius:50%;display:inline-block;}
+
+  /* status colors */
+  .st-kalt{background:#EEECE4;color:#5B5748;}
+  .st-erstkontakt{background:#E6EEF7;color:#2C5178;}
+  .st-interesse{background:var(--amber-light);color:var(--amber-dark);}
+  .st-termin{background:#EAE6F7;color:#4E3B8A;}
+  .st-angebot{background:#DEEEF2;color:#1F6B7A;}
+  .st-verhandlung{background:#FBE6D9;color:#9A4E12;}
+  .st-gewonnen{background:var(--sage-light);color:var(--sage-dark);}
+  .st-abgelehnt{background:var(--terracotta-light);color:var(--terracotta-dark);}
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    display:none;position:fixed;inset:0;background:rgba(27,42,65,0.5);
+    align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;z-index:50;
+  }
+  .overlay.open{display:flex;}
+  .modal{
+    background:var(--paper-card);border-radius:14px;max-width:560px;width:100%;
+    padding:26px 26px 22px;margin-bottom:40px;
+  }
+  .modal h2{margin:0 0 18px;font-size:19px;font-weight:600;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:5px;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;background:var(--paper);
+  }
+  .field textarea{resize:vertical;min-height:64px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .modalActions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;}
+
+  /* detail view */
+  .detailHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px;}
+  .detailInfo p{margin:3px 0;font-size:13.5px;color:var(--ink-soft);}
+  .detailInfo a{color:var(--navy);text-decoration:none;}
+  .detailSection{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+  .detailSection h3{font-size:14.5px;font-weight:600;margin:0 0 12px;}
+  .callEntry{
+    display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;
+  }
+  .callEntry:last-child{border-bottom:none;}
+  .callEntry .cDate{color:var(--ink-faint);min-width:78px;font-size:12px;}
+  .callEntry .cOutcome{font-weight:600;min-width:130px;}
+  .callEntry .cNote{color:var(--ink-soft);flex:1;}
+
+  /* stats tab */
+  .statGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px;}
+  .statCard{background:var(--paper-card);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .statCard .num{font-size:26px;font-weight:700;font-family:'Fraunces',serif;}
+  .statCard .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .barRow{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;}
+  .barRow .barLbl{width:150px;flex-shrink:0;color:var(--ink-soft);}
+  .barTrack{flex:1;height:10px;background:var(--line);border-radius:6px;overflow:hidden;}
+  .barFill{height:100%;background:var(--amber);border-radius:6px;}
+  .barRow .barNum{width:26px;text-align:right;font-weight:600;flex-shrink:0;}
+
+  @media(max-width:600px){
+    .statBar{grid-template-columns:repeat(2,1fr);}
+    header.top,main{padding-left:16px;padding-right:16px;}
+    .grid2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div id="lockScreen">
+  <div class="lockBox">
+    <div class="mark">AT</div>
+    <h1 id="lockTitle">Akquise Tracker</h1>
+    <p id="lockSub">Melde dich an, um fortzufahren</p>
+    <input type="email" id="emailInput" placeholder="E-Mail" autocomplete="username">
+    <input type="password" id="pwInput" placeholder="Passwort" autocomplete="current-password">
+    <div class="lockError" id="lockError"></div>
+    <button class="primary" id="lockBtn">Anmelden</button>
+    <div class="lockHint"><span id="lockToggleText">Noch kein Konto?</span> <a href="#" id="lockToggleLink">Konto erstellen</a></div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="top">
+    <div class="topRow">
+      <div class="brand"><div class="mark">AT</div><h1>Akquise Tracker</h1></div>
+      <button class="logoutBtn" id="logoutBtn">Abmelden</button>
+    </div>
+    <div class="statBar">
+      <div class="statCell danger"><div class="num" id="statOverdue">0</div><div class="lbl">Überfällig</div></div>
+      <div class="statCell warn"><div class="num" id="statToday">0</div><div class="lbl">Heute fällig</div></div>
+      <div class="statCell"><div class="num" id="statTotal">0</div><div class="lbl">Kontakte gesamt</div></div>
+      <div class="statCell"><div class="num" id="statWon">0</div><div class="lbl">Gewonnen</div></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="heute" class="active">Heute</button>
+    <button data-tab="kontakte">Alle Kontakte</button>
+    <button data-tab="statistik">Statistik</button>
+  </nav>
+
+  <main>
+    <div id="tab-heute">
+      <div class="rowBetween">
+        <div>
+          <h2 class="sectionTitle">Fällige Wiedervorlagen</h2>
+          <p class="subText">Überfällige zuerst, dann heute fällige Kontakte</p>
+        </div>
+        <button class="btn primary" id="addBtnHeute">+ Neuer Kontakt</button>
+      </div>
+      <div class="bulkBar" id="bulkBarHeute">
+        <span class="bulkCount">0 ausgewählt</span>
+        <select id="bulkStatusHeute"></select>
+        <button class="btn sm" id="bulkApplyHeute">Status anwenden</button>
+        <button class="btn sm danger" id="bulkDeleteHeute">Löschen</button>
+        <button class="btn sm" id="bulkClearHeute">Auswahl aufheben</button>
+      </div>
+      <div id="heuteList"></div>
+    </div>
+
+    <div id="tab-kontakte" style="display:none;">
+      <div class="rowBetween">
+        <h2 class="sectionTitle">Alle Kontakte</h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn" id="importBtn">Mehrere importieren</button>
+          <button class="btn primary" id="addBtnKontakte">+ Neuer Kontakt</button>
+        </div>
+      </div>
+      <div class="quickAddRow">
+        <input type="text" id="quickFirma" placeholder="Firma, Telefon, Ort, Bewertung, Website — Enter zum Hinzufügen">
+        <button class="btn primary" id="quickAddBtn">+ Schnell hinzufügen</button>
+      </div>
+      <p class="quickHint" id="quickHint">Tipp: nur Firma reicht auch. Rest kannst du später im Kontakt nachtragen.</p>
+      <div class="filterRow">
+        <input type="text" id="searchInput" placeholder="Suche nach Firma, Ansprechpartner, Ort...">
+        <select id="statusFilter">
+          <option value="">Alle Status</option>
+        </select>
+      </div>
+      <div class="bulkBar" id="bulkBarKontakte">
+        <span class="bulkCount">0 ausgewählt</span>
+        <select id="bulkStatusKontakte"></select>
+        <button class="btn sm" id="bulkApplyKontakte">Status anwenden</button>
+        <button class="btn sm danger" id="bulkDeleteKontakte">Löschen</button>
+        <button class="btn sm" id="bulkClearKontakte">Auswahl aufheben</button>
+      </div>
+      <div id="kontakteList"></div>
+    </div>
+
+    <div id="tab-statistik" style="display:none;">
+      <h2 class="sectionTitle" style="margin-bottom:18px;">Statistik</h2>
+      <div class="statGrid" id="statGridTop"></div>
+      <h3 style="font-size:14.5px;font-weight:600;margin-bottom:12px;">Kontakte je Status</h3>
+      <div id="statusBars"></div>
+    </div>
+  </main>
+</div>
+
+<div class="overlay" id="formOverlay">
+  <div class="modal">
+    <h2 id="formTitle">Neuer Kontakt</h2>
+    <div class="grid2">
+      <div class="field"><label>Firma *</label><input type="text" id="f_firma"></div>
+      <div class="field"><label>Ansprechpartner</label><input type="text" id="f_ansprechpartner"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Telefon</label><input type="text" id="f_telefon"></div>
+      <div class="field"><label>E-Mail</label><input type="email" id="f_email"></div>
+    </div>
+    <div class="field"><label>Adresse / Ort</label><input type="text" id="f_adresse"></div>
+    <div class="grid2">
+      <div class="field"><label>Google Bewertung</label><input type="text" id="f_bewertung" placeholder="z.B. 4.8"></div>
+      <div class="field"><label>Website</label><input type="text" id="f_webseite" placeholder="firma-webseite.de"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Verwaltete Objekte (Anzahl)</label><input type="number" id="f_objekte" min="0"></div>
+      <div class="field"><label>Status</label><select id="f_status"></select></div>
+    </div>
+    <div class="field"><label>Wiedervorlage am</label><input type="date" id="f_reminder"></div>
+    <div class="field">
+      <div class="fieldLabelRow"><label>Notizen</label><button type="button" class="micBtn" id="f_notizenMic">🎤 Diktieren</button></div>
+      <textarea id="f_notizen"></textarea>
+    </div>
+    <div class="modalActions">
+      <button class="btn" id="formCancel">Abbrechen</button>
+      <button class="btn primary" id="formSave">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="importOverlay">
+  <div class="modal">
+    <h2>Mehrere Kontakte importieren</h2>
+    <p class="subText" style="margin-bottom:12px;">Ein Kontakt pro Zeile, Format: <code>Firma, Telefon, Ort, Bewertung, Website</code>. Alles außer Firma ist optional.</p>
+    <div class="field">
+      <textarea id="importText" style="min-height:160px;" placeholder="Musterverwaltung GmbH, 0231 123456, Hagen, 4.8, musterverwaltung.de
+Beispiel Hausverwaltung, , Dortmund
+Weitere Firma"></textarea>
+    </div>
+    <div class="modalActions">
+      <button class="btn" id="importCancel">Abbrechen</button>
+      <button class="btn primary" id="importSave">Importieren</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="detailOverlay">
+  <div class="modal" style="max-width:640px;">
+    <div class="detailHead">
+      <div>
+        <h2 id="d_firma" style="margin-bottom:4px;"></h2>
+        <span class="badge" id="d_statusBadge"></span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn sm" id="d_editBtn">Bearbeiten</button>
+        <button class="btn sm danger" id="d_deleteBtn">Löschen</button>
+      </div>
+    </div>
+    <div class="detailInfo" id="d_info"></div>
+
+    <div class="detailSection">
+      <h3>Wiedervorlage</h3>
+      <div class="grid2" style="align-items:end;">
+        <div class="field" style="margin-bottom:0;"><label>Datum</label><input type="date" id="d_reminderInput"></div>
+        <button class="btn" id="d_reminderSave" style="height:38px;">Aktualisieren</button>
+      </div>
+    </div>
+
+    <div class="detailSection">
+      <h3>Status ändern</h3>
+      <select id="d_statusSelect" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);font-size:14px;"></select>
+    </div>
+
+    <div class="detailSection">
+      <h3>Anruf protokollieren</h3>
+      <div class="grid2">
+        <div class="field"><label>Ergebnis</label>
+          <select id="d_callOutcome">
+            <option>Nicht erreicht</option>
+            <option>Erreicht - kein Interesse</option>
+            <option>Erreicht - Interesse</option>
+            <option>Termin vereinbart</option>
+            <option>Rückruf erwünscht</option>
+            <option>Angebot besprochen</option>
+            <option>Abschluss</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="fieldLabelRow"><label>Notiz</label><button type="button" class="micBtn" id="d_callNoteMic">🎤 Diktieren</button></div>
+          <input type="text" id="d_callNote" placeholder="Kurze Notiz zum Gespräch">
+        </div>
+      </div>
+      <button class="btn primary sm" id="d_callAdd">Anruf hinzufügen</button>
+    </div>
+
+    <div class="detailSection">
+      <h3>Verlauf</h3>
+      <div id="d_history"></div>
+    </div>
+
+    <div class="modalActions">
+      <button class="btn" id="d_close">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL = 'https://vkbwselauubbmqadmiud.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrYndzZWxhdXViYm1xYWRtaXVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjIwNjAsImV4cCI6MjA5OTE5ODA2MH0.rg5-V4gfEI4YAZ3Hc7xjKNn9jpY0USKdyycfdJDIE7g';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let currentUser = null;
+let authMode = 'signin';
+
+const STATUSES = [
+  {key:'kalt', label:'Kalt', cls:'st-kalt'},
+  {key:'erstkontakt', label:'Erstkontakt versucht', cls:'st-erstkontakt'},
+  {key:'interesse', label:'Erreicht / Interesse', cls:'st-interesse'},
+  {key:'termin', label:'Termin vereinbart', cls:'st-termin'},
+  {key:'angebot', label:'Angebot raus', cls:'st-angebot'},
+  {key:'verhandlung', label:'Verhandlung', cls:'st-verhandlung'},
+  {key:'gewonnen', label:'Gewonnen', cls:'st-gewonnen'},
+  {key:'abgelehnt', label:'Abgelehnt', cls:'st-abgelehnt'},
+];
+const statusMap = Object.fromEntries(STATUSES.map(s=>[s.key,s]));
+
+const QUICK_OUTCOMES = [
+  {key:'miss', label:'Nicht erreicht', cls:'qb-miss', outcome:'Nicht erreicht', reminderDays:3, advanceStatus:'erstkontakt'},
+  {key:'no', label:'Kein Interesse', cls:'qb-no', outcome:'Erreicht - kein Interesse', reminderDays:null, advanceStatus:'abgelehnt'},
+  {key:'yes', label:'Interesse', cls:'qb-yes', outcome:'Erreicht - Interesse', reminderDays:5, advanceStatus:'interesse'},
+];
+
+let contacts = [];
+let currentDetailId = null;
+let editingId = null;
+let selectedIds = new Set();
+
+function uid(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function fmtDate(d){
+  if(!d) return '—';
+  const parts = d.split('-');
+  return parts[2]+'.'+parts[1]+'.'+parts[0];
+}
+function addDaysStr(days){
+  const d = new Date();
+  d.setDate(d.getDate()+days);
+  return d.toISOString().slice(0,10);
+}
+
+async function quickLogCall(id, key){
+  const c = contacts.find(x=>x.id===id);
+  const opt = QUICK_OUTCOMES.find(o=>o.key===key);
+  if(!c || !opt) return;
+  const calls = c.calls ? [...c.calls] : [];
+  calls.push({date: todayStr(), outcome: opt.outcome, note: ''});
+  const patch = { calls, reminder: opt.reminderDays!=null ? addDaysStr(opt.reminderDays) : null };
+  if(opt.advanceStatus) patch.status = opt.advanceStatus;
+  const updated = await dbUpdate(id, patch);
+  if(updated){
+    const idx = contacts.findIndex(x=>x.id===id);
+    if(idx>-1) contacts[idx] = updated;
+    renderAll();
+  }
+}
+
+async function fetchContacts(){
+  const { data, error } = await sb.from('contacts').select('*').order('created_at', { ascending: false });
+  if(error){ console.error(error); alert('Kontakte konnten nicht geladen werden: ' + error.message); contacts = []; return; }
+  contacts = data || [];
+}
+async function dbInsert(fields){
+  const payload = { ...fields, user_id: currentUser.id };
+  const { data, error } = await sb.from('contacts').insert(payload).select().single();
+  if(error){ alert('Speichern fehlgeschlagen: ' + error.message); return null; }
+  return data;
+}
+async function dbInsertMany(rows){
+  const payload = rows.map(r => ({ ...r, user_id: currentUser.id }));
+  const { data, error } = await sb.from('contacts').insert(payload).select();
+  if(error){ alert('Import fehlgeschlagen: ' + error.message); return []; }
+  return data || [];
+}
+async function dbUpdate(id, patch){
+  const { data, error } = await sb.from('contacts').update(patch).eq('id', id).select().single();
+  if(error){ alert('Aktualisieren fehlgeschlagen: ' + error.message); return null; }
+  return data;
+}
+async function dbUpdateMany(ids, patch){
+  const { error } = await sb.from('contacts').update(patch).in('id', ids);
+  if(error){ alert('Aktualisieren fehlgeschlagen: ' + error.message); return false; }
+  return true;
+}
+async function dbDelete(id){
+  const { error } = await sb.from('contacts').delete().eq('id', id);
+  if(error){ alert('Löschen fehlgeschlagen: ' + error.message); return false; }
+  return true;
+}
+async function dbDeleteMany(ids){
+  const { error } = await sb.from('contacts').delete().in('id', ids);
+  if(error){ alert('Löschen fehlgeschlagen: ' + error.message); return false; }
+  return true;
+}
+
+/* ---------------- AUTH ---------------- */
+async function initAuth(){
+  try{
+    const { data } = await sb.auth.getSession();
+    if(data && data.session && data.session.user){
+      currentUser = data.session.user;
+      await enterApp();
+      return;
+    }
+  }catch(e){ console.error('Sitzungsprüfung fehlgeschlagen', e); }
+  setupLockScreenHandlers();
+}
+
+function setupLockScreenHandlers(){
+  const btn = document.getElementById('lockBtn');
+  const toggleLink = document.getElementById('lockToggleLink');
+  const toggleText = document.getElementById('lockToggleText');
+  const err = document.getElementById('lockError');
+  const emailInput = document.getElementById('emailInput');
+  const pwInput = document.getElementById('pwInput');
+
+  toggleLink.onclick = (e)=>{
+    e.preventDefault();
+    authMode = authMode === 'signin' ? 'signup' : 'signin';
+    btn.textContent = authMode === 'signin' ? 'Anmelden' : 'Konto erstellen';
+    toggleText.textContent = authMode === 'signin' ? 'Noch kein Konto?' : 'Schon ein Konto?';
+    toggleLink.textContent = authMode === 'signin' ? 'Konto erstellen' : 'Anmelden';
+    err.textContent = '';
+  };
+
+  btn.onclick = async ()=>{
+    const email = emailInput.value.trim();
+    const password = pwInput.value;
+    if(!email || !password){ err.textContent = 'Bitte E-Mail und Passwort eingeben.'; return; }
+    err.textContent = '';
+    btn.disabled = true;
+    try{
+      if(authMode === 'signin'){
+        const { data, error } = await sb.auth.signInWithPassword({ email, password });
+        if(error){ err.textContent = 'Anmeldung fehlgeschlagen: ' + error.message; return; }
+        currentUser = data.user;
+        await enterApp();
+      }else{
+        const { data, error } = await sb.auth.signUp({ email, password });
+        if(error){ err.textContent = 'Registrierung fehlgeschlagen: ' + error.message; return; }
+        if(data.session){
+          currentUser = data.user;
+          await enterApp();
+        }else{
+          err.textContent = 'Konto erstellt. Prüfe ggf. deine E-Mails zur Bestätigung, dann anmelden.';
+        }
+      }
+    }catch(ex){
+      err.textContent = 'Unerwarteter Fehler: ' + ex.message;
+    }finally{
+      btn.disabled = false;
+    }
+  };
+  pwInput.onkeydown = (e)=>{ if(e.key==='Enter') btn.click(); };
+  emailInput.onkeydown = (e)=>{ if(e.key==='Enter') pwInput.focus(); };
+}
+
+async function enterApp(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  await fetchContacts();
+  populateStatusSelects();
+  renderAll();
+}
+
+document.getElementById('logoutBtn').onclick = async ()=>{
+  await sb.auth.signOut();
+  currentUser = null;
+  contacts = [];
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('lockScreen').style.display = 'flex';
+  document.getElementById('emailInput').value = '';
+  document.getElementById('pwInput').value = '';
+  document.getElementById('lockError').textContent = '';
+};
+
+/* ---------------- Tabs ---------------- */
+document.querySelectorAll('nav.tabs button').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    ['heute','kontakte','statistik'].forEach(t=>{
+      document.getElementById('tab-'+t).style.display = (t===btn.dataset.tab)?'block':'none';
+    });
+    renderAll();
+  };
+});
+
+/* ---------------- Populate selects ---------------- */
+function populateStatusSelects(){
+  const filter = document.getElementById('statusFilter');
+  const formSel = document.getElementById('f_status');
+  const detailSel = document.getElementById('d_statusSelect');
+  const bulkHeute = document.getElementById('bulkStatusHeute');
+  const bulkKontakte = document.getElementById('bulkStatusKontakte');
+  [filter, formSel, detailSel].forEach(sel=>{ sel.querySelectorAll('option:not(:first-child)').forEach(o=>{ if(sel!==filter) o.remove(); }); });
+  filter.innerHTML = '<option value="">Alle Status</option>' + STATUSES.map(s=>`<option value="${s.key}">${s.label}</option>`).join('');
+  formSel.innerHTML = STATUSES.map(s=>`<option value="${s.key}">${s.label}</option>`).join('');
+  detailSel.innerHTML = STATUSES.map(s=>`<option value="${s.key}">${s.label}</option>`).join('');
+  const bulkOptions = STATUSES.map(s=>`<option value="${s.key}">${s.label}</option>`).join('');
+  bulkHeute.innerHTML = bulkOptions;
+  bulkKontakte.innerHTML = bulkOptions;
+}
+
+/* ---------------- Rendering ---------------- */
+function renderAll(){
+  renderStatBar();
+  renderHeute();
+  renderKontakte();
+  renderStatistik();
+  updateAllBulkBars();
+}
+
+function renderStatBar(){
+  const today = todayStr();
+  const overdue = contacts.filter(c=>c.reminder && c.reminder < today && c.status!=='gewonnen' && c.status!=='abgelehnt').length;
+  const dueToday = contacts.filter(c=>c.reminder === today && c.status!=='gewonnen' && c.status!=='abgelehnt').length;
+  document.getElementById('statOverdue').textContent = overdue;
+  document.getElementById('statToday').textContent = dueToday;
+  document.getElementById('statTotal').textContent = contacts.length;
+  document.getElementById('statWon').textContent = contacts.filter(c=>c.status==='gewonnen').length;
+}
+
+function contactCard(c){
+  const st = statusMap[c.status] || STATUSES[0];
+  let reminderHtml = '<span class="reminderTag future">Keine Wiedervorlage</span>';
+  if(c.reminder){
+    const today = todayStr();
+    let cls = 'future', txt = 'Fällig am '+fmtDate(c.reminder);
+    if(c.reminder < today){ cls='overdue'; txt='Überfällig seit '+fmtDate(c.reminder); }
+    else if(c.reminder === today){ cls='today'; txt='Heute fällig'; }
+    reminderHtml = `<span class="reminderTag ${cls}">${txt}</span>`;
+  }
+  const meta = [c.ansprechpartner, c.adresse].filter(Boolean).join(' · ');
+  const extras = [];
+  if(c.bewertung) extras.push('★ '+escapeHtml(c.bewertung));
+  if(c.webseite) extras.push(escapeHtml(c.webseite.replace(/^https?:\/\//,'')));
+  return `<div class="card" data-id="${c.id}">
+    <div class="cardTop">
+      <label class="selectWrap">
+        <input type="checkbox" class="selectBox" data-id="${c.id}" ${selectedIds.has(c.id)?'checked':''}>
+      </label>
+      <div style="flex:1;">
+        <h3>${escapeHtml(c.firma||'Unbenannt')}</h3>
+        <div class="cardMeta">${escapeHtml(meta)||'&nbsp;'}${extras.length?' · '+extras.join(' · '):''}</div>
+      </div>
+      <span class="badge ${st.cls}">${st.label}</span>
+    </div>
+    <div class="cardBottom">
+      ${reminderHtml}
+      <span style="font-size:12.5px;color:var(--ink-faint);">${c.objekte?c.objekte+' Objekte':''}</span>
+    </div>
+    <div class="quickActions">
+      ${QUICK_OUTCOMES.map(o=>`<button class="qbtn ${o.cls}" data-id="${c.id}" data-quick="${o.key}">${o.label}</button>`).join('')}
+    </div>
+  </div>`;
+}
+
+function bindQuickActions(container){
+  container.querySelectorAll('.qbtn').forEach(btn=>{
+    btn.onclick = (e)=>{
+      e.stopPropagation();
+      quickLogCall(btn.dataset.id, btn.dataset.quick);
+    };
+  });
+}
+
+function bindSelectBoxes(container){
+  container.querySelectorAll('.selectWrap').forEach(wrap=>{
+    wrap.onclick = (e)=>e.stopPropagation();
+  });
+  container.querySelectorAll('.selectBox').forEach(cb=>{
+    cb.onchange = ()=>{
+      if(cb.checked) selectedIds.add(cb.dataset.id); else selectedIds.delete(cb.dataset.id);
+      updateAllBulkBars();
+    };
+  });
+}
+
+function updateBulkBar(barId){
+  const bar = document.getElementById(barId);
+  if(!bar) return;
+  const countEl = bar.querySelector('.bulkCount');
+  if(selectedIds.size > 0){
+    bar.style.display = 'flex';
+    countEl.textContent = selectedIds.size + ' ausgewählt';
+  }else{
+    bar.style.display = 'none';
+  }
+}
+function updateAllBulkBars(){
+  updateBulkBar('bulkBarHeute');
+  updateBulkBar('bulkBarKontakte');
+}
+
+async function bulkApplyStatus(selectId){
+  const status = document.getElementById(selectId).value;
+  if(selectedIds.size === 0) return;
+  const ids = [...selectedIds];
+  const ok = await dbUpdateMany(ids, { status });
+  if(ok){
+    contacts.forEach(c=>{ if(selectedIds.has(c.id)) c.status = status; });
+    selectedIds.clear();
+    renderAll();
+  }
+}
+async function bulkDelete(){
+  if(selectedIds.size === 0) return;
+  if(!confirm(selectedIds.size + ' Kontakt(e) wirklich löschen?')) return;
+  const ids = [...selectedIds];
+  const ok = await dbDeleteMany(ids);
+  if(ok){
+    contacts = contacts.filter(c=>!selectedIds.has(c.id));
+    selectedIds.clear();
+    renderAll();
+  }
+}
+function bulkClear(){
+  selectedIds.clear();
+  renderAll();
+}
+document.getElementById('bulkApplyHeute').onclick = ()=>bulkApplyStatus('bulkStatusHeute');
+document.getElementById('bulkApplyKontakte').onclick = ()=>bulkApplyStatus('bulkStatusKontakte');
+document.getElementById('bulkDeleteHeute').onclick = bulkDelete;
+document.getElementById('bulkDeleteKontakte').onclick = bulkDelete;
+document.getElementById('bulkClearHeute').onclick = bulkClear;
+document.getElementById('bulkClearKontakte').onclick = bulkClear;
+
+function escapeHtml(str){
+  if(!str) return '';
+  return str.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderHeute(){
+  const today = todayStr();
+  const due = contacts.filter(c=>c.reminder && c.reminder <= today && c.status!=='gewonnen' && c.status!=='abgelehnt');
+  due.sort((a,b)=> a.reminder < b.reminder ? -1 : 1);
+  const el = document.getElementById('heuteList');
+  if(due.length===0){
+    el.innerHTML = `<div class="empty"><div class="mark">✓</div><div>Keine fälligen Wiedervorlagen. Gut sortiert!</div></div>`;
+    return;
+  }
+  el.innerHTML = due.map(contactCard).join('');
+  el.querySelectorAll('.card').forEach(card=>card.onclick=()=>openDetail(card.dataset.id));
+  bindQuickActions(el);
+  bindSelectBoxes(el);
+}
+
+function renderKontakte(){
+  const search = document.getElementById('searchInput').value.toLowerCase().trim();
+  const statusF = document.getElementById('statusFilter').value;
+  let list = contacts.filter(c=>{
+    const matchesSearch = !search || (c.firma||'').toLowerCase().includes(search) || (c.ansprechpartner||'').toLowerCase().includes(search) || (c.adresse||'').toLowerCase().includes(search);
+    const matchesStatus = !statusF || c.status === statusF;
+    return matchesSearch && matchesStatus;
+  });
+  list.sort((a,b)=> new Date(b.created_at) - new Date(a.created_at));
+  const el = document.getElementById('kontakteList');
+  if(list.length===0){
+    el.innerHTML = `<div class="empty"><div class="mark">＋</div><div>Noch keine passenden Kontakte. Leg deinen ersten Kontakt an.</div></div>`;
+    return;
+  }
+  el.innerHTML = list.map(contactCard).join('');
+  el.querySelectorAll('.card').forEach(card=>card.onclick=()=>openDetail(card.dataset.id));
+  bindQuickActions(el);
+  bindSelectBoxes(el);
+}
+
+function renderStatistik(){
+  const totalCalls = contacts.reduce((s,c)=>s+(c.calls?c.calls.length:0),0);
+  const won = contacts.filter(c=>c.status==='gewonnen').length;
+  const reached = contacts.filter(c=>c.calls && c.calls.some(call=>call.outcome.startsWith('Erreicht')||call.outcome==='Termin vereinbart'||call.outcome==='Angebot besprochen'||call.outcome==='Abschluss')).length;
+  const quote = contacts.length ? Math.round(won/contacts.length*100) : 0;
+  document.getElementById('statGridTop').innerHTML = `
+    <div class="statCard"><div class="num">${contacts.length}</div><div class="lbl">Kontakte gesamt</div></div>
+    <div class="statCard"><div class="num">${totalCalls}</div><div class="lbl">Anrufe protokolliert</div></div>
+    <div class="statCard"><div class="num">${reached}</div><div class="lbl">Erreicht (mind. 1x)</div></div>
+    <div class="statCard"><div class="num">${quote}%</div><div class="lbl">Abschlussquote</div></div>
+  `;
+  const max = Math.max(1, ...STATUSES.map(s=>contacts.filter(c=>c.status===s.key).length));
+  document.getElementById('statusBars').innerHTML = STATUSES.map(s=>{
+    const count = contacts.filter(c=>c.status===s.key).length;
+    const pct = Math.round(count/max*100);
+    return `<div class="barRow"><div class="barLbl">${s.label}</div><div class="barTrack"><div class="barFill" style="width:${pct}%"></div></div><div class="barNum">${count}</div></div>`;
+  }).join('');
+}
+
+document.getElementById('searchInput').addEventListener('input', renderKontakte);
+document.getElementById('statusFilter').addEventListener('change', renderKontakte);
+
+/* ---------------- Quick add ---------------- */
+function parseQuickLine(line){
+  const parts = line.split(',').map(p=>p.trim());
+  return {
+    firma: parts[0] || '',
+    telefon: parts[1] || '',
+    adresse: parts[2] || '',
+    bewertung: parts[3] || '',
+    webseite: parts[4] || '',
+  };
+}
+
+async function quickAddContact(){
+  const input = document.getElementById('quickFirma');
+  const hint = document.getElementById('quickHint');
+  const val = input.value.trim();
+  if(!val){
+    input.focus();
+    hint.textContent = 'Bitte mindestens einen Firmennamen eingeben.';
+    hint.style.color = 'var(--terracotta-dark)';
+    return;
+  }
+  const parsed = parseQuickLine(val);
+  if(!parsed.firma){
+    hint.textContent = 'Bitte mindestens einen Firmennamen eingeben.';
+    hint.style.color = 'var(--terracotta-dark)';
+    return;
+  }
+  const row = await dbInsert({
+    firma: parsed.firma, telefon: parsed.telefon, adresse: parsed.adresse,
+    bewertung: parsed.bewertung, webseite: parsed.webseite,
+    ansprechpartner:'', email:'', objekte:null, status:'kalt', notizen:'', calls: [],
+  });
+  if(row){
+    contacts.unshift(row);
+    input.value = '';
+    hint.textContent = '"'+parsed.firma+'" wurde hinzugefügt.';
+    hint.style.color = 'var(--sage-dark)';
+    renderAll();
+    input.focus();
+  }
+}
+try{
+  document.getElementById('quickAddBtn').addEventListener('click', quickAddContact);
+  document.getElementById('quickFirma').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); quickAddContact(); } });
+}catch(e){ console.error('Quick-Add Bindung fehlgeschlagen', e); }
+
+/* ---------------- Bulk import ---------------- */
+document.getElementById('importBtn').onclick = ()=>{
+  document.getElementById('importText').value = '';
+  document.getElementById('importOverlay').classList.add('open');
+};
+document.getElementById('importCancel').onclick = ()=>document.getElementById('importOverlay').classList.remove('open');
+document.getElementById('importSave').onclick = async ()=>{
+  const raw = document.getElementById('importText').value;
+  const lines = raw.split('\n').map(l=>l.trim()).filter(Boolean);
+  if(lines.length===0){ document.getElementById('importOverlay').classList.remove('open'); return; }
+  const rows = [];
+  lines.forEach(line=>{
+    const parsed = parseQuickLine(line);
+    if(!parsed.firma) return;
+    rows.push({
+      firma: parsed.firma, telefon: parsed.telefon, adresse: parsed.adresse,
+      bewertung: parsed.bewertung, webseite: parsed.webseite,
+      ansprechpartner:'', email:'', objekte:null, status:'kalt', notizen:'', calls: [],
+    });
+  });
+  if(rows.length===0){ document.getElementById('importOverlay').classList.remove('open'); return; }
+  const inserted = await dbInsertMany(rows);
+  contacts = [...inserted, ...contacts];
+  document.getElementById('importOverlay').classList.remove('open');
+  renderAll();
+  alert(inserted.length+' Kontakt(e) importiert.');
+};
+
+/* ---------------- Voice-to-text (Diktieren) ---------------- */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+function setupMic(btnId, targetId){
+  const btn = document.getElementById(btnId);
+  if(!SpeechRecognitionAPI){
+    btn.disabled = true;
+    btn.title = 'Spracherkennung wird von diesem Browser nicht unterstützt (Chrome/Edge empfohlen).';
+    btn.style.opacity = '0.5';
+    return;
+  }
+  let recognizing = false;
+  let recognition = null;
+  btn.onclick = ()=>{
+    if(recognizing){ recognition.stop(); return; }
+    recognition = new SpeechRecognitionAPI();
+    recognition.lang = 'de-DE';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    const target = document.getElementById(targetId);
+    recognition.onresult = (e)=>{
+      let transcript = '';
+      for(let i=e.resultIndex; i<e.results.length; i++){
+        transcript += e.results[i][0].transcript;
+      }
+      const sep = target.value && !target.value.endsWith(' ') ? ' ' : '';
+      target.value = target.value + sep + transcript.trim();
+    };
+    recognition.onend = ()=>{ recognizing = false; btn.classList.remove('recording'); btn.textContent = '🎤 Diktieren'; };
+    recognition.onerror = ()=>{ recognizing = false; btn.classList.remove('recording'); btn.textContent = '🎤 Diktieren'; };
+    recognition.start();
+    recognizing = true;
+    btn.classList.add('recording');
+    btn.textContent = '⏹ Stop';
+  };
+}
+setupMic('f_notizenMic', 'f_notizen');
+setupMic('d_callNoteMic', 'd_callNote');
+
+/* ---------------- Add / Edit form ---------------- */
+function openForm(edit){
+  editingId = edit ? edit.id : null;
+  document.getElementById('formTitle').textContent = edit ? 'Kontakt bearbeiten' : 'Neuer Kontakt';
+  document.getElementById('f_firma').value = edit ? edit.firma||'' : '';
+  document.getElementById('f_ansprechpartner').value = edit ? edit.ansprechpartner||'' : '';
+  document.getElementById('f_telefon').value = edit ? edit.telefon||'' : '';
+  document.getElementById('f_email').value = edit ? edit.email||'' : '';
+  document.getElementById('f_adresse').value = edit ? edit.adresse||'' : '';
+  document.getElementById('f_bewertung').value = edit ? edit.bewertung||'' : '';
+  document.getElementById('f_webseite').value = edit ? edit.webseite||'' : '';
+  document.getElementById('f_objekte').value = edit ? edit.objekte||'' : '';
+  document.getElementById('f_status').value = edit ? edit.status : 'kalt';
+  document.getElementById('f_reminder').value = edit ? edit.reminder||'' : '';
+  document.getElementById('f_notizen').value = edit ? edit.notizen||'' : '';
+  document.getElementById('formOverlay').classList.add('open');
+}
+document.getElementById('addBtnHeute').onclick = ()=>openForm(null);
+document.getElementById('addBtnKontakte').onclick = ()=>openForm(null);
+document.getElementById('formCancel').onclick = ()=>document.getElementById('formOverlay').classList.remove('open');
+
+document.getElementById('formSave').onclick = async ()=>{
+  const firma = document.getElementById('f_firma').value.trim();
+  if(!firma){ alert('Bitte einen Firmennamen eingeben.'); return; }
+  const data = {
+    firma,
+    ansprechpartner: document.getElementById('f_ansprechpartner').value.trim(),
+    telefon: document.getElementById('f_telefon').value.trim(),
+    email: document.getElementById('f_email').value.trim(),
+    adresse: document.getElementById('f_adresse').value.trim(),
+    bewertung: document.getElementById('f_bewertung').value.trim(),
+    webseite: document.getElementById('f_webseite').value.trim(),
+    objekte: document.getElementById('f_objekte').value ? parseInt(document.getElementById('f_objekte').value) : null,
+    status: document.getElementById('f_status').value,
+    reminder: document.getElementById('f_reminder').value || null,
+    notizen: document.getElementById('f_notizen').value.trim(),
+  };
+  if(editingId){
+    const updated = await dbUpdate(editingId, data);
+    if(updated){
+      const idx = contacts.findIndex(c=>c.id===editingId);
+      if(idx>-1) contacts[idx] = updated;
+    }
+  }else{
+    const inserted = await dbInsert({ ...data, calls: [] });
+    if(inserted) contacts.unshift(inserted);
+  }
+  document.getElementById('formOverlay').classList.remove('open');
+  renderAll();
+  if(currentDetailId) openDetail(currentDetailId);
+};
+
+/* ---------------- Detail view ---------------- */
+function openDetail(id){
+  currentDetailId = id;
+  const c = contacts.find(x=>x.id===id);
+  if(!c) return;
+  const st = statusMap[c.status]||STATUSES[0];
+  document.getElementById('d_firma').textContent = c.firma;
+  document.getElementById('d_statusBadge').className = 'badge '+st.cls;
+  document.getElementById('d_statusBadge').textContent = st.label;
+  let info = '';
+  if(c.ansprechpartner) info += `<p>${escapeHtml(c.ansprechpartner)}</p>`;
+  if(c.telefon) info += `<p><a href="tel:${escapeHtml(c.telefon)}">${escapeHtml(c.telefon)}</a></p>`;
+  if(c.email) info += `<p><a href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a></p>`;
+  if(c.adresse) info += `<p>${escapeHtml(c.adresse)}</p>`;
+  if(c.bewertung) info += `<p>★ ${escapeHtml(c.bewertung)} (Google Bewertung)</p>`;
+  if(c.webseite){
+    const href = c.webseite.match(/^https?:\/\//) ? c.webseite : 'https://'+c.webseite;
+    info += `<p><a href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(c.webseite)}</a></p>`;
+  }
+  if(c.objekte) info += `<p>${c.objekte} verwaltete Objekte</p>`;
+  if(c.notizen) info += `<p style="margin-top:8px;">${escapeHtml(c.notizen)}</p>`;
+  document.getElementById('d_info').innerHTML = info || '<p>Keine weiteren Angaben.</p>';
+  document.getElementById('d_reminderInput').value = c.reminder || '';
+  document.getElementById('d_statusSelect').value = c.status;
+  document.getElementById('d_callNote').value = '';
+
+  const hist = document.getElementById('d_history');
+  if(!c.calls || c.calls.length===0){
+    hist.innerHTML = '<p style="color:var(--ink-faint);font-size:13px;">Noch keine Anrufe protokolliert.</p>';
+  }else{
+    const sorted = [...c.calls].sort((a,b)=>b.date.localeCompare(a.date));
+    hist.innerHTML = sorted.map(call=>`<div class="callEntry">
+      <div class="cDate">${fmtDate(call.date)}</div>
+      <div class="cOutcome">${escapeHtml(call.outcome)}</div>
+      <div class="cNote">${escapeHtml(call.note||'')}</div>
+    </div>`).join('');
+  }
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+document.getElementById('d_close').onclick = ()=>{ document.getElementById('detailOverlay').classList.remove('open'); currentDetailId=null; renderAll(); };
+document.getElementById('d_editBtn').onclick = ()=>{
+  const c = contacts.find(x=>x.id===currentDetailId);
+  document.getElementById('detailOverlay').classList.remove('open');
+  openForm(c);
+};
+document.getElementById('d_deleteBtn').onclick = async ()=>{
+  if(!confirm('Diesen Kontakt wirklich löschen?')) return;
+  const ok = await dbDelete(currentDetailId);
+  if(ok){
+    contacts = contacts.filter(c=>c.id!==currentDetailId);
+    document.getElementById('detailOverlay').classList.remove('open');
+    currentDetailId=null;
+    renderAll();
+  }
+};
+document.getElementById('d_reminderSave').onclick = async ()=>{
+  const value = document.getElementById('d_reminderInput').value || null;
+  const updated = await dbUpdate(currentDetailId, { reminder: value });
+  if(updated){
+    const idx = contacts.findIndex(x=>x.id===currentDetailId);
+    if(idx>-1) contacts[idx] = updated;
+    renderAll();
+    openDetail(currentDetailId);
+  }
+};
+document.getElementById('d_statusSelect').onchange = async (e)=>{
+  const updated = await dbUpdate(currentDetailId, { status: e.target.value });
+  if(updated){
+    const idx = contacts.findIndex(x=>x.id===currentDetailId);
+    if(idx>-1) contacts[idx] = updated;
+    renderAll();
+    openDetail(currentDetailId);
+  }
+};
+document.getElementById('d_callAdd').onclick = async ()=>{
+  const c = contacts.find(x=>x.id===currentDetailId);
+  const outcome = document.getElementById('d_callOutcome').value;
+  const note = document.getElementById('d_callNote').value.trim();
+  const calls = c.calls ? [...c.calls, {date: todayStr(), outcome, note}] : [{date: todayStr(), outcome, note}];
+  const updated = await dbUpdate(currentDetailId, { calls });
+  if(updated){
+    const idx = contacts.findIndex(x=>x.id===currentDetailId);
+    if(idx>-1) contacts[idx] = updated;
+    openDetail(currentDetailId);
+    renderAll();
+  }
+};
+
+initAuth();
+</script>
+</body>
+</html>
