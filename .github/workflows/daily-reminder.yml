@@ -22,5 +22,8 @@ jobs:
         env:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE }}
           RESEND_API_KEY: ${{ secrets.MAIL }}
-          TARGET_EMAIL: 'Athanasia.Tsapkini@provinzial.de'
+          # Resend-Testmodus: ohne verifizierte Domain sind nur Mails an die
+          # eigene Resend-Konto-Adresse erlaubt. Für den Versand an andere
+          # Empfänger erst eine Domain unter resend.com/domains verifizieren.
+          TARGET_EMAIL: 'yaylacioglu@outlook.de'
         run: node scripts/send-reminders.mjs
