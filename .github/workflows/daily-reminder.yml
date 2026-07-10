@@ -20,7 +20,7 @@ jobs:
  
       - name: Erinnerungs-Skript ausführen
         env:
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE }}
+          RESEND_API_KEY: ${{ secrets.MAIL }}
           TARGET_EMAIL: 'Athanasia.Tsapkini@provinzial.de'
         run: node scripts/send-reminders.mjs
