@@ -2,11 +2,15 @@
    VORSORGE – zentrale Daten & Texte
    Rechtsstand: 07/2026 – alle Werte hier pflegen, Logik in vorsorge-app.js
    ---------------------------------------------------------------------
-   TODO vor Livegang (Verifikations-Status siehe Kommentare an Ort und Stelle):
-   [ ] ATV-Altersfaktoren-Tabelle gegen offizielles PDF prüfen
-       (versorgungskassen.de → Zusatzversorgung → Altersfaktoren)
-   [ ] § 37 ATV soziale Komponente (Elternzeit): Parameter im ATV nachlesen
-   [ ] Versorgungsfreibetrag 2026 (§ 19 Abs. 2 EStG) gegen BMF-Tabelle prüfen
+   Verifikations-Status (geprüft am 25.07.2026):
+   [x] ATV-Altersfaktoren: gegen ATV-Text (recht.nrw.de) UND Altersfaktoren-
+       tabelle der ZVK Hannover geprüft – Tabelle unten entsprechend korrigiert
+       (ursprünglicher Entwurf war ab Alter 44 um eine Stufe zu hoch).
+   [x] § 37 ATV soziale Komponente: je vollem Kalendermonat Elternzeit werden
+       VP aus einem fiktiven Entgelt von 500 €/Monat gutgeschrieben, je Kind
+       max. 36 Monate (ATV-Text, recht.nrw.de).
+   [x] Versorgungsfreibetrag 2026: 12,8 % / max. 960 € + 288 € Zuschlag
+       (amtliche Tabelle LBV Baden-Württemberg; 12,4/930/279 gilt erst 2027).
    ===================================================================== */
 
 const CONFIG = {
@@ -54,13 +58,14 @@ const CONFIG = {
     dynamikProJahr: 0.01,         // Betriebsrente +1 % p. a. (GRV dagegen lohnfolgend!)
     grvAnpassungBeispiel: 0.0424, // GRV-Anpassung 01.07.2026: +4,24 % (Vergleichswert)
     umlageWest: { gesamt: 0.069, ag: 0.0549, an: 0.0141, anZusatz: 0.004 },
-    // Altersfaktoren § 36 Abs. 2 ATV – Anker 34→1,8 verifiziert; Tabelle vor Livegang
-    // gegen offizielles PDF prüfen: versorgungskassen.de → Zusatzversorgung → Altersfaktoren
+    // Altersfaktoren (ATV-Anlage; in Kassensatzungen z. B. § 34/36) – verifiziert
+    // am 25.07.2026 gegen ATV-Text (recht.nrw.de) und ZVK Hannover (identisch).
+    // Maßgebliches Alter = Kalenderjahr − Geburtsjahr.
     altersfaktoren: { 17:3.1,18:3.0,19:2.9,20:2.8,21:2.7,22:2.6,23:2.5,24:2.4,25:2.4,
       26:2.3,27:2.2,28:2.2,29:2.1,30:2.0,31:2.0,32:1.9,33:1.9,34:1.8,35:1.7,36:1.7,
-      37:1.6,38:1.6,39:1.6,40:1.5,41:1.5,42:1.4,43:1.4,44:1.4,45:1.3,46:1.3,47:1.3,
-      48:1.2,49:1.2,50:1.2,51:1.1,52:1.1,53:1.1,54:1.1,55:1.0,56:1.0,57:1.0,58:1.0,
-      59:1.0,60:0.9,61:0.9,62:0.9,63:0.9,64:0.9,65:0.8 }, // ab 65: 0,8
+      37:1.6,38:1.6,39:1.6,40:1.5,41:1.5,42:1.4,43:1.4,44:1.3,45:1.3,46:1.3,47:1.2,
+      48:1.2,49:1.2,50:1.1,51:1.1,52:1.1,53:1.0,54:1.0,55:1.0,56:1.0,57:0.9,58:0.9,
+      59:0.9,60:0.9,61:0.9,62:0.8,63:0.8,64:0.8 }, // ab 64: 0,8
   },
 
   /* ---------- Beamtenversorgung (BeamtVG / LBeamtVG NRW) ---------- */
@@ -77,7 +82,9 @@ const CONFIG = {
     duZurechnungBisAlter: 60,     // Zurechnungszeit bei DU: bis 60. Lebensjahr zu 2/3
     duZurechnungFaktor: 2 / 3,
     durchschnittssatzReal: 0.669, // Ø-Ruhegehaltssatz Versorgungszugänge Bund 2024 – Beratungsargument!
-    versorgungsfreibetrag2026: { prozent: 0.124, maxJahr: 930, zuschlag: 279 }, // § 19 Abs. 2 EStG, prüfen
+    // § 19 Abs. 2 EStG, Versorgungsbeginn 2026 – verifiziert 25.07.2026 gegen
+    // amtliche Tabelle (LBV BW); 12,4 % / 930 € / 279 € gilt erst für Beginn 2027
+    versorgungsfreibetrag2026: { prozent: 0.128, maxJahr: 960, zuschlag: 288 },
   },
 
   /* ---------- Berufsständische Versorgungswerke ---------- */
@@ -266,7 +273,7 @@ const CONFIG = {
         "Für Elternzeiten sieht der ATV eine Punktegutschrift vor (soziale Komponente): je vollem Kalendermonat Elternzeit werden Versorgungspunkte auf Basis eines fiktiven Entgelts von 500 € gutgeschrieben, je Kind bis zu 36 Monate.",
         "In Anwartschaftsmitteilungen tauchen Elternzeitjahre trotzdem oft mit 0 VP auf – dann beim Arbeitgeber/der Kasse reklamieren.",
       ],
-      beratungshinweis: "Parameter je Kasse/Tarifgebiet vor verbindlicher Aussage im ATV bzw. bei der Kasse prüfen lassen – Karte dient als Aufhänger, nicht als Zusage.",
+      beratungshinweis: "Parameter im ATV verifiziert (500 €-Fiktion, max. 36 Monate je Kind); ob die Gutschrift tatsächlich im Konto gelandet ist, immer anhand der Anwartschaftsmitteilung der konkreten Kasse prüfen lassen.",
       quelleUrl: "https://www.versorgungskassen.de",
     },
     {
@@ -332,7 +339,7 @@ const CONFIG = {
     {
       sparte: "beamte", titel: "Pension: Steuer, PKV & Beihilfe", paragraf: "§ 19 Abs. 2 EStG",
       kernfakten: [
-        "Pension ist voll steuerpflichtig (Einkünfte aus nichtselbstständiger Arbeit); der Versorgungsfreibetrag schmilzt jahrgangsweise ab (2026: 12,4 %, max. 930 € + 279 € Zuschlag).",
+        "Pension ist voll steuerpflichtig (Einkünfte aus nichtselbstständiger Arbeit); der Versorgungsfreibetrag schmilzt jahrgangsweise ab (Versorgungsbeginn 2026: 12,8 %, max. 960 € + 288 € Zuschlag; 2027: 12,4 %, max. 930 € + 279 €).",
         "PKV läuft im Ruhestand weiter; Beihilfesatz steigt i. d. R. auf 70 % – der PKV-Beitrag sinkt entsprechend, bleibt aber ein Kostenblock.",
       ],
       beratungshinweis: "Brutto-Pension nie mit Brutto-Rente gleichsetzen: volle Steuer + PKV-Restbeitrag einplanen, dafür keine GKV-Beiträge.",

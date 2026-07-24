@@ -230,7 +230,7 @@ $("inBrutto").addEventListener("input", () => {
 
 function zvkAltersfaktor(alter) {
   const T = CONFIG.vbl.altersfaktoren;
-  if (alter >= 65) return T[65];
+  if (alter >= 64) return T[64];
   if (alter < 17) return T[17];
   return T[alter];
 }
