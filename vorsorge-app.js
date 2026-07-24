@@ -215,6 +215,104 @@ function renderGrv(c) {
   ]);
 }
 
+/* =====================================================================
+   ZVK/VBL-Rechner (Punktemodell ATV/ATV-K)
+   ===================================================================== */
+state.zvkEntgeltTouched = false;
+$("inZvkEntgelt").addEventListener("input", () => { state.zvkEntgeltTouched = true; });
+$("inBrutto").addEventListener("input", () => {
+  // Entgelt folgt dem Brutto, solange der Berater es nicht selbst angefasst hat
+  if (!state.zvkEntgeltTouched) {
+    $("inZvkEntgelt").value = Math.min(100000, val("inBrutto"));
+    $("outZvkEntgelt").textContent = fmtEur0(val("inZvkEntgelt"));
+  }
+});
+
+function zvkAltersfaktor(alter) {
+  const T = CONFIG.vbl.altersfaktoren;
+  if (alter >= 65) return T[65];
+  if (alter < 17) return T[17];
+  return T[alter];
+}
+
+function calcZvk(c) {
+  const V = CONFIG.vbl, K = CONFIG.kvpv;
+  const entgelt = val("inZvkEntgelt");
+  const eintritt = val("inZvkEintritt");
+  const vpEingabe = val("inZvkVp");
+  const renteJahr = c.geburtsjahr + c.rentenalter;
+
+  const startJahr = vpEingabe > 0 ? c.heute : eintritt;
+  let vp = vpEingabe > 0 ? vpEingabe : 0;
+  let vpProJahrAktuell = 0;
+  for (let jahr = startJahr; jahr < renteJahr; jahr++) {
+    const alter = jahr - c.geburtsjahr;
+    if (alter < 17) continue;
+    const j = entgelt / V.referenzentgeltJahr * zvkAltersfaktor(alter);
+    vp += j;
+    if (jahr === c.heute) vpProJahrAktuell = j;
+  }
+  if (!vpProJahrAktuell) vpProJahrAktuell = entgelt / V.referenzentgeltJahr * zvkAltersfaktor(c.alter);
+
+  // Abschlag: 0,3 %/Monat vor der Regelaltersgrenze, max. 10,8 %
+  const ragMon = c.rag.jahre * 12 + c.rag.monate;
+  const frueher = Math.max(0, ragMon - c.rentenalter * 12);
+  const abschlag = Math.min(frueher * V.abschlagProMonat, V.abschlagMax);
+  const brutto = vp * V.messbetrag * (1 - abschlag);
+
+  // Wartezeit 60 Monate Pflichtversicherung (Eintritt bis Rentenbeginn)
+  const pflichtMonate = Math.max(0, (renteJahr - eintritt) * 12);
+
+  // Betriebsrente: VOLLER KV-Satz, Freibetrag nur KV; PV voll ohne Freibetrag
+  const kvSatzVoll = K.kvSatz + K.kvZusatzDurchschnitt;
+  const kv = Math.max(0, brutto - K.betriebsrenteFreibetragKV) * kvSatzVoll;
+  const pv = brutto * pvSatz(c.kinderlos);
+  const netto = brutto - kv - pv;
+
+  // Kaufkraft-/Dynamikvergleich: ZVK +1 % p. a. vs. Beispiel-GRV-Anpassung
+  const g = CONFIG.annahmen.grvAnpassungLangfrist;
+  const dyn = [10, 20].map((n) => ({
+    n,
+    zvk: brutto * Math.pow(1 + V.dynamikProJahr, n),
+    grv: brutto * Math.pow(1 + g, n),
+  }));
+
+  return { entgelt, eintritt, vp, vpProJahrAktuell, abschlag, frueher, brutto,
+           kv, pv, netto, kvSatzVoll, pflichtMonate, dyn, renteJahr };
+}
+
+function renderZvk(c) {
+  const r = calcZvk(c);
+  const K = CONFIG.kvpv;
+  $("zvkBrutto").textContent = fmtEur(r.brutto);
+  $("zvkBeginnLbl").textContent = `(Beginn ${r.renteJahr}, ${fmtNum(r.vp)} Versorgungspunkte)`;
+  $("zvkKette").innerHTML = ketteHtml([
+    { t: "Betriebsrente brutto", sub: fmtNum(r.vp) + " VP × 4,00 € × " + fmtNum(1 - r.abschlag), v: fmtEur(r.brutto) },
+    { t: "Krankenversicherung", sub: `voller Satz ${fmtPct(r.kvSatzVoll, 1)} auf (Rente − Freibetrag ${fmtEur(K.betriebsrenteFreibetragKV)})`, v: "− " + fmtEur(r.kv), art: "minus" },
+    { t: "Pflegeversicherung", sub: "voller Beitrag, ohne Freibetrag (" + fmtPct(pvSatz(c.kinderlos)) + ")", v: "− " + fmtEur(r.pv), art: "minus" },
+    { t: "Netto vor Steuern", v: fmtEur(r.netto), art: "sum" },
+  ]);
+  const warn = $("zvkWartezeitWarn");
+  if (r.pflichtMonate < CONFIG.vbl.wartezeitMonate) {
+    warn.style.display = "block";
+    warn.innerHTML = `<b>Wartezeit nicht erfüllt (${r.pflichtMonate} von 60 Monaten):</b> ` +
+      `Bei Ausscheiden vor Erfüllung der Wartezeit verfällt die Anwartschaft ersatzlos (§ 34 ATV).`;
+  } else warn.style.display = "none";
+  $("zvkDynamik").innerHTML =
+    `<b>Dynamik-Falle:</b> Die Betriebsrente steigt nur 1 %/Jahr, die GRV folgt den Löhnen ` +
+    `(01.07.2026: +4,24 %). Beispiel bei ${fmtPct(CONFIG.annahmen.grvAnpassungLangfrist)} GRV-Dynamik: ` +
+    r.dyn.map((d) => `nach ${d.n} Rentenjahren ${fmtEur0(d.zvk)} statt ${fmtEur0(d.grv)}`).join(" · ") +
+    ` → reale Entwertung als Beratungsargument.`;
+  $("zvkWeg").innerHTML = wegHtml([
+    { t: "Versorgungspunkte pro Jahr (aktuell)", f: `${fmtEur0(r.entgelt)} ÷ 12.000 € × Altersfaktor ${fmtNum(zvkAltersfaktor(c.alter))} (Alter ${c.alter}) = ${fmtNum(r.vpProJahrAktuell)} VP`, q: "§ 36 ATV (Punktemodell), vbl.de / versorgungskassen.de" },
+    { t: "Summe Versorgungspunkte", f: `${fmtNum(r.vp)} VP (jahrweise mit Altersfaktor summiert${val("inZvkVp") > 0 ? ", inkl. vorhandener VP lt. Mitteilung" : ", ab Eintritt " + r.eintritt})`, q: "§ 36 ATV" },
+    { t: "Abschlag", f: r.frueher > 0 ? `${r.frueher} Monate vor Regelaltersgrenze × 0,3 % = −${fmtPct(r.abschlag)} (max. 10,8 %)` : "kein Abschlag (Beginn ab Regelaltersgrenze)", q: "§ 35 ATV" },
+    { t: "Betriebsrente", f: `${fmtNum(r.vp)} VP × 4,00 € × ${fmtNum(1 - r.abschlag)} = ${fmtEur(r.brutto)}`, q: "Messbetrag § 35 ATV" },
+    { t: "KV-Beitrag (voller Satz!)", f: `(${fmtEur(r.brutto)} − ${fmtEur(K.betriebsrenteFreibetragKV)}) × 17,5 % = ${fmtEur(r.kv)}`, q: "§ 226 Abs. 2, § 229 SGB V (Versorgungsbezug); Freibetrag nur KV" },
+    { t: "PV-Beitrag", f: `${fmtEur(r.brutto)} × ${fmtPct(pvSatz(c.kinderlos))} = ${fmtEur(r.pv)} (kein Freibetrag in der PV)`, q: "§ 57 SGB XI" },
+  ]);
+}
+
 /* ---------- Neuberechnung ---------- */
 function recalc() {
   const c = commonWerte();
@@ -224,6 +322,7 @@ function recalc() {
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
   if (state.systeme.grv) renderGrv(c);
+  if (state.systeme.zvk) renderZvk(c);
 }
 
 /* ---------- Fußzeile & Druckkopf ---------- */
