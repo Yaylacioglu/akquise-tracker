@@ -439,6 +439,59 @@
         </div>
       </div>
 
+      <!-- ===== Beamtenversorgung ===== -->
+      <div class="card sysCard" id="card-beamte" style="--sysColor:var(--sage)">
+        <h2>Beamtenversorgung</h2>
+        <p class="cardSub">Ruhegehalt = ruhegehaltfähige Bezüge × 1,79375 % je Dienstjahr, max. 71,75 % (§ 14 BeamtVG)</p>
+        <div class="segRow" id="beamteTab" style="margin-bottom:16px">
+          <button data-tab="alter" class="active">Alterspension</button>
+          <button data-tab="du">Was wäre bei Dienstunfähigkeit heute?</button>
+        </div>
+        <div class="sysGrid">
+          <div>
+            <div class="numIn">
+              <label for="inBeaBezuege">Ruhegehaltfähige Monatsbezüge (€)</label>
+              <input type="number" id="inBeaBezuege" min="0" max="15000" step="10" value="4500" inputmode="decimal">
+              <span class="hint">Grundgehalt + Familienzuschlag Stufe 1 + Amtszulagen; letzte Besoldungsgruppe muss i. d. R. ≥ 2 Jahre innegehabt sein.</span>
+            </div>
+            <div class="sl" style="margin-top:10px">
+              <div class="slHead"><label for="inBeaJahre">Ruhegehaltfähige Dienstjahre (bis Pension)</label><output id="outBeaJahre"></output></div>
+              <input type="range" id="inBeaJahre" min="5" max="45" step="1" value="40" data-fmt="jahre">
+            </div>
+            <div class="sl">
+              <div class="slHead"><label for="inBeaTzJahre">davon Jahre in Teilzeit</label><output id="outBeaTzJahre"></output></div>
+              <input type="range" id="inBeaTzJahre" min="0" max="45" step="1" value="0" data-fmt="jahre">
+            </div>
+            <div class="sl">
+              <div class="slHead"><label for="inBeaTzQuote">Teilzeitquote</label><output id="outBeaTzQuote"></output></div>
+              <input type="range" id="inBeaTzQuote" min="25" max="100" step="5" value="50" data-fmt="pct">
+            </div>
+            <div class="sl" id="beaDienstBisherWrap">
+              <div class="slHead"><label for="inBeaJahreBisher">Dienstjahre bisher (für DU-Betrachtung)</label><output id="outBeaJahreBisher"></output></div>
+              <input type="range" id="inBeaJahreBisher" min="0" max="45" step="1" value="15" data-fmt="jahre">
+            </div>
+            <div class="numIn" style="margin-top:10px">
+              <label for="inBeaStatus">Beamtenstatus</label>
+              <select id="inBeaStatus">
+                <option value="lebenszeit">Beamter auf Lebenszeit</option>
+                <option value="probe">Beamter auf Probe</option>
+                <option value="widerruf">Beamter auf Widerruf (Anwärter/Referendar)</option>
+              </select>
+            </div>
+          </div>
+          <div class="ergebnis">
+            <div id="beaErgebnisNormal">
+              <div class="bigNum" id="beaBrutto">–</div>
+              <div class="bigLbl" id="beaLbl">Ruhegehalt brutto / Monat</div>
+              <table class="kette" id="beaKette"></table>
+              <div class="infoBox" id="beaHinweis"></div>
+            </div>
+            <div class="warnBox" id="beaDuWarn" style="display:none"></div>
+            <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="beaWeg"></div></details>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div id="kombiContainer"></div>

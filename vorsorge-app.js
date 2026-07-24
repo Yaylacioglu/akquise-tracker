@@ -313,6 +313,116 @@ function renderZvk(c) {
   ]);
 }
 
+/* =====================================================================
+   Beamten-Rechner (§ 14 BeamtVG)
+   ===================================================================== */
+state.beamteTab = "alter";
+document.querySelectorAll("#beamteTab button").forEach((b) => {
+  b.addEventListener("click", () => {
+    state.beamteTab = b.dataset.tab;
+    document.querySelectorAll("#beamteTab button").forEach((x) => x.classList.toggle("active", x === b));
+    recalc();
+  });
+});
+
+function calcBeamte(c) {
+  const B = CONFIG.beamte;
+  const bezuege = val("inBeaBezuege");
+  const jahreGesamt = val("inBeaJahre");
+  const tzJahre = Math.min(val("inBeaTzJahre"), jahreGesamt);
+  const tzQuote = val("inBeaTzQuote") / 100;
+  const status = $("inBeaStatus").value;
+
+  // Teilzeit zählt nur anteilig als ruhegehaltfähige Dienstzeit
+  const jahreRgf = (jahreGesamt - tzJahre) + tzJahre * tzQuote;
+  const satz = Math.min(jahreRgf * B.steigerungProJahr, B.hoechstsatz);
+  const ruhegehaltOhne = bezuege * satz;
+
+  // Abschlag bei vorzeitigem Antragsruhestand: 0,3 %/Monat, max. 14,4 %
+  const ragMon = c.rag.jahre * 12 + c.rag.monate;
+  const frueher = Math.max(0, ragMon - c.rentenalter * 12);
+  const abschlag = Math.min(frueher * B.abschlagProMonat, B.abschlagMaxAntrag);
+  const nachAbschlag = ruhegehaltOhne * (1 - abschlag);
+
+  // Mindestversorgung (ohne Abschlag): amtsabhängig 35 % oder amtsunabhängig ~2.100 €
+  const mindest = Math.max(bezuege * B.mindestAmtsabhaengig, B.mindestAmtsunabhaengig.caBrutto);
+  const brutto = Math.max(nachAbschlag, mindest);
+  const mindestGreift = mindest > nachAbschlag;
+
+  // DU-Betrachtung: Zurechnungszeit bis 60 zu 2/3, Abschlag max. 10,8 %
+  const jahreBisher = val("inBeaJahreBisher");
+  const zurechnung = Math.max(0, B.duZurechnungBisAlter - c.alter) * B.duZurechnungFaktor;
+  const satzDu = Math.min((jahreBisher + zurechnung) * B.steigerungProJahr, B.hoechstsatz);
+  const duOhne = bezuege * satzDu * (1 - B.abschlagMaxDU);
+  const duBrutto = Math.max(duOhne, mindest);
+  const duMindestGreift = mindest > duOhne;
+
+  return { bezuege, jahreGesamt, tzJahre, tzQuote, jahreRgf, satz, ruhegehaltOhne,
+           frueher, abschlag, nachAbschlag, mindest, brutto, mindestGreift, status,
+           jahreBisher, zurechnung, satzDu, duBrutto, duMindestGreift };
+}
+
+function renderBeamte(c) {
+  const r = calcBeamte(c);
+  const B = CONFIG.beamte;
+  const normal = $("beaErgebnisNormal"), duWarn = $("beaDuWarn");
+  $("beaDienstBisherWrap").style.display = state.beamteTab === "du" ? "" : "none";
+
+  if (r.status !== "lebenszeit") {
+    normal.style.display = "none";
+    duWarn.style.display = "block";
+    duWarn.innerHTML =
+      `<b>Beamter auf ${r.status === "probe" ? "Probe" : "Widerruf"}: kein Ruhegehalt bei Dienstunfähigkeit!</b>` +
+      `Statt Pension droht die Entlassung mit Nachversicherung in der GRV. Der EM-Anspruch dort scheitert ` +
+      `meist an der 3/5-Regel (36 Pflichtbeitragsmonate in den letzten 60). ` +
+      `<b style="margin-top:6px">→ Private Dienstunfähigkeitsabsicherung ist Pflichtthema.</b>`;
+    $("beaWeg").innerHTML = wegHtml([
+      { t: "Rechtslage Probe/Widerruf", f: "Keine Versorgung aus dem Beamtenverhältnis (Ausnahme: Dienstunfall) → Entlassung + Nachversicherung GRV", q: "§§ 28 ff. BeamtVG; § 8 SGB VI, gesetze-im-internet.de" },
+    ]);
+    return;
+  }
+  normal.style.display = "";
+  duWarn.style.display = "none";
+
+  if (state.beamteTab === "alter") {
+    $("beaBrutto").textContent = fmtEur(r.brutto);
+    $("beaLbl").textContent = "Ruhegehalt brutto / Monat";
+    $("beaKette").innerHTML = ketteHtml([
+      { t: "Ruhegehaltssatz", sub: fmtNum(r.jahreRgf) + " ruhegehaltf. Jahre × 1,79375 % (max. 71,75 %)", v: fmtPct(r.satz, 2) },
+      { t: "Ruhegehalt", sub: fmtEur(r.bezuege) + " × " + fmtPct(r.satz, 2), v: fmtEur(r.ruhegehaltOhne) },
+      ...(r.abschlag > 0 ? [{ t: "Versorgungsabschlag", sub: r.frueher + " Monate × 0,3 % (max. 14,4 %)", v: "− " + fmtEur(r.ruhegehaltOhne - r.nachAbschlag), art: "minus" }] : []),
+      ...(r.mindestGreift ? [{ t: "Mindestversorgung greift", sub: "höherer Wert zählt, ohne Abschlag", v: fmtEur(r.mindest), art: "plus" }] : []),
+      { t: "Ruhegehalt brutto", v: fmtEur(r.brutto), art: "sum" },
+    ]);
+    $("beaHinweis").innerHTML =
+      `<b>Einordnung:</b> keine GKV-Abzüge – dafür laufen PKV-Beitrag (Beihilfe im Ruhestand i. d. R. 70 %) ` +
+      `und volle Besteuerung (§ 19 EStG). Real erreichen Neupensionäre im Schnitt nur ` +
+      `<b>${fmtPct(B.durchschnittssatzReal, 1)}</b> statt 71,75 % – Teilzeit und späte Verbeamtung kosten.` +
+      (r.tzJahre > 0 ? `<br><b>Teilzeit-Effekt:</b> ${r.tzJahre} Jahre × ${fmtPct(r.tzQuote, 0)} zählen nur als ${fmtNum(r.tzJahre * r.tzQuote)} Jahre.` : "");
+  } else {
+    $("beaBrutto").textContent = fmtEur(r.duBrutto);
+    $("beaLbl").textContent = "Ruhegehalt bei Dienstunfähigkeit heute (brutto / Monat)";
+    $("beaKette").innerHTML = ketteHtml([
+      { t: "Dienstjahre bisher", v: fmtNum(r.jahreBisher) + " J." },
+      { t: "Zurechnungszeit", sub: "bis Alter 60 zu 2/3 (" + fmtNum(Math.max(0, B.duZurechnungBisAlter - c.alter)) + " J. × 2/3)", v: "+ " + fmtNum(r.zurechnung) + " J.", art: "plus" },
+      { t: "Ruhegehaltssatz DU", sub: "× 1,79375 %, Abschlag −10,8 %", v: fmtPct(r.satzDu, 2) },
+      ...(r.duMindestGreift ? [{ t: "Mindestversorgung greift", sub: "ca. " + fmtEur(r.mindest), v: fmtEur(r.mindest), art: "plus" }] : []),
+      { t: "DU-Ruhegehalt brutto", v: fmtEur(r.duBrutto), art: "sum" },
+    ]);
+    $("beaHinweis").innerHTML =
+      `<b>Gesprächseinstieg:</b> Frühe DU bedeutet oft nur Mindestversorgung ` +
+      `(~${fmtEur0(r.mindest)} brutto). Die Lücke zum aktuellen Netto schließt nur eine private DU-Klausel.`;
+  }
+  $("beaWeg").innerHTML = wegHtml([
+    { t: "Ruhegehaltfähige Dienstzeit", f: `(${r.jahreGesamt} − ${r.tzJahre}) Jahre Vollzeit + ${r.tzJahre} × ${fmtPct(r.tzQuote, 0)} Teilzeit = ${fmtNum(r.jahreRgf)} Jahre`, q: "§ 6 BeamtVG (Teilzeit anteilig)" },
+    { t: "Ruhegehaltssatz", f: `${fmtNum(r.jahreRgf)} × 1,79375 % = ${fmtPct(r.jahreRgf * B.steigerungProJahr, 2)} → angesetzt ${fmtPct(r.satz, 2)} (Deckel 71,75 %)`, q: "§ 14 Abs. 1 BeamtVG, gesetze-im-internet.de" },
+    { t: "Versorgungsabschlag", f: r.frueher > 0 ? `${r.frueher} Monate × 0,3 % = −${fmtPct(r.abschlag)} (max. 14,4 % Antrag / 10,8 % DU)` : "kein Abschlag", q: "§ 14 Abs. 3 BeamtVG" },
+    { t: "Mindestversorgung", f: `max(35 % × ${fmtEur(r.bezuege)}; amtsunabhängig ca. ${fmtEur0(B.mindestAmtsunabhaengig.caBrutto)}) = ${fmtEur(r.mindest)} – ohne Abschlag`, q: "§ 14 Abs. 4 BeamtVG" },
+    { t: "DU-Zurechnungszeit", f: `(60 − ${c.alter}) × 2/3 = ${fmtNum(r.zurechnung)} Jahre zusätzlich`, q: "§ 13 BeamtVG" },
+    { t: "Realer Durchschnitt", f: `Versorgungszugänge Bund 2024: Ø ${fmtPct(B.durchschnittssatzReal, 1)} Ruhegehaltssatz`, q: "Versorgungsbericht des Bundes, bmi.bund.de" },
+  ]);
+}
+
 /* ---------- Neuberechnung ---------- */
 function recalc() {
   const c = commonWerte();
@@ -323,6 +433,7 @@ function recalc() {
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
   if (state.systeme.grv) renderGrv(c);
   if (state.systeme.zvk) renderZvk(c);
+  if (state.systeme.beamte) renderBeamte(c);
 }
 
 /* ---------- Fußzeile & Druckkopf ---------- */
