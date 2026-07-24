@@ -592,6 +592,45 @@ function recalc() {
   renderKombi(c);
 }
 
+/* =====================================================================
+   Modus „Wissen“: durchsuchbares Nachschlagewerk
+   ===================================================================== */
+const SPARTE_NAME = { grv: "GRV", zvk: "ZVK/VBL", beamte: "Beamte", vw: "Versorgungswerk" };
+state.wSparte = "alle";
+
+function renderWissen() {
+  const q = $("wSuche").value.trim().toLowerCase();
+  const html = CONFIG.wissen
+    .filter((k) => state.wSparte === "alle" || k.sparte === state.wSparte)
+    .filter((k) => !q ||
+      (k.titel + " " + k.paragraf + " " + k.kernfakten.join(" ") + " " + k.beratungshinweis)
+        .toLowerCase().includes(q))
+    .map((k) => `
+      <details class="wCard"${q ? " open" : ""}>
+        <summary>
+          <span class="badge b-${k.sparte}">${SPARTE_NAME[k.sparte]}</span>
+          <span class="wTitel">${k.titel}</span>
+          <span class="wPara">${k.paragraf}</span>
+        </summary>
+        <div class="wBody">
+          <ul>${k.kernfakten.map((f) => `<li>${f}</li>`).join("")}</ul>
+          <div class="wBeratung"><b>Beratungshinweis:</b> ${k.beratungshinweis}</div>
+          <div class="wQuelle">Quelle: <a href="${k.quelleUrl}" target="_blank" rel="noopener">${k.quelleUrl.replace(/^https?:\/\/(www\.)?/, "").split("/")[0]}</a></div>
+        </div>
+      </details>`).join("");
+  $("wListe").innerHTML = html ||
+    `<p class="hint" style="text-align:center;padding:30px">Kein Treffer – Suchbegriff kürzen oder Sparte auf „Alle“ stellen.</p>`;
+}
+
+$("wSuche").addEventListener("input", renderWissen);
+document.querySelectorAll("#wFilter button").forEach((b) => {
+  b.addEventListener("click", () => {
+    state.wSparte = b.dataset.sparte;
+    document.querySelectorAll("#wFilter button").forEach((x) => x.classList.toggle("active", x === b));
+    renderWissen();
+  });
+});
+
 /* ---------- Fußzeile & Druckkopf ---------- */
 (function initStatic() {
   const standTxt = "Stand: " + CONFIG.stand.replace(/(\d{4})-(\d{2})/, "$2/$1");
@@ -600,5 +639,6 @@ function recalc() {
     "Erstellt am " + new Date().toLocaleDateString("de-DE") + " · " + standTxt +
     " · unverbindliche Orientierung";
   bindInputs("#mode-beratung");
+  renderWissen();
   recalc();
 })();

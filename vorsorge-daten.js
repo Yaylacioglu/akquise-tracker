@@ -103,8 +103,313 @@ const CONFIG = {
     return { jahre: 67, monate: 0 };
   },
 
-  /* ---------- Modus „Wissen“: Karten (wird in Schritt 6 befüllt) ---------- */
-  wissen: [],
+  /* ---------- Modus „Wissen“: durchsuchbare Karten (Stand 07/2026) ---------- */
+  wissen: [
+    /* ===== GRV ===== */
+    {
+      sparte: "grv", titel: "Kindererziehungszeiten & Mütterrente III", paragraf: "§ 70 Abs. 2 SGB VI",
+      kernfakten: [
+        "0,0833 EP je Monat Kindererziehung; ab 1992 geborene Kinder 36 Monate ≈ 3 EP, vor 1992 bisher 30 Monate ≈ 2,5 EP.",
+        "Mütterrente III (Rentenpaket 2025, beschlossen 05.12.2025): ab 01.01.2027 einheitlich 36 Monate für alle; Auszahlung ab 2028, für 2027 gibt es eine Nachzahlung.",
+        "3 EP × 42,52 € ≈ 128 €/Monat je Kind.",
+        "Meist kein Extra-Antrag nötig. Antrag nötig, wenn im Versicherungsverlauf zum 30. Lebensmonat des Kindes keine Berücksichtigungszeit steht (z. B. Adoption, Ausland) – Formular V0800.",
+        "Zuordnung auch an Väter/Großeltern/Pflegeeltern möglich (überwiegende Erziehung; gemeinsame Erklärung wirkt nur für die Zukunft).",
+        "Kürzung: Der Zugangsfaktor wirkt auch auf KEZ – bei 63er-Rente z. B. 0,4278 statt 0,5 EP je Mütterrente-III-Aufschlag. Bei Gutverdienern Deckelung an der BBG.",
+      ],
+      beratungshinweis: "Bei jeder Mutter/jedem erziehenden Elternteil prüfen, ob die KEZ-Zeile im Verlauf steht – ca. 128 €/Monat je Kind sind sonst verschenkt. V0800 mitnehmen.",
+      quelleUrl: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Familie-und-Kinder/familie-und-kinder_node.html",
+    },
+    {
+      sparte: "grv", titel: "Berücksichtigungszeit bis zum 10. Geburtstag", paragraf: "§ 57 SGB VI",
+      kernfakten: [
+        "Geburt bis 10. Geburtstag, nur bei einem Elternteil; max. 10 Jahre auch bei mehreren Kindern (Ende: Tag vor dem 10. Geburtstag des jüngsten).",
+        "Erhöht die Rente nicht direkt, ABER: zählt zur 35er- UND 45er-Wartezeit.",
+        "Erhält die EM-Anwartschaft, wertet Teilzeitbeiträge um bis zu 50 % auf und verbessert die Bewertung beitragsfreier Zeiten.",
+        "Antrag rückwirkend möglich, sinnvoll nach dem 10. Geburtstag des jüngsten Kindes – gleiches Formular V0800.",
+      ],
+      beratungshinweis: "Unsichtbarer Baustein: taucht als „Berücksichtigungszeit“ im Verlauf auf. Fehlt sie, gehen Wartezeit- und EM-Vorteile verloren – im Unterlagen-Check prüfen.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_6/__57.html",
+    },
+    {
+      sparte: "grv", titel: "Wartezeiten im Überblick (5 / 20 / 35 / 45 Jahre)", paragraf: "§§ 50–51 SGB VI",
+      kernfakten: [
+        "5 Jahre (allgemein): Regelaltersrente, EM-Rente, Hinterbliebenenrente. Zählen: Beiträge, Ersatzzeiten, Versorgungsausgleich, Minijob – NICHT Berücksichtigungszeiten.",
+        "20 Jahre: volle EM-Rente auf dem Sonderweg für nie voll Erwerbsgeminderte.",
+        "35 Jahre (langjährig Versicherte): Rente ab 63 mit Abschlag; es zählen ALLE rentenrechtlichen Zeiten.",
+        "45 Jahre (besonders langjährig): abschlagsfrei 2 Jahre vor Regelalter. Zählen u. a.: Pflichtbeiträge, Pflege, Kindererziehung bis 10, ALG. NICHT: Schule/Studium, Bürgergeld, freiwillige Beiträge der letzten 2 Jahre bei Arbeitslosigkeit; freiwillige Beiträge nur bei ≥ 18 Jahren Pflichtbeiträgen.",
+      ],
+      beratungshinweis: "Wer knapp an 45 Jahren kratzt, kann mit Minijob-Opt-in oder Pflegezeiten noch Monate sammeln – im Check ab 61 gezielt ansprechen.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_6/__51.html",
+    },
+    {
+      sparte: "grv", titel: "Erwerbsminderungsrente (EM)", paragraf: "§ 43 SGB VI",
+      kernfakten: [
+        "Voraussetzungen: 3/5-Regel (36 Pflichtbeitragsmonate in den letzten 60), 5 Jahre Wartezeit, medizinisches Gutachten.",
+        "Voll: unter 3 h/Tag (Faktor 1,0) · teilweise: 3 bis unter 6 h (Faktor 0,5) · Arbeitsmarktrente möglich, wenn Teilzeitjobs fehlen.",
+        "Zurechnungszeit bis 66 J. 3 M. (2026, steigt bis 67 im Jahr 2031); Abschlag max. 10,8 %.",
+        "Berufsanfänger-Sonderregel § 53 SGB VI: EM binnen 6 Jahren nach Ausbildung + 12 Pflichtmonate in den letzten 24 reichen.",
+      ],
+      beratungshinweis: "Der EM-Schutz erlischt bei Selbstständigkeit oder Lücken schleichend – BU vorher abschließen. Die Zeile „Rente wegen voller Erwerbsminderung“ in der Renteninformation neben das Nettogehalt legen: das ist der Gesprächseinstieg.",
+      quelleUrl: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/erwerbsminderungsrente_node.html",
+    },
+    {
+      sparte: "grv", titel: "Kontenklärung", paragraf: "§ 149 SGB VI · Formular V0100",
+      kernfakten: [
+        "Ab 43 sollte das Rentenkonto aktiv geklärt werden – Lücken (Schule ab 17, Ausland, Wehrdienst) sind Jahrzehnte später kaum noch nachweisbar.",
+        "Nur eine Renteninformation zu haben heißt: das Konto ist womöglich ungeklärt. Erst Kontenklärung, dann stimmen die Zahlen.",
+      ],
+      beratungshinweis: "Standard-Einstiegsfrage im Termin: „Haben Sie schon einmal eine Kontenklärung gemacht oder nur die jährliche Renteninformation?“",
+      quelleUrl: "https://www.deutsche-rentenversicherung.de/DRV/DE/Online-Dienste/online-dienste_node.html",
+    },
+    {
+      sparte: "grv", titel: "Rentenauskunft ab 55", paragraf: "§ 109 SGB VI",
+      kernfakten: [
+        "Ab 55 gibt es statt der Renteninformation die ausführliche Rentenauskunft mit allen Rentenarten und Abschlagsvarianten.",
+        "Auf Wunsch auch früher anforderbar; Basis für jede seriöse Ruhestandsplanung ab Mitte 50.",
+      ],
+      beratungshinweis: "Bei 55+ immer die aktuelle Rentenauskunft (nicht nur -information) anfordern lassen – sie enthält die Abschlagstabellen für die Beratung.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_6/__109.html",
+    },
+    {
+      sparte: "grv", titel: "Ausgleichszahlung für Abschläge ab 50", paragraf: "§ 187a SGB VI",
+      kernfakten: [
+        "Ab 50 können Abschläge einer geplanten Frührente durch Sonderzahlungen ausgeglichen werden.",
+        "Zahlungen sind als Altersvorsorgeaufwand steuerlich absetzbar – gestreckt über mehrere Jahre besonders wirksam.",
+        "Wird die Rente doch nicht vorzeitig genommen, erhöhen die Zahlungen einfach die Rente.",
+      ],
+      beratungshinweis: "Spannend für Gutverdiener 50+ mit Steuerdruck: „Rentenabschläge zurückkaufen“ schlägt oft klassische Sparprodukte – Rentenauskunft mit § 187a-Berechnung anfordern.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_6/__187a.html",
+    },
+    {
+      sparte: "grv", titel: "Grundrentenzuschlag", paragraf: "§§ 76g, 307e SGB VI",
+      kernfakten: [
+        "Ab 33 Jahren Grundrentenzeiten automatischer Zuschlag bei unterdurchschnittlichem Verdienst (kein Antrag).",
+        "Voll ab 35 Jahren; Einkommensprüfung erfolgt automatisch über die Finanzämter.",
+      ],
+      beratungshinweis: "Kein Antrag nötig – aber: Grundrentenzeiten setzen geklärtes Konto voraus. Wieder ein Argument für die Kontenklärung.",
+      quelleUrl: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Grundrente/grundrente_node.html",
+    },
+    {
+      sparte: "grv", titel: "Minijob: Opt-in statt Befreiung", paragraf: "§ 6 Abs. 1b SGB VI",
+      kernfakten: [
+        "Eigenanteil 3,6 % (Arbeitgeber zahlt 15 %) macht den Minijob voll rentenwirksam.",
+        "Bringt Pflichtbeitragsmonate für die 3/5-Regel (EM-Schutz!) und für alle Wartezeiten inkl. 45 Jahre.",
+      ],
+      beratungshinweis: "Fast alle Minijobber lassen sich befreien – für wenige Euro im Monat kaufen sie mit dem Opt-in EM-Schutz und Wartezeitmonate. Klassischer Quick-Win im Check.",
+      quelleUrl: "https://www.minijob-zentrale.de",
+    },
+    {
+      sparte: "grv", titel: "Hinterbliebenenrente", paragraf: "§ 46 SGB VI",
+      kernfakten: [
+        "Große Witwen-/Witwerrente: 55 % der Rente des Verstorbenen (altes Recht 60 %).",
+        "Eigenes Einkommen wird oberhalb eines Freibetrags zu 40 % angerechnet.",
+        "Sterbevierteljahr: 3 Monate volle Rente des Verstorbenen.",
+      ],
+      beratungshinweis: "Anrechnungslogik macht private Hinterbliebenenabsicherung (Risiko-LV) für Doppelverdiener fast immer nötig – mit konkreten Zahlen zeigen.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_6/__46.html",
+    },
+    {
+      sparte: "grv", titel: "Haltelinie 48 % bis 2031", paragraf: "Rentenpaket 2025",
+      kernfakten: [
+        "Das Rentenniveau ist bis 2031 bei 48 % des Durchschnittslohns gesetzlich fixiert (Haltelinie).",
+        "48 % vom DURCHSCHNITT heißt: individuell ist es oft deutlich weniger – und nach 2031 ist die Fortschreibung offen.",
+      ],
+      beratungshinweis: "Kernbotschaft: „48 % vom Durchschnitt reicht nicht.“ Die Haltelinie stabilisiert das System, ersetzt aber keine private Vorsorge.",
+      quelleUrl: "https://www.bmas.de",
+    },
+
+    /* ===== ZVK / VBL ===== */
+    {
+      sparte: "zvk", titel: "Punktemodell: so entsteht die Betriebsrente", paragraf: "§§ 35–36 ATV",
+      kernfakten: [
+        "Versorgungspunkte = Jahresentgelt ÷ 12.000 € × Altersfaktor (jünger = höherer Faktor, „Verzinsung“).",
+        "Monatsrente = Summe der Versorgungspunkte × 4 € Messbetrag.",
+        "Abschlag bei vorzeitigem Bezug: 0,3 %/Monat, max. 10,8 %.",
+        "Finanzierung West: Umlage 6,9 % (AG 5,49 % / AN 1,41 %) + AN-Zusatzbeitrag 0,4 %.",
+      ],
+      beratungshinweis: "Faustformel fürs Gespräch: 25.000 € Entgelt mit Alter 34 = 3,75 VP = 15 €/Monat Rentenbaustein pro Jahr. Macht die Größenordnung sofort greifbar.",
+      quelleUrl: "https://www.vbl.de",
+    },
+    {
+      sparte: "zvk", titel: "Wartezeit 60 Monate – sonst Verfall", paragraf: "§ 34 ATV",
+      kernfakten: [
+        "Anspruch auf Betriebsrente erst nach 60 Umlage-/Beitragsmonaten.",
+        "Ausscheiden vorher: Anwartschaft verfällt ersatzlos (keine Erstattung der Umlagen im Punktemodell).",
+        "Nach Ausscheiden mit erfüllter Wartezeit: beitragsfreie Anwartschaft wächst praktisch nicht mehr weiter.",
+      ],
+      beratungshinweis: "Warnkarte für Wechsler aus dem öD: kurz vor 60 Monaten kündigen kostet die komplette Anwartschaft – Wechseltermin ggf. schieben.",
+      quelleUrl: "https://www.vbl.de",
+    },
+    {
+      sparte: "zvk", titel: "Auszahlung & Besteuerung: das Splitting", paragraf: "§ 22 Nr. 5 EStG",
+      kernfakten: [
+        "Umlagefinanziert-steuerfreier Teil der Beiträge → Rente daraus voll steuerpflichtig.",
+        "Aus versteuertem Entgelt finanzierter Teil → nur Ertragsanteil steuerpflichtig.",
+        "Deshalb weist die Anwartschaftsmitteilung zwei Entgelt-/Rententeile aus – das ist kein Fehler.",
+      ],
+      beratungshinweis: "Wer die zwei Zahlen auf der Mitteilung erklären kann, gewinnt sofort Kompetenzvertrauen. Aufteilung im Termin notieren.",
+      quelleUrl: "https://www.vbl.de",
+    },
+    {
+      sparte: "zvk", titel: "Dynamik-Falle: nur 1 % pro Jahr", paragraf: "§ 39 ATV",
+      kernfakten: [
+        "Laufende ZVK-Betriebsrenten steigen fix um 1 %/Jahr.",
+        "Die GRV folgt den Löhnen: Anpassung zum 01.07.2026 z. B. +4,24 %.",
+        "Nach 20 Rentenjahren ist die ZVK-Rente real deutlich entwertet (bei 2,5 % GRV-Dynamik ca. 25 % Rückstand).",
+      ],
+      beratungshinweis: "Kaufkraftvergleich im Rechner zeigen: Selbst wer heute „gut versorgt“ wirkt, verliert im Ruhestand Jahr für Jahr relativ an Boden – Argument für dynamische private Bausteine.",
+      quelleUrl: "https://www.vbl.de",
+    },
+    {
+      sparte: "zvk", titel: "Elternzeit: soziale Komponente", paragraf: "§ 37 ATV",
+      kernfakten: [
+        "Für Elternzeiten sieht der ATV eine Punktegutschrift vor (soziale Komponente): je vollem Kalendermonat Elternzeit werden Versorgungspunkte auf Basis eines fiktiven Entgelts von 500 € gutgeschrieben, je Kind bis zu 36 Monate.",
+        "In Anwartschaftsmitteilungen tauchen Elternzeitjahre trotzdem oft mit 0 VP auf – dann beim Arbeitgeber/der Kasse reklamieren.",
+      ],
+      beratungshinweis: "Parameter je Kasse/Tarifgebiet vor verbindlicher Aussage im ATV bzw. bei der Kasse prüfen lassen – Karte dient als Aufhänger, nicht als Zusage.",
+      quelleUrl: "https://www.versorgungskassen.de",
+    },
+    {
+      sparte: "zvk", titel: "KVdR: Betriebsrente wird voll verbeitragt", paragraf: "§§ 226, 229 SGB V",
+      kernfakten: [
+        "Auf Betriebsrenten zahlt der Rentner den VOLLEN KV-Satz (14,6 % + Zusatzbeitrag) allein.",
+        "Freibetrag 2026: 197,75 €/Monat (1/20 der Bezugsgröße) – gilt NUR für die KV, nicht für die PV.",
+        "PV: voller Satz auf die gesamte Betriebsrente.",
+      ],
+      beratungshinweis: "Bei kleinen Betriebsrenten bleibt dank Freibetrag oft fast alles KV-frei – bei großen frisst die Verbeitragung ~20 %. In jeder Hochrechnung sauber trennen (GRV halber Satz, Betriebsrente voller Satz).",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_5/__226.html",
+    },
+    {
+      sparte: "zvk", titel: "Zielgruppe: Teilzeit im öffentlichen Dienst", paragraf: "—",
+      kernfakten: [
+        "Erzieherinnen, Pflegekräfte, Verwaltung: oft jahrzehntelang Teilzeit → wenig Entgelt → wenige EP UND wenige VP.",
+        "GRV + ZVK zusammen reichen bei Teilzeitbiografien regelmäßig nicht für den Lebensstandard.",
+        "VBLextra / freiwillige Versicherung der Kassen ist die hauseigene Aufstockungsoption – als Vergleichsmaßstab einordnen.",
+      ],
+      beratungshinweis: "„Sie sind doch im öffentlichen Dienst abgesichert“ ist der häufigste Irrglaube dieser Zielgruppe – Kombi-Balken mit realen Teilzeitzahlen zeigen.",
+      quelleUrl: "https://www.vbl.de/de/produkte/vblextra",
+    },
+
+    /* ===== Beamte ===== */
+    {
+      sparte: "beamte", titel: "Kernwerte der Beamtenversorgung", paragraf: "§ 14 BeamtVG",
+      kernfakten: [
+        "1,79375 % je ruhegehaltfähigem Dienstjahr, Höchstsatz 71,75 % – erst nach 40 Vollzeit-Jahren.",
+        "Real erreichten Neupensionäre des Bundes 2024 im Schnitt nur 66,9 %.",
+        "Zwei-Jahres-Regel: Die letzte Besoldungsgruppe muss i. d. R. mindestens 2 Jahre innegehabt worden sein, sonst zählt die vorherige.",
+        "Wartezeit: 5 Jahre Dienstzeit.",
+      ],
+      beratungshinweis: "Nie mit 71,75 % rechnen – mit den realen 66,9 % oder der individuellen Prognose. Bei anstehender Beförderung kurz vor Pension an die Zwei-Jahres-Regel denken.",
+      quelleUrl: "https://www.gesetze-im-internet.de/beamtvg/__14.html",
+    },
+    {
+      sparte: "beamte", titel: "Teilzeit: der Pensionskiller Nr. 1", paragraf: "§ 6 BeamtVG",
+      kernfakten: [
+        "Teilzeitjahre zählen nur anteilig als ruhegehaltfähige Dienstzeit (50 % Teilzeit = halbes Jahr pro Jahr).",
+        "Typische Biografie Lehrerin: 15 Jahre Teilzeit 50 % kosten 7,5 Dienstjahre ≈ 13,5 Prozentpunkte Ruhegehaltssatz.",
+      ],
+      beratungshinweis: "Zielgruppe Lehrerinnen/Beamtinnen mit Familienphase: Teilzeit-Slider im Rechner live zeigen – der Effekt überrascht fast immer.",
+      quelleUrl: "https://www.gesetze-im-internet.de/beamtvg/__6.html",
+    },
+    {
+      sparte: "beamte", titel: "Kindererziehung bei Beamten: Zuschlag statt EP", paragraf: "§ 50a BeamtVG / LBeamtVG NRW",
+      kernfakten: [
+        "Beamte bekommen KEINE GRV-Entgeltpunkte für Kindererziehung, sondern einen Kindererziehungszuschlag nach Versorgungsrecht (in NRW: LBeamtVG NRW).",
+        "Höhe orientiert sich an der GRV-Logik, wird aber auf die Versorgung aufgeschlagen und unterliegt eigenen Grenzen.",
+      ],
+      beratungshinweis: "Häufiges Missverständnis („Ich bekomme doch Mütterrente“) aktiv ausräumen – der Zuschlag steht in der Versorgungsauskunft, nicht im Rentenkonto.",
+      quelleUrl: "https://www.gesetze-im-internet.de/beamtvg/__50a.html",
+    },
+    {
+      sparte: "beamte", titel: "Vordienstzeiten & Versorgungsauskunft", paragraf: "§§ 10–12 BeamtVG",
+      kernfakten: [
+        "Ausbildung, Wehrdienst und öD-Angestelltenjahre können auf Antrag ruhegehaltfähig sein – früh beantragen, Nachweise altern schlecht.",
+        "Eine Versorgungsauskunft gibt es nur auf Antrag (NRW: beim LBV).",
+      ],
+      beratungshinweis: "Zwei Standardfragen an jeden Beamten: „Sind Ihre Vordienstzeiten anerkannt?“ und „Haben Sie je eine Versorgungsauskunft beantragt?“ – beides oft nie passiert.",
+      quelleUrl: "https://www.lbv.nrw.de",
+    },
+    {
+      sparte: "beamte", titel: "Pension: Steuer, PKV & Beihilfe", paragraf: "§ 19 Abs. 2 EStG",
+      kernfakten: [
+        "Pension ist voll steuerpflichtig (Einkünfte aus nichtselbstständiger Arbeit); der Versorgungsfreibetrag schmilzt jahrgangsweise ab (2026: 12,4 %, max. 930 € + 279 € Zuschlag).",
+        "PKV läuft im Ruhestand weiter; Beihilfesatz steigt i. d. R. auf 70 % – der PKV-Beitrag sinkt entsprechend, bleibt aber ein Kostenblock.",
+      ],
+      beratungshinweis: "Brutto-Pension nie mit Brutto-Rente gleichsetzen: volle Steuer + PKV-Restbeitrag einplanen, dafür keine GKV-Beiträge.",
+      quelleUrl: "https://www.gesetze-im-internet.de/estg/__19.html",
+    },
+    {
+      sparte: "beamte", titel: "Absenkungshistorie: 75 % → 71,75 %", paragraf: "Versorgungsänderungsgesetz 2001",
+      kernfakten: [
+        "Der Höchstsatz wurde ab 2003 schrittweise von 75 % auf 71,75 % abgesenkt (Faktor 0,95667).",
+        "Zeigt: Auch Beamtenversorgung ist politisch kürzbar – Besitzstände gelten nicht ewig.",
+      ],
+      beratungshinweis: "„Politik kann kürzen“-Argument: Wer 2001 auf 75 % geplant hat, bekam 71,75 %. Private Bausteine hedgen politisches Risiko.",
+      quelleUrl: "https://www.gesetze-im-internet.de/beamtvg/",
+    },
+    {
+      sparte: "beamte", titel: "Dienstunfähigkeit: die wichtigste Karte", paragraf: "§§ 26–28 BeamtVG",
+      kernfakten: [
+        "Widerruf/Probe: Bei DU droht Entlassung statt Ruhegehalt (Ausnahme Dienstunfall) + Nachversicherung in der GRV.",
+        "Der EM-Anspruch in der GRV scheitert dann meist an der 3/5-Regel – es klafft ein völliges Absicherungsloch.",
+        "Lebenszeit: Frühe DU bedeutet oft nur Mindestversorgung ~2.100 € brutto.",
+        "Unfallruhegehalt (Dienstunfall): mindestens 66 2/3 %.",
+      ],
+      beratungshinweis: "Für Anwärter und junge Beamte ist die private DU-Klausel DAS Pflichtthema – vor der Verbeamtung auf Lebenszeit ist der Schutz am günstigsten zu bekommen.",
+      quelleUrl: "https://www.gesetze-im-internet.de/beamtvg/__28.html",
+    },
+
+    /* ===== Versorgungswerk ===== */
+    {
+      sparte: "vw", titel: "Befreiung ist tätigkeitsbezogen!", paragraf: "§ 6 Abs. 1 Nr. 1, Abs. 4 SGB VI",
+      kernfakten: [
+        "Die Befreiung von der GRV gilt nur für die KONKRETE Tätigkeit – bei jedem Arbeitgeberwechsel oder wesentlichem Tätigkeitswechsel ist ein NEUER Antrag nötig.",
+        "Frist: 3 Monate ab Aufnahme der Tätigkeit, Antrag elektronisch (§ 6 Abs. 4 SGB VI); sonst wirkt die Befreiung erst ab Antragseingang.",
+        "Antrag ist schon vor Jobantritt möglich (Arbeitsvertrag beilegen).",
+        "Ohne gültigen Befreiungsbescheid MUSS der Arbeitgeber in die GRV melden – es entstehen Doppelstrukturen.",
+      ],
+      beratungshinweis: "Checklisten-Frage Nr. 1 bei Ärzten, Anwälten, Apothekern: „Passt Ihr Befreiungsbescheid zur aktuellen Stelle?“ Nach jedem Jobwechsel prüfen.",
+      quelleUrl: "https://www.abv.de",
+    },
+    {
+      sparte: "vw", titel: "Die vergessene zweite Rente aus der GRV", paragraf: "§§ 56, 70 SGB VI",
+      kernfakten: [
+        "Kindererziehungszeiten laufen IMMER in die GRV – auch bei Befreiten.",
+        "2 Kinder = 6 Jahre KEZ = allgemeine Wartezeit (5 J.) erfüllt = eigene kleine GRV-Rente zusätzlich zum Versorgungswerk.",
+        "Auch alte Angestelltenjahre vor der Befreiung zählen mit.",
+      ],
+      beratungshinweis: "Aha-Moment im Gespräch mit Ärztinnen/Anwältinnen: „Sie bekommen später ZWEI Renten.“ GRV-Kontenklärung anstoßen, sonst verfällt nichts, aber es weiß niemand davon.",
+      quelleUrl: "https://www.deutsche-rentenversicherung.de",
+    },
+    {
+      sparte: "vw", titel: "BU im Versorgungswerk: hohe Hürden", paragraf: "je nach Satzung",
+      kernfakten: [
+        "BU-Rente meist erst bei VOLLSTÄNDIGER Aufgabe des Berufs (satzungsabhängig, teils inkl. Rückgabe der Zulassung/Approbation).",
+        "Keine Teilrenten, keine Reha-Leistungen wie in der GRV.",
+      ],
+      beratungshinweis: "Private BU ist für Kammerberufe noch wichtiger als für GRV-Versicherte – die Satzungshürde („Berufsaufgabe“) mit der konkreten Satzung des Kunden belegen.",
+      quelleUrl: "https://www.abv.de",
+    },
+    {
+      sparte: "vw", titel: "KVdR-Falle für Kammerberufe", paragraf: "§ 5 Abs. 1 Nr. 11 SGB V",
+      kernfakten: [
+        "Die Versorgungswerksrente zählt NICHT als GRV-Rente für den Zugang zur Krankenversicherung der Rentner (9/10-Belegung der zweiten Erwerbshälfte).",
+        "Als Versorgungsbezug wird sie in der GKV voll verbeitragt; ohne KVdR-Zugang droht freiwillige Versicherung mit Beiträgen auf ALLE Einkünfte.",
+      ],
+      beratungshinweis: "KV im Alter aktiv planen: PKV vs. freiwillige GKV vs. KVdR-Zugang über Mini-GRV-Zeiten durchrechnen – hier entstehen vier­stellige Jahresunterschiede.",
+      quelleUrl: "https://www.gesetze-im-internet.de/sgb_5/__5.html",
+    },
+    {
+      sparte: "vw", titel: "Kapitalgedeckt & satzungsautonom", paragraf: "Kammer-/Satzungsrecht",
+      kernfakten: [
+        "Versorgungswerke sind kapitalgedeckt und autonom: keine Haltelinie, keine Bundesgarantie.",
+        "Rechnungszins-Senkungen und Leistungskürzungen einzelner Werke hat es bereits gegeben.",
+        "Regelbeitrag ≈ GRV-Höchstbeitrag: 1.571,70 €/Monat (2026); Einstufung einkommensabhängig.",
+      ],
+      beratungshinweis: "Diversifikationsargument: Wer alles auf ein Versorgungswerk setzt, trägt Zins- und Satzungsrisiko allein – private dritte Schicht dazustellen.",
+      quelleUrl: "https://www.abv.de",
+    },
+  ],
 
   /* ---------- Modus „Unterlagen-Check“: Checklisten (wird in Schritt 7 befüllt) ---------- */
   checklisten: {},
