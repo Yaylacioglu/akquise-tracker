@@ -63,6 +63,7 @@ function bindInputs(rootSelector) {
       }
     };
     inp.addEventListener("input", () => { show(); recalc(); });
+    inp._show = show; // für Resync nach Formular-Restore (pageshow)
     show();
   });
   document.querySelectorAll(rootSelector + " input[type=number], " + rootSelector + " select").forEach((inp) => {
@@ -696,4 +697,10 @@ function renderCheck() {
   renderWissen();
   renderCheck();
   recalc();
+  // Browser stellen Slider-Werte nach Reload/Back wieder her, ohne Events zu
+  // feuern – Anzeigen und Rechnung danach einmal neu synchronisieren.
+  window.addEventListener("pageshow", () => {
+    document.querySelectorAll("#mode-beratung input[type=range]").forEach((i) => i._show && i._show());
+    recalc();
+  });
 })();
