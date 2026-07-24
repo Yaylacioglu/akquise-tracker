@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vorsorge-Kompass</title>
+<style>
+  /* Palette angelehnt an den Akquise Tracker – bewusst ohne externe Fonts/CDNs,
+     damit die Seite im Kundentermin auch offline aus dem Cache läuft. */
+  :root{
+    --navy:#1B2A41;
+    --navy-light:#2E4057;
+    --paper:#F7F4EE;
+    --paper-card:#FFFFFF;
+    --amber:#E0973A;
+    --amber-light:#FBEBD5;
+    --amber-dark:#8A5A16;
+    --sage:#6B8F71;
+    --sage-light:#E4EEE3;
+    --sage-dark:#3D5A41;
+    --terracotta:#C1554A;
+    --terracotta-light:#F6E2DF;
+    --terracotta-dark:#7C332B;
+    --blue:#2C5178;
+    --blue-light:#E6EEF7;
+    --ink:#1B2A41;
+    --ink-soft:#5B6472;
+    --ink-faint:#8B93A1;
+    --line:#E3DFD5;
+    --radius:12px;
+    --serif:Georgia,'Times New Roman',serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  button{font-family:inherit;cursor:pointer;}
+  input,select{font-family:inherit;}
+  a{color:var(--blue);}
+
+  /* ---------- Kopf ---------- */
+  header.top{background:var(--navy);color:#fff;padding:16px 24px;}
+  .topRow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;max-width:1100px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand .mark{
+    width:38px;height:38px;border-radius:10px;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:700;color:var(--navy);font-size:18px;
+  }
+  .brand h1{font-size:20px;margin:0;font-weight:600;}
+  .brand .sub{font-size:12px;color:rgba(255,255,255,0.6);margin-top:1px;}
+
+  .modeSwitch{display:flex;background:rgba(255,255,255,0.12);border-radius:11px;padding:4px;gap:4px;}
+  .modeSwitch button{
+    border:none;background:transparent;color:rgba(255,255,255,0.75);
+    padding:11px 20px;border-radius:8px;font-size:14.5px;font-weight:600;
+    min-height:44px;
+  }
+  .modeSwitch button.active{background:var(--paper-card);color:var(--navy);}
+
+  .printBtn{
+    background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;
+    padding:10px 16px;border-radius:9px;font-size:13.5px;min-height:44px;
+  }
+  .printBtn:hover{background:rgba(255,255,255,0.1);}
+
+  main{max-width:1100px;margin:0 auto;padding:22px 24px 70px;}
+  .modeSection{display:none;}
+  .modeSection.active{display:block;}
+
+  /* ---------- Karten & Grundelemente ---------- */
+  .card{
+    background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;margin-bottom:16px;
+  }
+  .card h2{font-size:19px;margin:0 0 4px;font-weight:600;}
+  .card .cardSub{color:var(--ink-soft);font-size:13px;margin:0 0 16px;}
+  .hint{font-size:12.5px;color:var(--ink-faint);line-height:1.5;}
+
+  /* System-Auswahl */
+  .sysWahl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .sysChip{
+    display:flex;align-items:center;gap:9px;
+    border:1.5px solid var(--line);background:var(--paper-card);border-radius:12px;
+    padding:13px 18px;font-size:15px;font-weight:600;color:var(--ink-soft);
+    min-height:52px;
+  }
+  .sysChip .dot{width:12px;height:12px;border-radius:4px;background:var(--line);flex:none;}
+  .sysChip.on{border-color:var(--navy);color:var(--navy);background:var(--blue-light);}
+  .sysChip.on .dot{background:var(--chipColor,var(--navy));}
+
+  /* Slider / Eingaben */
+  .inGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 26px;}
+  .sl{padding:2px 0;}
+  .slHead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;gap:8px;}
+  .slHead label{font-size:13px;font-weight:600;color:var(--ink-soft);}
+  .slHead output{font-size:16.5px;font-weight:700;font-family:var(--serif);color:var(--navy);white-space:nowrap;}
+  input[type=range]{
+    width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--line);}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;
+    background:var(--navy);border:3px solid #fff;box-shadow:0 1px 4px rgba(27,42,65,0.35);
+    margin-top:-11px;
+  }
+  input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--line);}
+  input[type=range]::-moz-range-thumb{
+    width:24px;height:24px;border-radius:50%;background:var(--navy);border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(27,42,65,0.35);
+  }
+  .numIn{display:flex;flex-direction:column;gap:4px;}
+  .numIn label{font-size:13px;font-weight:600;color:var(--ink-soft);}
+  .numIn input,.numIn select{
+    padding:12px 13px;border-radius:9px;border:1px solid var(--line);font-size:16px;
+    background:var(--paper);min-height:48px;width:100%;
+  }
+  .numIn input:focus,.numIn select:focus{border-color:var(--amber);outline:none;}
+
+  .segRow{display:flex;gap:6px;flex-wrap:wrap;}
+  .segRow button{
+    border:1.5px solid var(--line);background:var(--paper-card);border-radius:9px;
+    padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--ink-soft);min-height:44px;
+  }
+  .segRow button.active{border-color:var(--navy);background:var(--navy);color:#fff;}
+
+  /* Rechner-Karten */
+  .sysCard{display:none;border-left:5px solid var(--sysColor,var(--navy));}
+  .sysCard.on{display:block;}
+  .sysGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+  @media(max-width:760px){.sysGrid{grid-template-columns:1fr;}}
+
+  .ergebnis{background:var(--paper);border-radius:10px;padding:18px 20px;}
+  .bigNum{font-size:42px;font-weight:700;font-family:var(--serif);color:var(--navy);line-height:1.1;}
+  .bigLbl{font-size:13px;color:var(--ink-soft);margin-top:3px;margin-bottom:14px;}
+
+  table.kette{width:100%;border-collapse:collapse;font-size:14px;}
+  table.kette td{padding:6px 0;border-bottom:1px solid var(--line);}
+  table.kette tr:last-child td{border-bottom:none;}
+  table.kette td.z{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;}
+  table.kette tr.minus td{color:var(--terracotta-dark);}
+  table.kette tr.plus td{color:var(--sage-dark);}
+  table.kette tr.sum td{font-weight:700;border-top:2px solid var(--ink);font-size:15px;}
+  table.kette td .sub{display:block;font-size:11.5px;color:var(--ink-faint);font-weight:400;}
+
+  details.rechenweg{margin-top:14px;font-size:13px;}
+  details.rechenweg summary{
+    cursor:pointer;font-weight:600;color:var(--blue);padding:8px 0;list-style:none;
+  }
+  details.rechenweg summary::before{content:"▸ ";}
+  details.rechenweg[open] summary::before{content:"▾ ";}
+  .wegZeile{padding:8px 10px;border-left:3px solid var(--line);margin-bottom:8px;background:var(--paper);border-radius:0 8px 8px 0;}
+  .wegZeile .wf{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--ink);word-break:break-word;}
+  .wegZeile .wq{font-size:11.5px;color:var(--ink-faint);margin-top:3px;}
+
+  .warnBox{
+    background:var(--terracotta-light);border:1px solid var(--terracotta);
+    border-radius:10px;padding:14px 16px;font-size:14px;color:var(--terracotta-dark);
+    margin-top:12px;line-height:1.55;
+  }
+  .warnBox b{display:block;margin-bottom:4px;}
+  .infoBox{
+    background:var(--amber-light);border:1px solid var(--amber);
+    border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--amber-dark);
+    margin-top:12px;line-height:1.55;
+  }
+  .okBox{
+    background:var(--sage-light);border:1px solid var(--sage);
+    border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--sage-dark);
+    margin-top:12px;line-height:1.55;
+  }
+
+  /* Kombi / Versorgungsbalken */
+  .balkenWrap{display:flex;gap:34px;align-items:flex-end;justify-content:center;padding:12px 6px 0;min-height:300px;}
+  .balkenCol{display:flex;flex-direction:column-reverse;width:130px;position:relative;}
+  .balkenSeg{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    color:#fff;font-size:12px;font-weight:600;overflow:hidden;min-height:0;
+    border-top:2px solid var(--paper-card);
+  }
+  .balkenSeg:first-child{border-radius:0 0 8px 8px;border-top:none;}
+  .balkenSeg:last-child{border-radius:8px 8px 0 0;}
+  .balkenSeg .segVal{font-family:var(--serif);font-size:14px;}
+  .balkenSeg.luecke{
+    background:repeating-linear-gradient(45deg,var(--terracotta),var(--terracotta) 7px,#D77A70 7px,#D77A70 14px);
+  }
+  .balkenLbl{text-align:center;font-size:13px;font-weight:600;color:var(--ink-soft);margin-top:8px;}
+  .balkenSum{text-align:center;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);}
+  .wunschLinie{position:absolute;left:-14px;right:-14px;border-top:3px dashed var(--terracotta);z-index:2;}
+  .wunschLinie span{
+    position:absolute;right:0;top:-22px;font-size:11.5px;font-weight:700;color:var(--terracotta-dark);
+    background:var(--paper-card);padding:1px 6px;border-radius:6px;white-space:nowrap;
+  }
+  .legende{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:16px;font-size:12.5px;color:var(--ink-soft);}
+  .legende .lg{display:flex;align-items:center;gap:6px;}
+  .legende .sw{width:13px;height:13px;border-radius:4px;}
+
+  .lueckeBlock{
+    text-align:center;margin-top:20px;padding:16px;border-radius:10px;
+    background:var(--terracotta-light);
+  }
+  .lueckeBlock .lVal{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--terracotta-dark);}
+  .lueckeBlock .lLbl{font-size:13px;color:var(--terracotta-dark);}
+  .lueckeBlock.ok{background:var(--sage-light);}
+  .lueckeBlock.ok .lVal,.lueckeBlock.ok .lLbl{color:var(--sage-dark);}
+
+  /* Wissen */
+  .suchRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .suchRow input{
+    flex:1;min-width:220px;padding:13px 16px;border-radius:10px;border:1px solid var(--line);
+    font-size:15px;background:var(--paper-card);min-height:50px;
+  }
+  .suchRow input:focus{border-color:var(--amber);outline:none;}
+  .filterChips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .filterChips button{
+    border:1.5px solid var(--line);background:var(--paper-card);border-radius:20px;
+    padding:9px 16px;font-size:13px;font-weight:600;color:var(--ink-soft);min-height:42px;
+  }
+  .filterChips button.active{border-color:var(--navy);background:var(--navy);color:#fff;}
+
+  .wCard{
+    background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);
+    margin-bottom:10px;overflow:hidden;
+  }
+  .wCard summary{
+    list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px;
+  }
+  .wCard summary::-webkit-details-marker{display:none;}
+  .wCard summary .badge{
+    font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;flex:none;
+  }
+  .wCard summary .wTitel{font-weight:600;font-size:15px;flex:1;}
+  .wCard summary .wPara{font-size:12px;color:var(--ink-faint);white-space:nowrap;}
+  .wCard .wBody{padding:2px 18px 16px;border-top:1px solid var(--line);}
+  .wCard .wBody ul{margin:12px 0;padding-left:20px;font-size:14px;line-height:1.6;}
+  .wCard .wBody li{margin-bottom:6px;}
+  .wBeratung{
+    background:var(--amber-light);border-radius:9px;padding:11px 14px;font-size:13.5px;
+    color:var(--amber-dark);line-height:1.55;
+  }
+  .wBeratung b{font-weight:700;}
+  .wQuelle{font-size:12px;margin-top:10px;}
+  .b-grv{background:var(--blue-light);color:var(--blue);}
+  .b-zvk{background:var(--amber-light);color:var(--amber-dark);}
+  .b-beamte{background:var(--sage-light);color:var(--sage-dark);}
+  .b-vw{background:var(--terracotta-light);color:var(--terracotta-dark);}
+
+  /* Unterlagen-Check */
+  .checkItem{
+    background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;margin-bottom:10px;
+  }
+  .checkItem .ciRow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .checkItem .ciFrage{flex:1;font-size:14.5px;font-weight:500;min-width:220px;line-height:1.45;}
+  .ampel{display:flex;gap:6px;flex:none;}
+  .ampel button{
+    width:46px;height:46px;border-radius:10px;border:1.5px solid var(--line);
+    background:var(--paper-card);font-size:18px;color:var(--ink-faint);
+  }
+  .ampel button.gruen.on{background:var(--sage);border-color:var(--sage);color:#fff;}
+  .ampel button.gelb.on{background:var(--amber);border-color:var(--amber);color:#fff;}
+  .ampel button.rot.on{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
+  .checkItem .aktion{
+    display:none;margin-top:12px;background:var(--terracotta-light);border-radius:9px;
+    padding:12px 14px;font-size:13.5px;color:var(--terracotta-dark);line-height:1.55;
+  }
+  .checkItem.rot .aktion{display:block;}
+  .checkItem.rot{border-color:var(--terracotta);}
+  .checkItem .aktion b{display:block;margin-bottom:3px;}
+  .checkSummen{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+  .checkSummen .cs{
+    background:var(--paper-card);border:1px solid var(--line);border-radius:10px;
+    padding:10px 16px;font-size:13.5px;font-weight:600;
+  }
+  .checkSummen .cs .n{font-family:var(--serif);font-size:20px;display:block;}
+  .cs.g .n{color:var(--sage-dark);} .cs.y .n{color:var(--amber-dark);} .cs.r .n{color:var(--terracotta-dark);}
+
+  /* Fußzeile */
+  footer.disclaimer{
+    border-top:1px solid var(--line);background:var(--paper-card);
+    padding:16px 24px;font-size:11.5px;color:var(--ink-faint);line-height:1.6;
+  }
+  footer.disclaimer .inner{max-width:1100px;margin:0 auto;}
+
+  /* ---------- Druck / PDF ---------- */
+  .printHead{display:none;}
+  @media print{
+    @page{margin:14mm;}
+    body{background:#fff;}
+    header.top,.sysWahl,.modeSwitch,.printBtn,input[type=range],
+    .suchRow,.filterChips,.ampel,#mode-wissen,#mode-check{display:none !important;}
+    .modeSection{display:none !important;}
+    .modeSection.active{display:block !important;}
+    main{padding:0;max-width:none;}
+    .card,.sysCard{border:1px solid #bbb;break-inside:avoid;padding:14px 16px;margin-bottom:10px;}
+    .inGrid .sl{display:flex;justify-content:space-between;border-bottom:1px dotted #ccc;padding:3px 0;}
+    details.rechenweg{display:none;}
+    .printHead{display:block;font-family:var(--serif);margin-bottom:14px;}
+    .printHead h1{font-size:20px;margin:0;}
+    .printHead p{font-size:12px;color:#555;margin:3px 0 0;}
+    .bigNum{font-size:30px;}
+    footer.disclaimer{border:none;padding:10px 0 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topRow">
+    <div class="brand">
+      <div class="mark">V</div>
+      <div>
+        <h1>Vorsorge-Kompass</h1>
+        <div class="sub">Beratung · Wissen · Unterlagen-Check</div>
+      </div>
+    </div>
+    <nav class="modeSwitch" id="modeSwitch">
+      <button data-mode="beratung" class="active">Beratung</button>
+      <button data-mode="wissen">Wissen</button>
+      <button data-mode="check">Unterlagen-Check</button>
+    </nav>
+    <button class="printBtn" onclick="window.print()">Drucken / PDF</button>
+  </div>
+</header>
+
+<main>
+  <div class="printHead">
+    <h1>Vorsorge-Übersicht – Modellrechnung</h1>
+    <p id="printDatum"></p>
+  </div>
+
+  <!-- ================= MODUS: BERATUNG ================= -->
+  <section id="mode-beratung" class="modeSection active">
+
+    <div class="sysWahl" id="sysWahl">
+      <button class="sysChip" data-sys="grv"    style="--chipColor:var(--blue)"><span class="dot"></span>GRV</button>
+      <button class="sysChip" data-sys="zvk"    style="--chipColor:var(--amber)"><span class="dot"></span>ZVK / VBL</button>
+      <button class="sysChip" data-sys="beamte" style="--chipColor:var(--sage)"><span class="dot"></span>Beamtenpension</button>
+      <button class="sysChip" data-sys="vw"     style="--chipColor:var(--terracotta)"><span class="dot"></span>Versorgungswerk</button>
+    </div>
+
+    <div class="card" id="commonCard">
+      <h2>Gemeinsame Angaben</h2>
+      <p class="cardSub">Werden von allen aktiven Rechnern genutzt. <span id="ragAnzeige"></span></p>
+      <div class="inGrid">
+        <div class="sl">
+          <div class="slHead"><label for="inGeburtsjahr">Geburtsjahr</label><output id="outGeburtsjahr"></output></div>
+          <input type="range" id="inGeburtsjahr" min="1950" max="2008" step="1" value="1985" data-fmt="plain">
+        </div>
+        <div class="sl">
+          <div class="slHead"><label for="inBrutto">Jahresbrutto aktuell</label><output id="outBrutto"></output></div>
+          <input type="range" id="inBrutto" min="15000" max="120000" step="1000" value="45000" data-fmt="eur0">
+        </div>
+        <div class="sl">
+          <div class="slHead"><label for="inRentenalter">Gewünschtes Rentenalter</label><output id="outRentenalter"></output></div>
+          <input type="range" id="inRentenalter" min="60" max="70" step="1" value="67" data-fmt="jahre">
+        </div>
+        <div class="sl">
+          <div class="slHead"><label for="inKinder">Kinder</label><output id="outKinder"></output></div>
+          <input type="range" id="inKinder" min="0" max="6" step="1" value="0" data-fmt="plain">
+        </div>
+        <div class="sl">
+          <div class="slHead"><label for="inWunsch">Wunschrente (netto/Monat)</label><output id="outWunsch"></output></div>
+          <input type="range" id="inWunsch" min="800" max="5000" step="50" value="2000" data-fmt="eur0">
+        </div>
+      </div>
+      <p class="hint" id="pvHinweis"></p>
+    </div>
+
+    <div id="rechnerContainer">
+      <!-- Rechner-Karten werden in den folgenden Schritten ergänzt -->
+    </div>
+
+    <div id="kombiContainer"></div>
+  </section>
+
+  <!-- ================= MODUS: WISSEN ================= -->
+  <section id="mode-wissen" class="modeSection">
+    <div class="suchRow">
+      <input type="search" id="wSuche" placeholder="Nachschlagewerk durchsuchen … (z. B. Mütterrente, Wartezeit, § 6)">
+    </div>
+    <div class="filterChips" id="wFilter">
+      <button data-sparte="alle" class="active">Alle</button>
+      <button data-sparte="grv">GRV</button>
+      <button data-sparte="zvk">ZVK / VBL</button>
+      <button data-sparte="beamte">Beamte</button>
+      <button data-sparte="vw">Versorgungswerk</button>
+    </div>
+    <div id="wListe"></div>
+  </section>
+
+  <!-- ================= MODUS: UNTERLAGEN-CHECK ================= -->
+  <section id="mode-check" class="modeSection">
+    <div class="filterChips" id="cFilter"></div>
+    <div class="checkSummen" id="cSummen"></div>
+    <div id="cListe"></div>
+  </section>
+</main>
+
+<footer class="disclaimer">
+  <div class="inner" id="footerText"></div>
+</footer>
+
+<script src="vorsorge-daten.js"></script>
+<script src="vorsorge-app.js"></script>
+</body>
+</html>
