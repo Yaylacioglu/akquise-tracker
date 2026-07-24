@@ -372,7 +372,41 @@
     </div>
 
     <div id="rechnerContainer">
-      <!-- Rechner-Karten werden in den folgenden Schritten ergänzt -->
+
+      <!-- ===== GRV ===== -->
+      <div class="card sysCard" id="card-grv" style="--sysColor:var(--blue)">
+        <h2>Gesetzliche Rente (GRV)</h2>
+        <p class="cardSub">Entgeltpunkte × Zugangsfaktor × Rentenwert (§ 64 SGB VI)</p>
+        <div class="sysGrid">
+          <div>
+            <div class="sl">
+              <div class="slHead"><label for="inGrvJahre">Beitragsjahre bisher</label><output id="outGrvJahre"></output></div>
+              <input type="range" id="inGrvJahre" min="0" max="45" step="1" value="15" data-fmt="jahre">
+            </div>
+            <div class="numIn" style="margin-top:8px">
+              <label for="inGrvEp">Bisherige Entgeltpunkte lt. Renteninformation (optional – leer = Näherung über Beitragsjahre)</label>
+              <input type="number" id="inGrvEp" min="0" max="90" step="0.1" placeholder="z. B. 18,5" inputmode="decimal">
+            </div>
+            <div style="margin-top:14px">
+              <label style="font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px">Wartezeit-Variante</label>
+              <div class="segRow" id="grvWartezeit">
+                <button data-wz="35" class="active">35 Jahre – ab 63 mit Abschlag</button>
+                <button data-wz="45">45 Jahre – abschlagsfrei (2 J. vor Regelalter)</button>
+              </div>
+            </div>
+            <p class="hint" id="grvKinderHint" style="margin-top:12px"></p>
+          </div>
+          <div class="ergebnis">
+            <div class="bigNum" id="grvBrutto">–</div>
+            <div class="bigLbl">gesetzliche Bruttorente / Monat <span id="grvBeginnLbl"></span></div>
+            <table class="kette" id="grvKette"></table>
+            <div class="infoBox" id="grvSteuerHint"></div>
+            <div class="warnBox" id="grvEmBox"></div>
+            <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="grvWeg"></div></details>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div id="kombiContainer"></div>
