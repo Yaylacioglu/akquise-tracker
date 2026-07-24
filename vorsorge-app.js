@@ -461,6 +461,122 @@ function renderVw(c) {
   ]);
 }
 
+/* =====================================================================
+   Kombi-Ansicht: gestapelter Versorgungsbalken + Lücke + Sparrate
+   ===================================================================== */
+const SYS_META = {
+  grv:    { name: "GRV",             farbe: "var(--blue)" },
+  zvk:    { name: "ZVK/VBL",         farbe: "var(--amber)" },
+  beamte: { name: "Beamtenpension",  farbe: "var(--sage)" },
+  vw:     { name: "Mini-GRV (KEZ)",  farbe: "var(--navy-light)" },
+};
+
+function kombiBausteine(c) {
+  const teile = [];
+  if (state.systeme.grv) {
+    const r = calcGrv(c);
+    teile.push({ sys: "grv", brutto: r.brutto, netto: r.netto,
+      sub: `brutto ${fmtEur(r.brutto)} − KV (halber Satz) − PV` });
+  }
+  if (state.systeme.zvk) {
+    const r = calcZvk(c);
+    teile.push({ sys: "zvk", brutto: r.brutto, netto: r.netto,
+      sub: `brutto ${fmtEur(r.brutto)} − KV (voller Satz, Freibetrag) − PV` });
+  }
+  if (state.systeme.beamte) {
+    const r = calcBeamte(c);
+    if (r.status === "lebenszeit") {
+      teile.push({ sys: "beamte", brutto: r.brutto, netto: r.brutto,
+        sub: "brutto = Ansatz (keine GKV; PKV & Steuer individuell)" });
+    }
+  }
+  if (state.systeme.vw) {
+    const r = calcVw(c);
+    if (r.miniGrv > 0) {
+      const nettoMini = r.miniGrv * (1 - (CONFIG.kvpv.kvSatz + CONFIG.kvpv.kvZusatzDurchschnitt) / 2 - pvSatz(c.kinderlos));
+      teile.push({ sys: "vw", brutto: r.miniGrv, netto: nettoMini,
+        sub: "aus Kindererziehung; Versorgungswerksrente selbst lt. Kammer-Auskunft ergänzen" });
+    }
+  }
+  return teile;
+}
+
+function renderKombi(c) {
+  const card = $("kombiCard");
+  const teile = kombiBausteine(c);
+  const aktiv = Object.values(state.systeme).some(Boolean);
+  card.style.display = aktiv ? "" : "none";
+  if (!aktiv) return;
+
+  const summe = teile.reduce((s, t) => s + t.netto, 0);
+  const luecke = Math.max(0, c.wunsch - summe);
+  const H = 260, maxVal = Math.max(c.wunsch, summe, 1);
+  const px = (v) => Math.max(v > 0 ? 3 : 0, Math.round(v / maxVal * H));
+
+  let ist = teile.map((t) =>
+    `<div class="balkenSeg" style="height:${px(t.netto)}px;background:${SYS_META[t.sys].farbe}">` +
+    (px(t.netto) > 30 ? `<span class="segVal">${fmtEur0(t.netto)}</span>` : "") + `</div>`).join("");
+  if (luecke > 0) {
+    ist += `<div class="balkenSeg luecke" style="height:${px(luecke)}px">` +
+      (px(luecke) > 30 ? `<span class="segVal">−${fmtEur0(luecke)}</span>` : "") + `</div>`;
+  }
+  ist += `<div class="wunschLinie" style="bottom:${Math.round(c.wunsch / maxVal * H)}px"><span>Wunsch ${fmtEur0(c.wunsch)}</span></div>`;
+  $("balkenIst").innerHTML = ist;
+  $("balkenIst").style.height = H + "px";
+  $("balkenIstSum").textContent = fmtEur0(summe) + " netto";
+  $("balkenSoll").innerHTML = `<div class="balkenSeg" style="height:${px(c.wunsch)}px;background:var(--ink-soft)"></div>`;
+  $("balkenSoll").style.height = H + "px";
+  $("balkenSollSum").textContent = fmtEur0(c.wunsch);
+
+  $("kombiLegende").innerHTML = teile.map((t) =>
+    `<span class="lg"><span class="sw" style="background:${SYS_META[t.sys].farbe}"></span>${SYS_META[t.sys].name}</span>`).join("") +
+    (luecke > 0 ? `<span class="lg"><span class="sw" style="background:var(--terracotta)"></span>Lücke</span>` : "");
+
+  $("kombiKette").innerHTML = ketteHtml([
+    ...teile.map((t) => ({ t: SYS_META[t.sys].name, sub: t.sub, v: fmtEur(t.netto) })),
+    { t: "Versorgung netto (vor Steuern)", v: fmtEur(summe), art: "sum" },
+    { t: "Wunschrente netto", v: fmtEur(c.wunsch) },
+    luecke > 0
+      ? { t: "Versorgungslücke", v: "− " + fmtEur(luecke), art: "minus" }
+      : { t: "Überschuss", v: "+ " + fmtEur(summe - c.wunsch), art: "plus" },
+  ]);
+
+  const lb = $("lueckeBlock");
+  if (luecke > 0) {
+    lb.className = "lueckeBlock";
+    lb.innerHTML = `<div class="lVal">− ${fmtEur(luecke)}</div><div class="lLbl">monatliche Versorgungslücke gegenüber der Wunschrente</div>`;
+  } else {
+    lb.className = "lueckeBlock ok";
+    lb.innerHTML = `<div class="lVal">${fmtEur(summe - c.wunsch)}</div><div class="lLbl">über der Wunschrente – keine rechnerische Lücke</div>`;
+  }
+
+  // Sparraten-Orientierung (Annuitätennäherung)
+  const A = CONFIG.annahmen;
+  const spar = $("sparrateText");
+  if (luecke > 0 && c.jahreBisRente > 0) {
+    const kapital = luecke / A.rentenfaktorJe10k * 10000;
+    const i = val("inRendite") / 100 / 12, n = c.jahreBisRente * 12;
+    const rate = i > 0 ? kapital * i / (Math.pow(1 + i, n) - 1) : kapital / n;
+    spar.innerHTML =
+      `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre ` +
+      `(Kapitalbedarf ≈ ${fmtEur0(kapital)} bei Rentenfaktor-Annahme ${fmtNum(A.rentenfaktorJe10k)} € Rente je 10.000 € Kapital – ` +
+      `tatsächliche Tarife weichen ab; bewusst nur Orientierung, keine Produktberechnung).`;
+  } else {
+    spar.innerHTML = luecke > 0
+      ? "<b>Rentenbeginn liegt nicht in der Zukunft</b> – Sparraten-Orientierung nicht sinnvoll."
+      : "<b>Keine Lücke</b> – keine Sparrate erforderlich.";
+  }
+
+  // Ruhensregelung § 55 BeamtVG bei Beamtenpension + GRV-Rente
+  const ruhens = $("ruhensHinweis");
+  if (state.systeme.beamte && (state.systeme.grv || state.systeme.vw)) {
+    ruhens.style.display = "block";
+    ruhens.innerHTML = `<b>Ruhensregelung § 55 BeamtVG beachten:</b> Treffen Beamtenpension und gesetzliche Rente ` +
+      `zusammen, wird die Summe auf eine Höchstgrenze gekappt – die Rente wird teilweise auf die Pension angerechnet. ` +
+      `Die Summe hier ist daher eine Obergrenze; exakte Berechnung nur durch die Versorgungsstelle (NRW: LBV).`;
+  } else ruhens.style.display = "none";
+}
+
 /* ---------- Neuberechnung ---------- */
 function recalc() {
   const c = commonWerte();
@@ -473,6 +589,7 @@ function recalc() {
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);
+  renderKombi(c);
 }
 
 /* ---------- Fußzeile & Druckkopf ---------- */
