@@ -423,6 +423,44 @@ function renderBeamte(c) {
   ]);
 }
 
+/* =====================================================================
+   Versorgungswerk: „zweite Rente“-Widget (KEZ laufen in die GRV!)
+   ===================================================================== */
+function calcVw(c) {
+  const kezJahreProKind = CONFIG.grv.kezMonateAb2027 / 12; // 3 Jahre (ab 2027 einheitlich)
+  const kezJahre = c.kinder * kezJahreProKind;
+  const grvJahreAlt = val("inVwGrvJahre");
+  const wartezeitJahre = kezJahre + grvJahreAlt;
+  const wartezeitErfuellt = wartezeitJahre >= 5;
+  const epKez = c.kinder * CONFIG.grv.kezMonateAb2027 * CONFIG.grv.epProKindMonat;
+  const miniGrv = epKez * CONFIG.grv.rentenwert;
+  return { kezJahre, grvJahreAlt, wartezeitJahre, wartezeitErfuellt, epKez, miniGrv };
+}
+
+function renderVw(c) {
+  const r = calcVw(c);
+  $("vwRegelbeitrag").textContent = fmtEur(CONFIG.versorgungswerk.regelhoechstbeitragMonat);
+  $("vwMiniGrv").textContent = fmtEur(r.miniGrv);
+  $("vwKette").innerHTML = ketteHtml([
+    { t: "Kindererziehungszeiten", sub: c.kinder + " Kind(er) × 36 Monate × 0,0833 EP", v: fmtNum(r.epKez) + " EP" },
+    { t: "Alte GRV-Beitragsjahre", sub: "vor der Befreiung (EP daraus zusätzlich, hier nicht beziffert)", v: fmtNum(r.grvJahreAlt) + " J." },
+    { t: "Mini-GRV-Rente aus KEZ", sub: fmtNum(r.epKez) + " EP × " + fmtEur(CONFIG.grv.rentenwert), v: fmtEur(r.miniGrv), art: "sum" },
+  ]);
+  $("vwWartezeitBox").innerHTML = r.wartezeitErfuellt
+    ? `<div class="okBox"><b>Allgemeine Wartezeit (5 J.) der GRV erfüllt</b> – ` +
+      `${fmtNum(r.kezJahre)} J. Kindererziehung + ${fmtNum(r.grvJahreAlt)} J. alte Beiträge = ` +
+      `${fmtNum(r.wartezeitJahre)} J. → es gibt eine eigene kleine GRV-Rente <i>zusätzlich</i> zum Versorgungswerk. Aha-Moment!</div>`
+    : `<div class="warnBox"><b>Allgemeine Wartezeit (5 J.) noch nicht erfüllt</b> – aktuell ` +
+      `${fmtNum(r.wartezeitJahre)} J. (${fmtNum(r.kezJahre)} J. KEZ + ${fmtNum(r.grvJahreAlt)} J. alte Beiträge). ` +
+      `Option: freiwillige Beiträge oder künftige KEZ schließen die Lücke – sonst nur Beitragserstattung.</div>`;
+  $("vwWeg").innerHTML = wegHtml([
+    { t: "KEZ-Entgeltpunkte", f: `${c.kinder} × 36 Monate × 0,0833 EP = ${fmtNum(r.epKez)} EP`, q: "§ 70 Abs. 2 SGB VI; Mütterrente III ab 2027 einheitlich 36 Monate" },
+    { t: "Mini-GRV-Rente", f: `${fmtNum(r.epKez)} EP × ${fmtEur(CONFIG.grv.rentenwert)} = ${fmtEur(r.miniGrv)}`, q: "§ 64 SGB VI; deutsche-rentenversicherung.de" },
+    { t: "Wartezeitprüfung", f: `${fmtNum(r.kezJahre)} J. KEZ + ${fmtNum(r.grvJahreAlt)} J. Beiträge = ${fmtNum(r.wartezeitJahre)} J. ${r.wartezeitErfuellt ? "≥" : "<"} 5 J.`, q: "§ 50 Abs. 1 SGB VI" },
+    { t: "Befreiung", f: "Tätigkeitsbezogen, je Stellenwechsel neuer Antrag binnen 3 Monaten, elektronisch", q: "§ 6 Abs. 1 Nr. 1, Abs. 4 SGB VI; abv.de" },
+  ]);
+}
+
 /* ---------- Neuberechnung ---------- */
 function recalc() {
   const c = commonWerte();
@@ -434,6 +472,7 @@ function recalc() {
   if (state.systeme.grv) renderGrv(c);
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
+  if (state.systeme.vw) renderVw(c);
 }
 
 /* ---------- Fußzeile & Druckkopf ---------- */

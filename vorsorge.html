@@ -492,6 +492,36 @@
         </div>
       </div>
 
+      <!-- ===== Versorgungswerk ===== -->
+      <div class="card sysCard" id="card-vw" style="--sysColor:var(--terracotta)">
+        <h2>Berufsständisches Versorgungswerk</h2>
+        <p class="cardSub">Kein Zahlenrechner – jede Kammer rechnet anders (satzungsautonom, kapitalgedeckt). Dafür: die vergessene „zweite Rente“ aus der GRV.</p>
+        <div class="sysGrid">
+          <div>
+            <div class="infoBox" style="margin-top:0">
+              <b>Kernpunkte fürs Gespräch:</b>
+              Regelbeitrag ≈ GRV-Höchstbeitrag (<b id="vwRegelbeitrag"></b>/Monat 2026) ·
+              Befreiung nach § 6 SGB VI ist <b>tätigkeitsbezogen</b>: bei jedem Stellenwechsel neuer Antrag
+              binnen 3 Monaten (elektronisch) · BU-Leistung meist erst bei vollständiger Berufsaufgabe →
+              private BU wichtiger als bei GRV · keine Haltelinie, Rechnungszins kann sinken.
+            </div>
+            <div class="sl" style="margin-top:14px">
+              <div class="slHead"><label for="inVwGrvJahre">Alte GRV-Beitragsjahre vor der Befreiung</label><output id="outVwGrvJahre"></output></div>
+              <input type="range" id="inVwGrvJahre" min="0" max="20" step="1" value="0" data-fmt="jahre">
+            </div>
+            <p class="hint">Kinderzahl wird aus den gemeinsamen Angaben übernommen – Kindererziehungszeiten
+              laufen immer in die GRV, nicht ins Versorgungswerk!</p>
+          </div>
+          <div class="ergebnis">
+            <div class="bigNum" id="vwMiniGrv">–</div>
+            <div class="bigLbl">grobe „Mini-GRV-Rente“ aus Kindererziehung / Monat</div>
+            <table class="kette" id="vwKette"></table>
+            <div id="vwWartezeitBox"></div>
+            <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="vwWeg"></div></details>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div id="kombiContainer"></div>
