@@ -631,6 +631,60 @@ document.querySelectorAll("#wFilter button").forEach((b) => {
   });
 });
 
+/* =====================================================================
+   Modus „Unterlagen-Check“: Ampel-Checklisten
+   Status lebt nur im Speicher – Neuladen setzt alles zurück (gewollt).
+   ===================================================================== */
+state.checkSparte = "grv";
+state.checkStatus = {}; // { "grv-0": "g"|"y"|"r" }
+
+function renderCheckFilter() {
+  $("cFilter").innerHTML = Object.entries(CONFIG.checklisten).map(([key, l]) =>
+    `<button data-cs="${key}"${key === state.checkSparte ? ' class="active"' : ""}>${l.name}</button>`).join("");
+  document.querySelectorAll("#cFilter button").forEach((b) => {
+    b.addEventListener("click", () => { state.checkSparte = b.dataset.cs; renderCheck(); });
+  });
+}
+
+function renderCheck() {
+  renderCheckFilter();
+  const liste = CONFIG.checklisten[state.checkSparte];
+  if (!liste) { $("cListe").innerHTML = ""; return; }
+
+  const counts = { g: 0, y: 0, r: 0 };
+  const items = liste.punkte.map((p, i) => {
+    const key = state.checkSparte + "-" + i;
+    const st = state.checkStatus[key] || "y";
+    counts[st]++;
+    return `
+      <div class="checkItem${st === "r" ? " rot" : ""}" data-key="${key}">
+        <div class="ciRow">
+          <div class="ciFrage">${p.frage}</div>
+          <div class="ampel">
+            <button class="gruen${st === "g" ? " on" : ""}" data-st="g" title="in Ordnung">✓</button>
+            <button class="gelb${st === "y" ? " on" : ""}" data-st="y" title="offen / nicht geprüft">?</button>
+            <button class="rot${st === "r" ? " on" : ""}" data-st="r" title="Problem">✗</button>
+          </div>
+        </div>
+        <div class="aktion"><b>${p.rotDiagnose}</b>${p.aktionstext}</div>
+      </div>`;
+  }).join("");
+
+  $("cSummen").innerHTML =
+    `<div class="cs" style="flex:1;min-width:200px"><span style="font-weight:400;font-size:12.5px;color:var(--ink-faint)">Dokument:</span><br>${liste.dokument}</div>` +
+    `<div class="cs g"><span class="n">${counts.g}</span>in Ordnung</div>` +
+    `<div class="cs y"><span class="n">${counts.y}</span>offen</div>` +
+    `<div class="cs r"><span class="n">${counts.r}</span>Handlungsbedarf</div>`;
+
+  $("cListe").innerHTML = items;
+  document.querySelectorAll("#cListe .ampel button").forEach((b) => {
+    b.addEventListener("click", () => {
+      state.checkStatus[b.closest(".checkItem").dataset.key] = b.dataset.st;
+      renderCheck();
+    });
+  });
+}
+
 /* ---------- Fußzeile & Druckkopf ---------- */
 (function initStatic() {
   const standTxt = "Stand: " + CONFIG.stand.replace(/(\d{4})-(\d{2})/, "$2/$1");
@@ -640,5 +694,6 @@ document.querySelectorAll("#wFilter button").forEach((b) => {
     " · unverbindliche Orientierung";
   bindInputs("#mode-beratung");
   renderWissen();
+  renderCheck();
   recalc();
 })();
