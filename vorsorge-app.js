@@ -763,6 +763,36 @@ function initMsci() {
 }
 
 /* =====================================================================
+   Produktkosten Provinzial FondsRente Vario (Effektivkosten laut BIB)
+   ===================================================================== */
+state.kostenModus = "brutto"; // "brutto" | "guenstig" | "teuer"
+document.querySelectorAll("#kostenSchalter button").forEach((b) => {
+  b.addEventListener("click", () => {
+    state.kostenModus = b.dataset.k;
+    document.querySelectorAll("#kostenSchalter button").forEach((x) => x.classList.toggle("active", x === b));
+    renderFazit(commonWerte());
+  });
+});
+
+/* Effektivkosten % p. a. für eine Laufzeit – lineare Interpolation zwischen den
+   BIB-Stützstellen (12/20/30/40 Jahre), außerhalb wird der Randwert gehalten. */
+function effektivkosten(jahre, seite) {
+  const E = CONFIG.provinzial.effektivkosten;
+  const stuetz = Object.keys(E).map(Number).sort((a, b) => a - b);
+  if (jahre <= stuetz[0]) return E[stuetz[0]][seite];
+  const letzte = stuetz[stuetz.length - 1];
+  if (jahre >= letzte) return E[letzte][seite];
+  for (let i = 0; i < stuetz.length - 1; i++) {
+    const a = stuetz[i], b = stuetz[i + 1];
+    if (jahre >= a && jahre <= b) {
+      const t = (jahre - a) / (b - a);
+      return E[a][seite] + t * (E[b][seite] - E[a][seite]);
+    }
+  }
+  return E[letzte][seite];
+}
+
+/* =====================================================================
    Schluss-Ergebnis: Kapitalauszahlung × Rentenfaktor gegen die Rentenlücke
    ===================================================================== */
 function renderFazit(c) {
@@ -798,30 +828,42 @@ function renderFazit(c) {
   }
 
   const st = msciStatistik(Math.min(n, 50));
+  const mitKosten = state.kostenModus !== "brutto";
+  const kostenPa = mitKosten ? effektivkosten(n, state.kostenModus === "guenstig" ? "min" : "max") : 0;
+
   const szenarien = [
     { name: "Schlechtester Fall", r: st.min, cls: "" },
     { name: "Historischer Durchschnitt", r: st.avg, cls: "mittel" },
     { name: "Bester Fall", r: st.max, cls: "" },
   ].map((s) => {
-    const fv = sparplanEndwert(rate, s.r, n);
+    const rNetto = s.r - kostenPa;
+    const fv = sparplanEndwert(rate, rNetto, n);
     const rente = fv.endwert / 10000 * RF;
-    return { ...s, endwert: fv.endwert, rente, deckung: rente / K.luecke };
+    return { ...s, rNetto, endwert: fv.endwert, rente, deckung: rente / K.luecke };
   });
 
+  const P = CONFIG.provinzial;
   $("fazitSub").textContent =
     `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
     `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
-    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital.`;
+    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital.` +
+    (mitKosten
+      ? ` Abzüglich ${fmtNum(kostenPa)} % Effektivkosten p. a. der ${P.produkt}.`
+      : " Ohne Produktkosten – reine Indexbetrachtung.");
 
   $("fazitGrid").innerHTML = szenarien.map((s) => `
     <div class="fzBox ${s.cls}">
       <div class="fzTitel">${s.name}</div>
-      <div class="fzRendite">${fmtNum(s.r)} % p. a.</div>
+      <div class="fzRendite">${mitKosten
+        ? `${fmtNum(s.r)} % − ${fmtNum(kostenPa)} % Kosten = <b>${fmtNum(s.rNetto)} % p. a.</b>`
+        : `${fmtNum(s.r)} % p. a.`}</div>
       <div class="fzVal">${fmtEur0(s.endwert)}</div>
       <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
       <div class="fzBar"><div class="fzBarFill ${s.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, s.deckung * 100)}%"></div></div>
       <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
     </div>`).join("");
+
+  renderKostenBlock(n, kostenPa, mitKosten, rate);
 
   const mittel = szenarien[1];
   const vd = $("fazitVerdict");
@@ -841,8 +883,47 @@ function renderFazit(c) {
 
   $("fazitHint").textContent =
     (n > 50 ? `Hinweis: Ansparzeit ${n} Jahre – historische Bandbreite auf 50 Jahre begrenzt. ` : "") +
-    "Modellrechnung vor Steuern und Kosten; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
+    "Modellrechnung vor Steuern" + (mitKosten ? "" : " und vor Produktkosten") +
+    "; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
     "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
+}
+
+/* Kostentransparenz: was das Produkt kostet und was es dafür leistet */
+function renderKostenBlock(n, kostenPa, mitKosten, rate) {
+  const P = CONFIG.provinzial;
+  const box = $("kostenBlock");
+  if (!mitKosten) {
+    box.innerHTML = `<div class="infoBox"><b>Noch ohne Produktkosten gerechnet.</b> ` +
+      `Für ein ehrliches Bild oben auf „${P.produkt}“ umschalten – dann rechnet die Seite mit den ` +
+      `Effektivkosten aus dem Basisinformationsblatt (Stand ${P.standBib}).</div>`;
+    return;
+  }
+  // Kosten im Musterfall auf die tatsächliche Sparrate hochrechnen (BIB-Muster: 1.000 €/Jahr)
+  const stuetz = Object.keys(P.kostenGesamtMusterfall).map(Number).sort((a, b) => a - b);
+  const naechste = stuetz.reduce((p, x) => (Math.abs(x - n) < Math.abs(p - n) ? x : p), stuetz[0]);
+  const seite = state.kostenModus === "guenstig" ? "min" : "max";
+  const faktor = rate * 12 / P.musterfallJahresbeitrag;
+  const kostenEur = P.kostenGesamtMusterfall[naechste][seite] * faktor;
+
+  box.innerHTML = `
+    <div class="infoBox">
+      <b>Kostentransparenz – ${P.produkt}</b><br>
+      ${P.versicherer}, Basisinformationsblatt vom ${P.standBib}:
+      Effektivkosten <b>${fmtNum(kostenPa)} % p. a.</b> bei ${n} Jahren Laufzeit
+      (${state.kostenModus === "guenstig" ? "günstigste" : "teuerste"} Anlageoption).
+      Im Musterfall des BIB entspricht das bei ${fmtEur0(rate)}/Monat rund
+      <b>${fmtEur0(kostenEur)}</b> Gesamtkosten über ${naechste} Jahre.
+      <div style="margin-top:8px">Zusammensetzung laut BIB:</div>
+      <ul style="margin:4px 0 0;padding-left:18px">
+        ${P.bestandteile.map((b) => `<li>${b}</li>`).join("")}
+      </ul>
+    </div>
+    <div class="okBox">
+      <b>Was der Vertrag dafür leistet (gegenüber einem reinen Depot):</b>
+      <ul style="margin:6px 0 0;padding-left:18px">
+        ${P.vorteile.map((v) => `<li>${v}</li>`).join("")}
+      </ul>
+    </div>`;
 }
 
 /* Sparrate aus der Lücken-Rechnung übernehmen, solange der Slider unberührt ist */

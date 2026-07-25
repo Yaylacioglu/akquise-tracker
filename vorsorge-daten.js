@@ -178,6 +178,57 @@ const CONFIG = {
     ],
   },
 
+  /* ---------- Provinzial FondsRente Vario: Kosten laut Basisinformationsblatt ----------
+     Quelle: Basisinformationsblätter "FondsRente Vario (FR Tarifwerk 2025)",
+     Provinzial Lebensversicherung AG, Stand 14.03.2026, für die Haltedauern
+     12 / 20 / 30 / 40 Jahre (Musterfall: 1.000 €/Jahr, monatlich gezahlt,
+     kein zusätzlicher Todesfallschutz).
+
+     WICHTIG – warum die ausgewiesenen Effektivkosten und keine eigene Mechanik:
+     Die Kostenbestandteile stehen zwar im BIB (2,5 % Einstieg, 6,7 % vom Beitrag,
+     9 €/Jahr, 0,64–3,00 % Guthaben, 0,01–0,91 % Transaktion), die Zillmerungs-
+     verteilung aber nicht. Ein Nachbau lag beim Test 0,35–0,66 %-Punkte über den
+     amtlichen Werten. Deshalb rechnen wir mit der ausgewiesenen "jährlichen
+     Auswirkung der Kosten" (RIY) – exakt die Zahl, die der Kunde im BIB nachlesen
+     kann. Zwischen den Stützstellen wird linear interpoliert.
+
+     min = günstigste Anlageoption, max = teuerste Anlageoption. */
+  provinzial: {
+    produkt: "FondsRente Vario (FR Tarifwerk 2025)",
+    versicherer: "Provinzial Lebensversicherung AG",
+    standBib: "14.03.2026",
+    musterfallJahresbeitrag: 1000,
+    // Jährliche Auswirkung der Kosten (Effektivkosten/RIY) in % p. a. je Haltedauer
+    effektivkosten: {
+      12: { min: 1.80, max: 5.10 },
+      20: { min: 1.30, max: 4.60 },
+      30: { min: 1.00, max: 4.30 },
+      40: { min: 0.90, max: 4.10 },
+    },
+    // Kosten insgesamt in € im Musterfall (1.000 €/Jahr) – für die Einordnung
+    kostenGesamtMusterfall: {
+      12: { min: 1880, max: 3584 },
+      20: { min: 3436, max: 9569 },
+      30: { min: 5688, max: 15549 },
+      40: { min: 10607, max: 34765 },
+    },
+    // Kostenbestandteile laut BIB (in allen vier Laufzeiten identisch)
+    bestandteile: [
+      "Einstiegskosten: 2,50 % des kumulierten Anlagebetrags (in den Beiträgen enthalten)",
+      "Ausstiegskosten: keine",
+      "Verwaltung: 0,64–3,00 % des Anlagewerts p. a. + 6,70 % der eingezahlten Beiträge + 9,00 € pro Jahr",
+      "Transaktionskosten: 0,01–0,91 % des Werts p. a.",
+    ],
+    // Vorteile der Police gegenüber dem reinen Depot – fachlich korrekt einordnen
+    vorteile: [
+      "Lebenslange Rentenzahlung – das Langlebigkeitsrisiko trägt der Versicherer, ein Depot kann aufgezehrt werden.",
+      "Fondswechsel innerhalb des Vertrags ist steuerfrei möglich; im Depot löst jeder Wechsel Abgeltungsteuer aus.",
+      "In der Ansparphase fällt keine laufende Abgeltungsteuer an (Steuerstundung).",
+      "Kapitalauszahlung nach 12 Jahren Laufzeit und ab Alter 62: nur die Hälfte des Ertrags ist steuerpflichtig (§ 20 Abs. 1 Nr. 6 EStG).",
+      "Optional Beitragsbefreiung bei Berufsunfähigkeit und zusätzlicher Todesfallschutz einschließbar.",
+    ],
+  },
+
   /* ---------- Regelaltersgrenze §§ 35, 235 SGB VI ---------- */
   // bis 1946: 65 | 1947–1958: 65 J. + (Jahrgang−1946) Monate |
   // 1959–1963: 66 J. + (Jahrgang−1958)×2 Monate | ab 1964: 67

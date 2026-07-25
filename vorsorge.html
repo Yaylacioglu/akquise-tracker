@@ -646,9 +646,15 @@
     <!-- ===== Schluss-Ergebnis ===== -->
     <div class="card" id="fazitCard" style="display:none">
       <h2>Schluss-Ergebnis: Deckt der Sparplan die Lücke?</h2>
+      <div class="segRow" id="kostenSchalter" style="margin-bottom:6px">
+        <button data-k="brutto" class="active">Index brutto (ohne Kosten)</button>
+        <button data-k="guenstig">FondsRente Vario – günstigste Anlage</button>
+        <button data-k="teuer">FondsRente Vario – teuerste Anlage</button>
+      </div>
       <p class="cardSub" id="fazitSub"></p>
       <div class="fazitGrid" id="fazitGrid"></div>
       <div class="lueckeBlock" id="fazitVerdict"></div>
+      <div id="kostenBlock"></div>
       <p class="hint" id="fazitHint"></p>
     </div>
   </section>
