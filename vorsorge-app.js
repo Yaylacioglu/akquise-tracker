@@ -568,6 +568,7 @@ function renderKombi(c) {
       `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre ` +
       `(Kapitalbedarf ≈ ${fmtEur0(kapital)} bei Rentenfaktor-Annahme ${fmtNum(A.rentenfaktorJe10k)} € Rente je 10.000 € Kapital – ` +
       `tatsächliche Tarife weichen ab; bewusst nur Orientierung, keine Produktberechnung).`;
+    msciRateVorschlag(rate);
   } else {
     spar.innerHTML = luecke > 0
       ? "<b>Rentenbeginn liegt nicht in der Zukunft</b> – Sparraten-Orientierung nicht sinnvoll."
@@ -597,6 +598,161 @@ function recalc() {
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);
   renderKombi(c);
+}
+
+/* =====================================================================
+   MSCI World-Renditedreieck (monatliche Geldanlage, Quelle: DAI 31.12.2023)
+   ===================================================================== */
+const MSCI = (() => {
+  const D = CONFIG.msciSparplan;
+  const matrix = {}; // matrix[start][ziel] = Rendite % p.a.
+  let startMin = Infinity;
+  Object.keys(D.zeilen).forEach((s) => {
+    const start = +s;
+    startMin = Math.min(startMin, start);
+    matrix[start] = {};
+    D.zeilen[s].trim().split(/\s+/).forEach((v, i) => {
+      matrix[start][start + 1 + i] = parseFloat(v.replace(",", "."));
+    });
+  });
+  return { matrix, startMin, zielMax: D.zielMax };
+})();
+
+state.msciSel = { start: 1984, ziel: MSCI.zielMax }; // Beispiel aus dem Beratungsalltag
+state.msciRateTouched = false;
+$("inMsciRate").addEventListener("input", () => { state.msciRateTouched = true; renderMsciDetail(); });
+
+function msciFarbklasse(r) {
+  if (r >= 8) return "mc5";
+  if (r >= 4) return "mc4";
+  if (r >= 0.5) return "mc3";
+  if (r > -0.5) return "mc2";
+  if (r > -10) return "mc1";
+  return "mc0";
+}
+const istKrisenjahr = (j) => CONFIG.msciSparplan.krisen.some((k) => j >= k.von && j <= k.bis);
+
+/* Endwert eines monatlichen Sparplans bei Rendite r % p.a. über n Jahre */
+function sparplanEndwert(rate, rProzent, jahre) {
+  const m = jahre * 12;
+  const i = Math.pow(1 + rProzent / 100, 1 / 12) - 1;
+  const endwert = i === 0 ? rate * m : rate * (Math.pow(1 + i, m) - 1) / i;
+  return { eingezahlt: rate * m, endwert };
+}
+
+/* Min/Ø/Max über alle Zeiträume einer Spardauer */
+function msciStatistik(dauer) {
+  let min = Infinity, max = -Infinity, sum = 0, n = 0;
+  for (let s = MSCI.startMin; s + dauer <= MSCI.zielMax; s++) {
+    const r = MSCI.matrix[s] && MSCI.matrix[s][s + dauer];
+    if (r === undefined) continue;
+    min = Math.min(min, r); max = Math.max(max, r); sum += r; n++;
+  }
+  return n ? { min, max, avg: sum / n, n } : null;
+}
+
+/* Kleinste Spardauer, die in 50 Jahren nie eine negative Rendite hatte */
+const msciSichereDauer = (() => {
+  for (let d = 1; d <= 50; d++) {
+    const st = msciStatistik(d);
+    if (st && st.min >= 0) return { dauer: d, min: st.min };
+  }
+  return null;
+})();
+
+function renderMsciGrid() {
+  const frag = [];
+  for (let start = MSCI.zielMax - 1; start >= MSCI.startMin; start--) {
+    const row = MSCI.zielMax - 1 - start + 1;
+    for (let ziel = start + 1; ziel <= MSCI.zielMax; ziel++) {
+      const r = MSCI.matrix[start][ziel];
+      const col = ziel - MSCI.startMin; // 1974 → Spalte 1
+      frag.push(`<div class="mCell ${msciFarbklasse(r)}" data-s="${start}" data-z="${ziel}" ` +
+        `style="grid-row:${row};grid-column:${col}" title="Start ${start} → Ziel ${ziel}: ${fmtNum(r)} % p.a."></div>`);
+    }
+    if (start % 5 === 0 || start === MSCI.startMin || start === MSCI.zielMax - 1) {
+      frag.push(`<div class="mRowLbl" style="grid-row:${row}">${start}</div>`);
+    }
+  }
+  $("msciGrid").innerHTML = frag.join("");
+
+  const axe = [];
+  for (let ziel = MSCI.startMin + 1; ziel <= MSCI.zielMax; ziel++) {
+    const col = ziel - MSCI.startMin;
+    const kr = istKrisenjahr(ziel);
+    if (ziel % 5 === 0 || kr) {
+      axe.push(`<span class="${kr ? "krise" : ""}" style="grid-column:${col}">${ziel}</span>`);
+    }
+  }
+  $("msciAxe").innerHTML = axe.join("");
+
+  $("msciGrid").addEventListener("click", (e) => {
+    const c = e.target.closest(".mCell");
+    if (!c) return;
+    state.msciSel = { start: +c.dataset.s, ziel: +c.dataset.z };
+    renderMsciDetail();
+  });
+}
+
+function renderMsciDetail() {
+  const { start, ziel } = state.msciSel;
+  const r = MSCI.matrix[start][ziel];
+  const dauer = ziel - start;
+  const rate = val("inMsciRate");
+  const fv = sparplanEndwert(rate, r, dauer);
+  const krisen = CONFIG.msciSparplan.krisen.filter((k) => k.bis > start && k.von <= ziel);
+  const st = msciStatistik(dauer);
+
+  document.querySelectorAll("#msciGrid .mCell.sel").forEach((c) => c.classList.remove("sel"));
+  const cell = document.querySelector(`#msciGrid .mCell[data-s="${start}"][data-z="${ziel}"]`);
+  if (cell) cell.classList.add("sel");
+
+  $("msciDetail").innerHTML = `
+    <div>
+      <div class="mdBig">${fmtNum(r)} % p. a.</div>
+      <div class="mdLbl">Sparplan Ende ${start} bis Ende ${ziel} (${dauer} ${dauer === 1 ? "Jahr" : "Jahre"}) –
+        zum Vergleich alle ${dauer}-Jahres-Zeiträume:
+        min. ${fmtNum(st.min)} % · Ø ${fmtNum(st.avg)} % · max. ${fmtNum(st.max)} %</div>
+    </div>
+    <div>
+      <div class="mdBig">${fmtEur0(fv.endwert)}</div>
+      <div class="mdLbl">Endwert bei ${fmtEur0(rate)}/Monat – eingezahlt ${fmtEur0(fv.eingezahlt)},
+        Wertzuwachs ${fmtEur0(fv.endwert - fv.eingezahlt)}</div>
+    </div>
+    <div class="mdKrisen">
+      <b>${krisen.length ? "Durchlebte Krisen – trotzdem dieses Ergebnis:" : "Keine große Krise im Zeitraum."}</b>
+      ${krisen.map((k) => k.name).join(" · ")}
+    </div>`;
+}
+
+function initMsci() {
+  const D = CONFIG.msciSparplan;
+  $("msciSub").textContent =
+    `Was ein monatlicher Sparplan (${D.produktBeispiel}) historisch gebracht hätte – jedes Kästchen antippen: ` +
+    `Startjahr trifft Zieljahr. Datenbasis: ${D.quelle}.`;
+  $("msciSicherheit").innerHTML = msciSichereDauer
+    ? `<b>Das Sicherheits-Argument:</b> In 50 Jahren MSCI World gab es ab <b>${msciSichereDauer.dauer} Jahren Spardauer ` +
+      `keinen einzigen Zeitraum mit negativer Rendite</b> (schlechtester Fall: +${fmtNum(msciSichereDauer.min)} % p. a.). ` +
+      `Kurzfristig sind Verluste normal – Zeit heilt die Schwankung.`
+    : "";
+  $("msciDisclaimer").innerHTML =
+    `<b>Pflichthinweis:</b> Modellrechnung auf Indexbasis (Bruttoindex in EUR, vor 2000 DM) ohne Kosten, Steuern ` +
+    `und Produktgebühren. Wertentwicklungen der Vergangenheit sind kein verlässlicher Indikator für die künftige ` +
+    `Wertentwicklung. Kein Angebot und keine Anlageempfehlung – Produktauswahl und Geeignetheitsprüfung erfolgen ` +
+    `im Beratungsgespräch. Quelle: <a href="${D.quelleUrl}" target="_blank" rel="noopener">Deutsches Aktieninstitut</a>, Stand 12/2023.`;
+  renderMsciGrid();
+  renderMsciDetail();
+}
+
+/* Sparrate aus der Lücken-Rechnung übernehmen, solange der Slider unberührt ist */
+function msciRateVorschlag(rate) {
+  $("msciRateHint").textContent = "Vorschlag aus der Lücken-Rechnung: " + fmtEur0(rate) + "/Monat.";
+  if (!state.msciRateTouched) {
+    const v = Math.max(25, Math.min(1500, Math.round(rate / 25) * 25));
+    $("inMsciRate").value = v;
+    $("outMsciRate").textContent = fmtEur0(v);
+    renderMsciDetail();
+  }
 }
 
 /* =====================================================================
@@ -702,6 +858,7 @@ function renderCheck() {
   bindInputs("#mode-beratung");
   renderWissen();
   renderCheck();
+  initMsci();
   recalc();
   // Browser stellen Slider-Werte nach Reload/Back wieder her, ohne Events zu
   // feuern – Anzeigen und Rechnung danach einmal neu synchronisieren.

@@ -279,6 +279,35 @@
   .checkSummen .cs .n{font-family:var(--serif);font-size:20px;display:block;}
   .cs.g .n{color:var(--sage-dark);} .cs.y .n{color:var(--amber-dark);} .cs.r .n{color:var(--terracotta-dark);}
 
+  /* MSCI-Renditedreieck */
+  .mWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
+  .mGridBox{min-width:760px;}
+  .mGrid{display:grid;grid-template-columns:repeat(50,1fr) 44px;gap:1px;}
+  .mCell{aspect-ratio:1/1;border-radius:2px;cursor:pointer;min-width:0;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .balkenSeg,.balkenSeg.luecke{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .mCell:active{transform:scale(1.25);}
+  .mCell.sel{outline:2.5px solid var(--navy);outline-offset:1px;z-index:2;position:relative;}
+  .mc5{background:#3D7A46;} .mc4{background:#6B9F71;} .mc3{background:#A8C7A0;}
+  .mc2{background:#EDE9DC;} .mc1{background:#D98B80;} .mc0{background:#B14A3E;}
+  .mRowLbl{font-size:10px;color:var(--ink-faint);display:flex;align-items:center;padding-left:4px;
+    grid-column:51;white-space:nowrap;}
+  .mAxe{display:grid;grid-template-columns:repeat(50,1fr) 44px;gap:1px;margin-top:3px;}
+  .mAxe span{font-size:9.5px;color:var(--ink-faint);writing-mode:vertical-rl;transform:rotate(180deg);
+    justify-self:center;line-height:1;}
+  .mAxe span.krise{color:var(--terracotta-dark);font-weight:700;}
+  .mKrisenDot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--terracotta);}
+  .mAxe .dotCell{display:flex;align-items:flex-start;justify-content:center;padding-top:1px;}
+  .mAxeLbl{font-size:11px;color:var(--ink-faint);margin-top:6px;}
+  .mDetail{
+    background:var(--paper);border-radius:10px;padding:16px 18px;margin-top:16px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;align-items:center;
+  }
+  .mDetail .mdBig{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--navy);line-height:1.1;}
+  .mDetail .mdLbl{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .mDetail .mdKrisen{font-size:12.5px;color:var(--terracotta-dark);line-height:1.5;}
+  .mDetail .mdKrisen b{display:block;color:var(--ink);margin-bottom:2px;}
+
   /* Fußzeile */
   footer.disclaimer{
     border-top:1px solid var(--line);background:var(--paper-card);
@@ -551,6 +580,40 @@
         <div id="sparrateText"></div>
       </div>
       <div class="warnBox" id="ruhensHinweis" style="display:none"></div>
+    </div>
+
+    <!-- ===== Lösungsbaustein: ETF-Sparplan / Renditedreieck ===== -->
+    <div class="card" id="msciCard">
+      <h2>Lösungsbaustein: ETF-Sparplan auf den MSCI World</h2>
+      <p class="cardSub" id="msciSub"></p>
+      <div class="inGrid" style="margin-bottom:10px">
+        <div class="sl">
+          <div class="slHead"><label for="inMsciRate">Monatliche Sparrate</label><output id="outMsciRate"></output></div>
+          <input type="range" id="inMsciRate" min="25" max="1500" step="25" value="150" data-fmt="eur0">
+          <p class="hint" id="msciRateHint"></p>
+        </div>
+        <div class="okBox" id="msciSicherheit" style="margin-top:0"></div>
+      </div>
+
+      <div class="mWrap">
+        <div class="mGridBox">
+          <div class="mGrid" id="msciGrid"></div>
+          <div class="mAxe" id="msciAxe"></div>
+          <div class="mAxeLbl">Zieljahr (Verkauf) → · rechts: Startjahr · <span class="mKrisenDot"></span> = Krisenjahr</div>
+        </div>
+      </div>
+      <div class="legende">
+        <span class="lg"><span class="sw" style="background:#3D7A46"></span>&gt; 8 % p. a.</span>
+        <span class="lg"><span class="sw" style="background:#6B9F71"></span>4–8 %</span>
+        <span class="lg"><span class="sw" style="background:#A8C7A0"></span>0–4 %</span>
+        <span class="lg"><span class="sw" style="background:#EDE9DC"></span>um 0 %</span>
+        <span class="lg"><span class="sw" style="background:#D98B80"></span>0 bis −10 %</span>
+        <span class="lg"><span class="sw" style="background:#B14A3E"></span>&lt; −10 %</span>
+      </div>
+
+      <div class="mDetail" id="msciDetail"></div>
+
+      <div class="infoBox" id="msciDisclaimer"></div>
     </div>
   </section>
 
