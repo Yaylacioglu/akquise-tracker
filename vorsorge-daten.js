@@ -212,6 +212,24 @@ const CONFIG = {
       30: { min: 5688, max: 15549 },
       40: { min: 10607, max: 34765 },
     },
+    /* Kosten des Versicherungsmantels OHNE Fondskosten.
+       Anker: 0,44 % Effektivkosten bei 40 Jahren Laufzeit (Angabe aus der
+       Provinzial-Tarifkalkulation, Muratcan 07/2026). Abschlusskosten 2,5 %
+       der Beitragssumme werden über die ersten 5 Jahre gezillmert.
+       Die übrigen Laufzeiten sind mit derselben Mechanik hochgerechnet
+       (Zillmerung 5 J. + 6,70 % vom Beitrag + 9 €/Jahr) und auf den
+       40-Jahres-Anker kalibriert.
+       Gegenprobe: 0,44 % Mantel + ca. 0,45 % günstigster Fonds inkl.
+       Transaktionskosten = 0,89 % ≈ 0,90 % BIB-Ausweis für 40 Jahre. */
+    mantelkosten: { 12: 1.43, 20: 0.85, 30: 0.57, 40: 0.44 },
+    mantelAnker: { jahre: 40, riy: 0.44, quelle: "Provinzial-Tarifkalkulation" },
+    zillmerungJahre: 5,
+    // Fondskosten-Vorschläge (TER p. a.) für die Auswahl im Rechner
+    fondsBeispiele: [
+      { name: "Welt-ETF (z. B. MSCI World, thesaurierend)", ter: 0.20 },
+      { name: "Aktienfonds aktiv gemanagt", ter: 1.50 },
+      { name: "teuerste Anlageoption laut BIB", ter: 3.00 },
+    ],
     // Kostenbestandteile laut BIB (in allen vier Laufzeiten identisch)
     bestandteile: [
       "Einstiegskosten: 2,50 % des kumulierten Anlagebetrags (in den Beiträgen enthalten)",

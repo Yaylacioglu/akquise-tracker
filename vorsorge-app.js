@@ -12,6 +12,9 @@ const NUM = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 });
 const fmtEur = (x) => EUR.format(x);
 const fmtEur0 = (x) => EUR0.format(x);
 const fmtNum = (x) => NUM.format(x);
+/* Kostensätze immer mit zwei Nachkommastellen (0,20 % statt 0,2 %) */
+const fmtKosten = (x) =>
+  new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x);
 const fmtPct = (x, nk = 1) =>
   new Intl.NumberFormat("de-DE", { minimumFractionDigits: nk, maximumFractionDigits: nk }).format(x * 100) + " %";
 const fmtAlter = (a) => {
@@ -59,6 +62,7 @@ function bindInputs(rootSelector) {
         case "eur0": out.textContent = fmtEur0(v); break;
         case "jahre": out.textContent = v + " Jahre"; break;
         case "pct": out.textContent = fmtPct(v / 100, 0); break;
+        case "ter": out.textContent = fmtKosten(v / 100) + " %"; break;
         default: out.textContent = String(v);
       }
     };
@@ -745,6 +749,8 @@ function renderMsciDetail() {
 
 function initMsci() {
   const D = CONFIG.msciSparplan;
+  $("terHint").textContent = "Beispiele: " +
+    CONFIG.provinzial.fondsBeispiele.map((f) => f.name + " ≈ " + fmtKosten(f.ter) + " %").join(" · ");
   $("msciSub").textContent =
     `Was ein monatlicher Sparplan (${D.produktBeispiel}) historisch gebracht hätte – jedes Kästchen antippen: ` +
     `Startjahr trifft Zieljahr. Datenbasis: ${D.quelle}.`;
@@ -765,32 +771,35 @@ function initMsci() {
 /* =====================================================================
    Produktkosten Provinzial FondsRente Vario (Effektivkosten laut BIB)
    ===================================================================== */
-state.kostenModus = "brutto"; // "brutto" | "guenstig" | "teuer"
+state.kostenModus = "brutto"; // "brutto" | "police"
 document.querySelectorAll("#kostenSchalter button").forEach((b) => {
   b.addEventListener("click", () => {
     state.kostenModus = b.dataset.k;
     document.querySelectorAll("#kostenSchalter button").forEach((x) => x.classList.toggle("active", x === b));
+    $("terWrap").style.display = state.kostenModus === "police" ? "" : "none";
     renderFazit(commonWerte());
   });
 });
+$("inTer").addEventListener("input", () => renderFazit(commonWerte()));
+const terProzent = () => val("inTer") / 100;
 
-/* Effektivkosten % p. a. für eine Laufzeit – lineare Interpolation zwischen den
-   BIB-Stützstellen (12/20/30/40 Jahre), außerhalb wird der Randwert gehalten. */
-function effektivkosten(jahre, seite) {
-  const E = CONFIG.provinzial.effektivkosten;
-  const stuetz = Object.keys(E).map(Number).sort((a, b) => a - b);
-  if (jahre <= stuetz[0]) return E[stuetz[0]][seite];
+/* Laufzeitabhängige Kostenwerte – lineare Interpolation zwischen den Stützstellen,
+   außerhalb wird der Randwert gehalten. Tabelle: { jahre: wert } oder
+   { jahre: {min,max} } (dann Seite angeben). */
+function kostenAusTabelle(tabelle, jahre, seite) {
+  const wert = (j) => (seite ? tabelle[j][seite] : tabelle[j]);
+  const stuetz = Object.keys(tabelle).map(Number).sort((a, b) => a - b);
+  if (jahre <= stuetz[0]) return wert(stuetz[0]);
   const letzte = stuetz[stuetz.length - 1];
-  if (jahre >= letzte) return E[letzte][seite];
+  if (jahre >= letzte) return wert(letzte);
   for (let i = 0; i < stuetz.length - 1; i++) {
     const a = stuetz[i], b = stuetz[i + 1];
-    if (jahre >= a && jahre <= b) {
-      const t = (jahre - a) / (b - a);
-      return E[a][seite] + t * (E[b][seite] - E[a][seite]);
-    }
+    if (jahre >= a && jahre <= b) return wert(a) + (jahre - a) / (b - a) * (wert(b) - wert(a));
   }
-  return E[letzte][seite];
+  return wert(letzte);
 }
+const mantelkosten = (jahre) => kostenAusTabelle(CONFIG.provinzial.mantelkosten, jahre);
+const effektivkosten = (jahre, seite) => kostenAusTabelle(CONFIG.provinzial.effektivkosten, jahre, seite);
 
 /* =====================================================================
    Schluss-Ergebnis: Kapitalauszahlung × Rentenfaktor gegen die Rentenlücke
@@ -828,8 +837,10 @@ function renderFazit(c) {
   }
 
   const st = msciStatistik(Math.min(n, 50));
-  const mitKosten = state.kostenModus !== "brutto";
-  const kostenPa = mitKosten ? effektivkosten(n, state.kostenModus === "guenstig" ? "min" : "max") : 0;
+  const mitKosten = state.kostenModus === "police";
+  const mantel = mantelkosten(n);
+  const ter = terProzent();
+  const kostenPa = mitKosten ? mantel + ter : 0;
 
   const szenarien = [
     { name: "Schlechtester Fall", r: st.min, cls: "" },
@@ -848,14 +859,14 @@ function renderFazit(c) {
     `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
     `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital.` +
     (mitKosten
-      ? ` Abzüglich ${fmtNum(kostenPa)} % Effektivkosten p. a. der ${P.produkt}.`
+      ? ` Abzüglich ${fmtKosten(kostenPa)} % Kosten p. a. (${fmtKosten(mantel)} % Versicherungsmantel + ${fmtKosten(ter)} % Fonds).`
       : " Ohne Produktkosten – reine Indexbetrachtung.");
 
   $("fazitGrid").innerHTML = szenarien.map((s) => `
     <div class="fzBox ${s.cls}">
       <div class="fzTitel">${s.name}</div>
       <div class="fzRendite">${mitKosten
-        ? `${fmtNum(s.r)} % − ${fmtNum(kostenPa)} % Kosten = <b>${fmtNum(s.rNetto)} % p. a.</b>`
+        ? `${fmtNum(s.r)} % − ${fmtKosten(kostenPa)} % Kosten = <b>${fmtNum(s.rNetto)} % p. a.</b>`
         : `${fmtNum(s.r)} % p. a.`}</div>
       <div class="fzVal">${fmtEur0(s.endwert)}</div>
       <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
@@ -863,7 +874,7 @@ function renderFazit(c) {
       <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
     </div>`).join("");
 
-  renderKostenBlock(n, kostenPa, mitKosten, rate);
+  renderKostenBlock(n, mantel, ter, mitKosten, rate);
 
   const mittel = szenarien[1];
   const vd = $("fazitVerdict");
@@ -888,35 +899,41 @@ function renderFazit(c) {
     "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
 }
 
-/* Kostentransparenz: was das Produkt kostet und was es dafür leistet */
-function renderKostenBlock(n, kostenPa, mitKosten, rate) {
+/* Kostentransparenz: Mantel und Fonds getrennt, dazu die BIB-Gegenprobe */
+function renderKostenBlock(n, mantel, ter, mitKosten, rate) {
   const P = CONFIG.provinzial;
   const box = $("kostenBlock");
   if (!mitKosten) {
     box.innerHTML = `<div class="infoBox"><b>Noch ohne Produktkosten gerechnet.</b> ` +
-      `Für ein ehrliches Bild oben auf „${P.produkt}“ umschalten – dann rechnet die Seite mit den ` +
-      `Effektivkosten aus dem Basisinformationsblatt (Stand ${P.standBib}).</div>`;
+      `Für ein ehrliches Bild oben auf „Mit Kosten ${P.produkt}“ umschalten – dann rechnet die Seite ` +
+      `mit ${fmtKosten(mantelkosten(n))} % Kosten des Versicherungsmantels bei ${n} Jahren Laufzeit ` +
+      `plus den Kosten des gewählten Fonds.</div>`;
     return;
   }
-  // Kosten im Musterfall auf die tatsächliche Sparrate hochrechnen (BIB-Muster: 1.000 €/Jahr)
-  const stuetz = Object.keys(P.kostenGesamtMusterfall).map(Number).sort((a, b) => a - b);
-  const naechste = stuetz.reduce((p, x) => (Math.abs(x - n) < Math.abs(p - n) ? x : p), stuetz[0]);
-  const seite = state.kostenModus === "guenstig" ? "min" : "max";
-  const faktor = rate * 12 / P.musterfallJahresbeitrag;
-  const kostenEur = P.kostenGesamtMusterfall[naechste][seite] * faktor;
+  const gesamt = mantel + ter;
+  const bibMin = effektivkosten(n, "min"), bibMax = effektivkosten(n, "max");
+  const gegenprobe = gesamt < bibMin
+    ? `Die Rechnung liegt <b>${fmtKosten(bibMin - gesamt)} %-Punkte unter</b> dem BIB-Minimum. Das ist erklärbar: ` +
+      `Das BIB rechnet mit der günstigsten im Tarif tatsächlich wählbaren Anlageoption einschließlich ` +
+      `Transaktionskosten (${fmtKosten(bibMin - mantel)} % über dem Mantel). Vor dem Kundengespräch prüfen, ` +
+      `ob ein Fonds mit ${fmtKosten(ter)} % TER im Tarif verfügbar ist – sonst die reale TER eintragen.`
+    : gesamt <= bibMax
+      ? `Die Rechnung liegt in diesem Rahmen. ✓`
+      : `<b>Achtung:</b> ${fmtKosten(gesamt)} % liegt über dem BIB-Maximum – TER prüfen.`;
 
   box.innerHTML = `
     <div class="infoBox">
-      <b>Kostentransparenz – ${P.produkt}</b><br>
-      ${P.versicherer}, Basisinformationsblatt vom ${P.standBib}:
-      Effektivkosten <b>${fmtNum(kostenPa)} % p. a.</b> bei ${n} Jahren Laufzeit
-      (${state.kostenModus === "guenstig" ? "günstigste" : "teuerste"} Anlageoption).
-      Im Musterfall des BIB entspricht das bei ${fmtEur0(rate)}/Monat rund
-      <b>${fmtEur0(kostenEur)}</b> Gesamtkosten über ${naechste} Jahre.
-      <div style="margin-top:8px">Zusammensetzung laut BIB:</div>
-      <ul style="margin:4px 0 0;padding-left:18px">
-        ${P.bestandteile.map((b) => `<li>${b}</li>`).join("")}
-      </ul>
+      <b>Kostentransparenz – ${P.produkt}</b> (${P.versicherer})
+      <table class="kette" style="margin-top:8px">
+        <tr><td>Versicherungsmantel<span class="sub">Abschlusskosten 2,5 % der Beitragssumme, über ${P.zillmerungJahre} Jahre gezillmert, zzgl. laufender Verwaltung – Anker ${fmtKosten(P.mantelAnker.riy)} % bei ${P.mantelAnker.jahre} Jahren (${P.mantelAnker.quelle})</span></td><td class="z">${fmtKosten(mantel)} %</td></tr>
+        <tr><td>Fondskosten (TER)<span class="sub">frei wählbar – ${P.fondsBeispiele.map((f) => f.name + " " + fmtKosten(f.ter) + " %").join(" · ")}</span></td><td class="z">${fmtKosten(ter)} %</td></tr>
+        <tr class="sum"><td>Gesamtkosten bei ${n} Jahren Laufzeit</td><td class="z">${fmtKosten(gesamt)} % p. a.</td></tr>
+      </table>
+      <div style="margin-top:10px">
+        <b>Gegenprobe Basisinformationsblatt (Stand ${P.standBib}):</b>
+        Für ${n} Jahre weist das BIB ${fmtKosten(bibMin)} % (günstigste) bis ${fmtKosten(bibMax)} % (teuerste Anlageoption) aus.
+        ${gegenprobe}
+      </div>
     </div>
     <div class="okBox">
       <b>Was der Vertrag dafür leistet (gegenüber einem reinen Depot):</b>
