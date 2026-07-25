@@ -114,31 +114,37 @@ function ketteHtml(zeilen) {
 /* =====================================================================
    GRV-Rechner
    ===================================================================== */
-state.grvWartezeit45 = false;
+state.grvWartezeit = "regel"; // "regel" | "35" | "45"
 document.querySelectorAll("#grvWartezeit button").forEach((b) => {
   b.addEventListener("click", () => {
-    state.grvWartezeit45 = b.dataset.wz === "45";
+    state.grvWartezeit = b.dataset.wz;
     document.querySelectorAll("#grvWartezeit button").forEach((x) => x.classList.toggle("active", x === b));
     recalc();
   });
 });
 
 /* Zugangsfaktor § 77 SGB VI: −0,3 %/Monat vorzeitig (max. −14,4 %), +0,5 %/Monat später.
+   Regelaltersrente (5 J.): frühestens zur Regelaltersgrenze.
    35 J. Wartezeit: frühestens ab 63. 45 J.: abschlagsfrei ab Regelalter − 24 Monate. */
-function zugangsfaktorGrv(c, wartezeit45) {
+function zugangsfaktorGrv(c, variante) {
   const ragMon = c.rag.jahre * 12 + c.rag.monate;
   let wunschMon = c.rentenalter * 12;
   let hinweis = "";
-  const fruehestMon = wartezeit45 ? ragMon - 24 : 63 * 12;
+  const fruehestMon = variante === "regel" ? ragMon
+    : variante === "45" ? ragMon - 24
+    : 63 * 12;
   if (wunschMon < fruehestMon) {
-    hinweis = `Frühestmöglicher Beginn ${wartezeit45 ? "(45 J., 2 J. vor Regelalter)" : "(ab 63)"}: ` +
+    const grund = variante === "regel"
+      ? "(Regelaltersrente: erst zur Regelaltersgrenze – früher nur mit 35/45 J. Wartezeit)"
+      : variante === "45" ? "(45 J., 2 J. vor Regelalter)" : "(ab 63)";
+    hinweis = `Frühestmöglicher Beginn ${grund}: ` +
       fmtAlter(fruehestMon / 12) + " – Rechnung mit diesem Alter.";
     wunschMon = fruehestMon;
   }
   const diff = wunschMon - ragMon; // Monate (negativ = früher)
   let faktor = 1, detail = "";
   if (diff < 0) {
-    if (wartezeit45) {
+    if (variante === "45") {
       detail = "45 Jahre Wartezeit: abschlagsfrei bis 2 Jahre vor Regelalter";
     } else {
       const abschlag = Math.min(-diff * CONFIG.grv.abschlagProMonat, CONFIG.grv.maxAbschlagAltersrente);
@@ -160,7 +166,7 @@ function calcGrv(c) {
   const epEingabe = val("inGrvEp");
   const jahreBisher = val("inGrvJahre");
   const epBisher = epEingabe > 0 ? epEingabe : jahreBisher * epProJahr;
-  const zf = zugangsfaktorGrv(c, state.grvWartezeit45);
+  const zf = zugangsfaktorGrv(c, state.grvWartezeit);
   const jahreKuenftig = Math.max(0, zf.effektivMon / 12 - c.alter);
   const epGesamt = epBisher + jahreKuenftig * epProJahr;
   const brutto = epGesamt * zf.faktor * G.rentenwert;
