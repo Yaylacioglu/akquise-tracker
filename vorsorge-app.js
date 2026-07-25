@@ -700,8 +700,20 @@ function renderMsciGrid() {
   });
 }
 
+/* Jahr-Regler ↔ Dreieck koppeln (Regler bewegen = Zelle wählen, Zelle tippen = Regler stellen) */
+function msciSelVonReglern(vonSlider) {
+  let s = val("inMsciStart"), z = val("inMsciZiel");
+  if (z <= s) { if (vonSlider === "start") z = Math.min(s + 1, MSCI.zielMax); else s = Math.max(z - 1, MSCI.startMin); }
+  state.msciSel = { start: s, ziel: z };
+  renderMsciDetail();
+}
+$("inMsciStart").addEventListener("input", () => msciSelVonReglern("start"));
+$("inMsciZiel").addEventListener("input", () => msciSelVonReglern("ziel"));
+
 function renderMsciDetail() {
   const { start, ziel } = state.msciSel;
+  $("inMsciStart").value = start; $("outMsciStart").textContent = start;
+  $("inMsciZiel").value = ziel;   $("outMsciZiel").textContent = ziel;
   const r = MSCI.matrix[start][ziel];
   const dauer = ziel - start;
   const rate = val("inMsciRate");
