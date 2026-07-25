@@ -517,6 +517,7 @@ function renderKombi(c) {
 
   const summe = teile.reduce((s, t) => s + t.netto, 0);
   const luecke = Math.max(0, c.wunsch - summe);
+  state.kombiErgebnis = { summe, luecke, wunsch: c.wunsch }; // für das Schluss-Ergebnis
   const H = 260, maxVal = Math.max(c.wunsch, summe, 1);
   const px = (v) => Math.max(v > 0 ? 3 : 0, Math.round(v / maxVal * H));
 
@@ -598,6 +599,7 @@ function recalc() {
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);
   renderKombi(c);
+  renderFazit(c);
 }
 
 /* =====================================================================
@@ -620,7 +622,11 @@ const MSCI = (() => {
 
 state.msciSel = { start: 1984, ziel: MSCI.zielMax }; // Beispiel aus dem Beratungsalltag
 state.msciRateTouched = false;
-$("inMsciRate").addEventListener("input", () => { state.msciRateTouched = true; renderMsciDetail(); });
+$("inMsciRate").addEventListener("input", () => {
+  state.msciRateTouched = true;
+  renderMsciDetail();
+  renderFazit(commonWerte());
+});
 
 function msciFarbklasse(r) {
   if (r >= 8) return "mc5";
@@ -742,6 +748,89 @@ function initMsci() {
     `im Beratungsgespräch. Quelle: <a href="${D.quelleUrl}" target="_blank" rel="noopener">Deutsches Aktieninstitut</a>, Stand 12/2023.`;
   renderMsciGrid();
   renderMsciDetail();
+}
+
+/* =====================================================================
+   Schluss-Ergebnis: Kapitalauszahlung × Rentenfaktor gegen die Rentenlücke
+   ===================================================================== */
+function renderFazit(c) {
+  const card = $("fazitCard");
+  const K = state.kombiErgebnis;
+  const aktiv = Object.values(state.systeme).some(Boolean);
+  if (!aktiv || !K) { card.style.display = "none"; return; }
+  card.style.display = "";
+
+  const rate = val("inMsciRate");
+  const n = Math.round(c.jahreBisRente);
+  const RF = CONFIG.annahmen.rentenfaktorJe10k;
+
+  if (K.luecke <= 0) {
+    $("fazitSub").textContent = "";
+    $("fazitGrid").innerHTML = "";
+    const vd = $("fazitVerdict");
+    vd.className = "lueckeBlock ok";
+    vd.innerHTML = `<div class="lVal">Keine Lücke</div><div class="lLbl">Die Versorgung liegt bereits über der ` +
+      `Wunschrente – ein Sparplan baut zusätzliches Vermögen oder Spielraum für früheren Ruhestand auf.</div>`;
+    $("fazitHint").textContent = "";
+    return;
+  }
+  if (n < 1) {
+    $("fazitSub").textContent = "";
+    $("fazitGrid").innerHTML = "";
+    const vd = $("fazitVerdict");
+    vd.className = "lueckeBlock";
+    vd.innerHTML = `<div class="lVal">− ${fmtEur(K.luecke)}</div><div class="lLbl">Rentenbeginn liegt nicht in ` +
+      `der Zukunft – für einen Sparplan fehlt die Ansparzeit. Thema: vorhandenes Kapital / Einmalanlage.</div>`;
+    $("fazitHint").textContent = "";
+    return;
+  }
+
+  const st = msciStatistik(Math.min(n, 50));
+  const szenarien = [
+    { name: "Schlechtester Fall", r: st.min, cls: "" },
+    { name: "Historischer Durchschnitt", r: st.avg, cls: "mittel" },
+    { name: "Bester Fall", r: st.max, cls: "" },
+  ].map((s) => {
+    const fv = sparplanEndwert(rate, s.r, n);
+    const rente = fv.endwert / 10000 * RF;
+    return { ...s, endwert: fv.endwert, rente, deckung: rente / K.luecke };
+  });
+
+  $("fazitSub").textContent =
+    `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
+    `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
+    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital.`;
+
+  $("fazitGrid").innerHTML = szenarien.map((s) => `
+    <div class="fzBox ${s.cls}">
+      <div class="fzTitel">${s.name}</div>
+      <div class="fzRendite">${fmtNum(s.r)} % p. a.</div>
+      <div class="fzVal">${fmtEur0(s.endwert)}</div>
+      <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
+      <div class="fzBar"><div class="fzBarFill ${s.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, s.deckung * 100)}%"></div></div>
+      <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
+    </div>`).join("");
+
+  const mittel = szenarien[1];
+  const vd = $("fazitVerdict");
+  if (mittel.deckung >= 1) {
+    vd.className = "lueckeBlock ok";
+    vd.innerHTML = `<div class="lVal">Lücke geschlossen</div><div class="lLbl">Im historischen Durchschnitt ` +
+      `stünden ${fmtEur0(mittel.endwert)} Kapital bereit – das sind ${fmtEur0(mittel.rente)}/Monat bei einer Lücke von ` +
+      `${fmtEur0(K.luecke)} (${Math.round(mittel.deckung * 100)} %). Selbst der schlechteste historische Verlauf ` +
+      `hätte ${Math.round(szenarien[0].deckung * 100)} % gedeckt.</div>`;
+  } else {
+    vd.className = "lueckeBlock";
+    const fehlt = K.luecke - mittel.rente;
+    vd.innerHTML = `<div class="lVal">− ${fmtEur(fehlt)}</div><div class="lLbl">Auch im Durchschnittsszenario ` +
+      `blieben ${fmtEur0(fehlt)}/Monat der Lücke offen (${Math.round(mittel.deckung * 100)} % gedeckt) – ` +
+      `Stellschrauben: Sparrate erhöhen, früher starten oder Wunschrente anpassen.</div>`;
+  }
+
+  $("fazitHint").textContent =
+    (n > 50 ? `Hinweis: Ansparzeit ${n} Jahre – historische Bandbreite auf 50 Jahre begrenzt. ` : "") +
+    "Modellrechnung vor Steuern und Kosten; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
+    "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
 }
 
 /* Sparrate aus der Lücken-Rechnung übernehmen, solange der Slider unberührt ist */

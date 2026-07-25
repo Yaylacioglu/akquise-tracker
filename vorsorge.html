@@ -308,6 +308,22 @@
   .mDetail .mdKrisen{font-size:12.5px;color:var(--terracotta-dark);line-height:1.5;}
   .mDetail .mdKrisen b{display:block;color:var(--ink);margin-bottom:2px;}
 
+  /* Schluss-Ergebnis */
+  .fazitGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .fzBox{background:var(--paper);border-radius:10px;padding:14px 16px;text-align:center;}
+  .fzBox.mittel{outline:2px solid var(--navy);}
+  .fzTitel{font-size:12px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.03em;}
+  .fzRendite{font-size:12.5px;color:var(--ink-faint);margin-top:2px;}
+  .fzVal{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--navy);margin-top:8px;line-height:1.1;}
+  .fzRente{font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+  .fzRente b{color:var(--ink);}
+  .fzBar{height:9px;background:var(--line);border-radius:5px;margin-top:10px;overflow:hidden;}
+  .fzBarFill{height:100%;border-radius:5px;background:var(--sage);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .fzBarFill.rot{background:var(--terracotta);}
+  .fzDeckung{font-size:12.5px;font-weight:700;margin-top:5px;}
+  .fzDeckung.gut{color:var(--sage-dark);} .fzDeckung.schlecht{color:var(--terracotta-dark);}
+
   /* Fußzeile */
   footer.disclaimer{
     border-top:1px solid var(--line);background:var(--paper-card);
@@ -614,6 +630,15 @@
       <div class="mDetail" id="msciDetail"></div>
 
       <div class="infoBox" id="msciDisclaimer"></div>
+    </div>
+
+    <!-- ===== Schluss-Ergebnis ===== -->
+    <div class="card" id="fazitCard" style="display:none">
+      <h2>Schluss-Ergebnis: Deckt der Sparplan die Lücke?</h2>
+      <p class="cardSub" id="fazitSub"></p>
+      <div class="fazitGrid" id="fazitGrid"></div>
+      <div class="lueckeBlock" id="fazitVerdict"></div>
+      <p class="hint" id="fazitHint"></p>
     </div>
   </section>
 
