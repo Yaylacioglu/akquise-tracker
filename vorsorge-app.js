@@ -749,8 +749,6 @@ function renderMsciDetail() {
 
 function initMsci() {
   const D = CONFIG.msciSparplan;
-  $("terHint").textContent = "Beispiele: " +
-    CONFIG.provinzial.fondsBeispiele.map((f) => f.name + " ≈ " + fmtKosten(f.ter) + " %").join(" · ");
   $("msciSub").textContent =
     `Was ein monatlicher Sparplan (${D.produktBeispiel}) historisch gebracht hätte – jedes Kästchen antippen: ` +
     `Startjahr trifft Zieljahr. Datenbasis: ${D.quelle}.`;
@@ -771,17 +769,8 @@ function initMsci() {
 /* =====================================================================
    Produktkosten Provinzial FondsRente Vario (Effektivkosten laut BIB)
    ===================================================================== */
-state.kostenModus = "brutto"; // "brutto" | "police"
-document.querySelectorAll("#kostenSchalter button").forEach((b) => {
-  b.addEventListener("click", () => {
-    state.kostenModus = b.dataset.k;
-    document.querySelectorAll("#kostenSchalter button").forEach((x) => x.classList.toggle("active", x === b));
-    $("terWrap").style.display = state.kostenModus === "police" ? "" : "none";
-    renderFazit(commonWerte());
-  });
-});
-$("inTer").addEventListener("input", () => renderFazit(commonWerte()));
-const terProzent = () => val("inTer") / 100;
+/* Produktkosten werden immer eingerechnet: fester Pauschalsatz aus CONFIG. */
+const kostenPauschal = () => CONFIG.provinzial.effektivkostenPauschal;
 
 /* Laufzeitabhängige Kostenwerte – lineare Interpolation zwischen den Stützstellen,
    außerhalb wird der Randwert gehalten. Tabelle: { jahre: wert } oder
@@ -837,10 +826,7 @@ function renderFazit(c) {
   }
 
   const st = msciStatistik(Math.min(n, 50));
-  const mitKosten = state.kostenModus === "police";
-  const mantel = mantelkosten(n);
-  const ter = terProzent();
-  const kostenPa = mitKosten ? mantel + ter : 0;
+  const kostenPa = kostenPauschal();
 
   const szenarien = [
     { name: "Schlechtester Fall", r: st.min, cls: "" },
@@ -854,27 +840,25 @@ function renderFazit(c) {
   });
 
   const P = CONFIG.provinzial;
+  $("kostenBadge").textContent = `✓ ${P.kostenLabel} (${fmtKosten(kostenPa)} % p. a.)`;
   $("fazitSub").textContent =
     `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
     `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
-    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital.` +
-    (mitKosten
-      ? ` Abzüglich ${fmtKosten(kostenPa)} % Kosten p. a. (${fmtKosten(mantel)} % Versicherungsmantel + ${fmtKosten(ter)} % Fonds).`
-      : " Ohne Produktkosten – reine Indexbetrachtung.");
+    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital. ` +
+    `Abzüglich ${fmtKosten(kostenPa)} % Effektivkosten p. a. der ${P.produkt}.`;
 
   $("fazitGrid").innerHTML = szenarien.map((s) => `
     <div class="fzBox ${s.cls}">
       <div class="fzTitel">${s.name}</div>
-      <div class="fzRendite">${mitKosten
-        ? `${fmtNum(s.r)} % − ${fmtKosten(kostenPa)} % Kosten = <b>${fmtNum(s.rNetto)} % p. a.</b>`
-        : `${fmtNum(s.r)} % p. a.`}</div>
+      <div class="fzRendite">${fmtNum(s.r)} % − ${fmtKosten(kostenPa)} % Kosten =
+        <b>${fmtNum(s.rNetto)} % p. a.</b></div>
       <div class="fzVal">${fmtEur0(s.endwert)}</div>
       <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
       <div class="fzBar"><div class="fzBarFill ${s.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, s.deckung * 100)}%"></div></div>
       <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
     </div>`).join("");
 
-  renderKostenBlock(n, mantel, ter, mitKosten, rate);
+  renderKostenBlock(n, kostenPa, szenarien[1], rate);
 
   const mittel = szenarien[1];
   const vd = $("fazitVerdict");
@@ -894,45 +878,29 @@ function renderFazit(c) {
 
   $("fazitHint").textContent =
     (n > 50 ? `Hinweis: Ansparzeit ${n} Jahre – historische Bandbreite auf 50 Jahre begrenzt. ` : "") +
-    "Modellrechnung vor Steuern" + (mitKosten ? "" : " und vor Produktkosten") +
-    "; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
+    "Modellrechnung vor Steuern; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
     "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
 }
 
-/* Kostentransparenz: Mantel und Fonds getrennt, dazu die BIB-Gegenprobe */
-function renderKostenBlock(n, mantel, ter, mitKosten, rate) {
+/* Kostentransparenz: was der Pauschalsatz umfasst und was der Vertrag dafür leistet */
+function renderKostenBlock(n, kostenPa, mittel, rate) {
   const P = CONFIG.provinzial;
-  const box = $("kostenBlock");
-  if (!mitKosten) {
-    box.innerHTML = `<div class="infoBox"><b>Noch ohne Produktkosten gerechnet.</b> ` +
-      `Für ein ehrliches Bild oben auf „Mit Kosten ${P.produkt}“ umschalten – dann rechnet die Seite ` +
-      `mit ${fmtKosten(mantelkosten(n))} % Kosten des Versicherungsmantels bei ${n} Jahren Laufzeit ` +
-      `plus den Kosten des gewählten Fonds.</div>`;
-    return;
-  }
-  const gesamt = mantel + ter;
-  const bibMin = effektivkosten(n, "min"), bibMax = effektivkosten(n, "max");
-  const gegenprobe = gesamt < bibMin
-    ? `Die Rechnung liegt <b>${fmtKosten(bibMin - gesamt)} %-Punkte unter</b> dem BIB-Minimum. Das ist erklärbar: ` +
-      `Das BIB rechnet mit der günstigsten im Tarif tatsächlich wählbaren Anlageoption einschließlich ` +
-      `Transaktionskosten (${fmtKosten(bibMin - mantel)} % über dem Mantel). Vor dem Kundengespräch prüfen, ` +
-      `ob ein Fonds mit ${fmtKosten(ter)} % TER im Tarif verfügbar ist – sonst die reale TER eintragen.`
-    : gesamt <= bibMax
-      ? `Die Rechnung liegt in diesem Rahmen. ✓`
-      : `<b>Achtung:</b> ${fmtKosten(gesamt)} % liegt über dem BIB-Maximum – TER prüfen.`;
+  // Was hätte das Kapital ohne Produktkosten ergeben? (Transparenz-Zeile)
+  const ohneKosten = sparplanEndwert(rate, mittel.r, n).endwert;
+  const differenz = ohneKosten - mittel.endwert;
 
-  box.innerHTML = `
+  $("kostenBlock").innerHTML = `
     <div class="infoBox">
       <b>Kostentransparenz – ${P.produkt}</b> (${P.versicherer})
       <table class="kette" style="margin-top:8px">
-        <tr><td>Versicherungsmantel<span class="sub">Abschlusskosten 2,5 % der Beitragssumme, über ${P.zillmerungJahre} Jahre gezillmert, zzgl. laufender Verwaltung – Anker ${fmtKosten(P.mantelAnker.riy)} % bei ${P.mantelAnker.jahre} Jahren (${P.mantelAnker.quelle})</span></td><td class="z">${fmtKosten(mantel)} %</td></tr>
-        <tr><td>Fondskosten (TER)<span class="sub">frei wählbar – ${P.fondsBeispiele.map((f) => f.name + " " + fmtKosten(f.ter) + " %").join(" · ")}</span></td><td class="z">${fmtKosten(ter)} %</td></tr>
-        <tr class="sum"><td>Gesamtkosten bei ${n} Jahren Laufzeit</td><td class="z">${fmtKosten(gesamt)} % p. a.</td></tr>
+        <tr><td>Effektivkosten über die gesamte Laufzeit<span class="sub">Abschlusskosten 2,5 % der Beitragssumme über die ersten ${P.zillmerungJahre} Jahre gezillmert, laufende Verwaltung und Fondskosten – Pauschalsatz laut ${P.mantelAnker.quelle}</span></td><td class="z">${fmtKosten(kostenPa)} % p. a.</td></tr>
+        <tr><td>Kapital im Durchschnittsszenario<span class="sub">nach Abzug dieser Kosten</span></td><td class="z">${fmtEur0(mittel.endwert)}</td></tr>
+        <tr><td>Rechnerisch ohne Kosten<span class="sub">reine Indexbetrachtung zum Vergleich</span></td><td class="z">${fmtEur0(ohneKosten)}</td></tr>
+        <tr class="sum"><td>Kostenwirkung über ${n} Jahre</td><td class="z">− ${fmtEur0(differenz)}</td></tr>
       </table>
-      <div style="margin-top:10px">
-        <b>Gegenprobe Basisinformationsblatt (Stand ${P.standBib}):</b>
-        Für ${n} Jahre weist das BIB ${fmtKosten(bibMin)} % (günstigste) bis ${fmtKosten(bibMax)} % (teuerste Anlageoption) aus.
-        ${gegenprobe}
+      <div style="margin-top:10px" class="hint">
+        Grundlage: Basisinformationsblatt ${P.produkt}, Stand ${P.standBib}.
+        Bestandteile laut BIB: ${P.bestandteile.join(" · ")}.
       </div>
     </div>
     <div class="okBox">

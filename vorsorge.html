@@ -309,6 +309,12 @@
   .mDetail .mdKrisen b{display:block;color:var(--ink);margin-bottom:2px;}
 
   /* Schluss-Ergebnis */
+  .kostenBadge{
+    display:inline-block;background:var(--sage-light);color:var(--sage-dark);
+    border:1px solid var(--sage);border-radius:20px;padding:7px 15px;
+    font-size:13px;font-weight:600;margin-bottom:12px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
   .fazitGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
   .fzBox{background:var(--paper);border-radius:10px;padding:14px 16px;text-align:center;}
   .fzBox.mittel{outline:2px solid var(--navy);}
@@ -646,15 +652,7 @@
     <!-- ===== Schluss-Ergebnis ===== -->
     <div class="card" id="fazitCard" style="display:none">
       <h2>Schluss-Ergebnis: Deckt der Sparplan die Lücke?</h2>
-      <div class="segRow" id="kostenSchalter" style="margin-bottom:10px">
-        <button data-k="brutto" class="active">Index brutto (ohne Kosten)</button>
-        <button data-k="police">Mit Kosten FondsRente Vario</button>
-      </div>
-      <div class="sl" id="terWrap" style="display:none;max-width:440px;margin-bottom:6px">
-        <div class="slHead"><label for="inTer">Fondskosten (TER) p. a.</label><output id="outTer"></output></div>
-        <input type="range" id="inTer" min="0" max="300" step="5" value="20" data-fmt="ter">
-        <p class="hint" id="terHint"></p>
-      </div>
+      <div class="kostenBadge" id="kostenBadge"></div>
       <p class="cardSub" id="fazitSub"></p>
       <div class="fazitGrid" id="fazitGrid"></div>
       <div class="lueckeBlock" id="fazitVerdict"></div>

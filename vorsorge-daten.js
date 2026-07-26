@@ -212,7 +212,19 @@ const CONFIG = {
       30: { min: 5688, max: 15549 },
       40: { min: 10607, max: 34765 },
     },
-    /* Kosten des Versicherungsmantels OHNE Fondskosten.
+    /* PAUSCHALER Kostensatz, der in allen Hochrechnungen fest abgezogen wird
+       (Festlegung Muratcan 07/2026): 0,44 % Effektivkosten p. a. über die
+       Laufzeit. Herkunft: Provinzial-Tarifkalkulation für 40 Jahre Laufzeit;
+       Abschlusskosten 2,5 % der Beitragssumme werden über die ersten 5 Jahre
+       gezillmert und sind darin enthalten.
+       Hinweis für spätere Anpassungen: Bei deutlich kürzeren Laufzeiten liegen
+       die realen Effektivkosten höher (Modellrechnung: ca. 0,57 % bei 30 J.,
+       0,85 % bei 20 J., 1,43 % bei 12 J.) – der Pauschalwert ist bewusst
+       gewählt und gilt einheitlich. Zum Ändern nur diese Zeile anfassen. */
+    effektivkostenPauschal: 0.44,
+    kostenLabel: "Kosten auf Laufzeit mit eingerechnet",
+
+    /* Referenz (wird nicht gerechnet): Kosten des Versicherungsmantels OHNE Fondskosten.
        Anker: 0,44 % Effektivkosten bei 40 Jahren Laufzeit (Angabe aus der
        Provinzial-Tarifkalkulation, Muratcan 07/2026). Abschlusskosten 2,5 %
        der Beitragssumme werden über die ersten 5 Jahre gezillmert.
