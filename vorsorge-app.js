@@ -908,8 +908,8 @@ function renderWissen() {
   const html = CONFIG.wissen
     .filter((k) => state.wSparte === "alle" || k.sparte === state.wSparte)
     .filter((k) => !q ||
-      (k.titel + " " + k.paragraf + " " + k.kernfakten.join(" ") + " " + k.beratungshinweis)
-        .toLowerCase().includes(q))
+      (k.titel + " " + k.paragraf + " " + k.kernfakten.join(" ") + " " +
+       (k.beispiel || "") + " " + k.beratungshinweis).toLowerCase().includes(q))
     .map((k) => `
       <details class="wCard"${q ? " open" : ""}>
         <summary>
@@ -919,6 +919,7 @@ function renderWissen() {
         </summary>
         <div class="wBody">
           <ul>${k.kernfakten.map((f) => `<li>${f}</li>`).join("")}</ul>
+          ${k.beispiel ? `<div class="wBeispiel"><b>Beispiel:</b> ${k.beispiel}</div>` : ""}
           <div class="wBeratung"><b>Beratungshinweis:</b> ${k.beratungshinweis}</div>
           <div class="wQuelle">Quelle: <a href="${k.quelleUrl}" target="_blank" rel="noopener">${k.quelleUrl.replace(/^https?:\/\/(www\.)?/, "").split("/")[0]}</a></div>
         </div>
