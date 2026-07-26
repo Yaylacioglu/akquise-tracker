@@ -12,9 +12,6 @@ const NUM = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 });
 const fmtEur = (x) => EUR.format(x);
 const fmtEur0 = (x) => EUR0.format(x);
 const fmtNum = (x) => NUM.format(x);
-/* Kostensätze immer mit zwei Nachkommastellen (0,20 % statt 0,2 %) */
-const fmtKosten = (x) =>
-  new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x);
 const fmtPct = (x, nk = 1) =>
   new Intl.NumberFormat("de-DE", { minimumFractionDigits: nk, maximumFractionDigits: nk }).format(x * 100) + " %";
 const fmtAlter = (a) => {
@@ -62,7 +59,6 @@ function bindInputs(rootSelector) {
         case "eur0": out.textContent = fmtEur0(v); break;
         case "jahre": out.textContent = v + " Jahre"; break;
         case "pct": out.textContent = fmtPct(v / 100, 0); break;
-        case "ter": out.textContent = fmtKosten(v / 100) + " %"; break;
         default: out.textContent = String(v);
       }
     };
@@ -772,23 +768,9 @@ function initMsci() {
 /* Produktkosten werden immer eingerechnet: fester Pauschalsatz aus CONFIG. */
 const kostenPauschal = () => CONFIG.provinzial.effektivkostenPauschal;
 
-/* Laufzeitabhängige Kostenwerte – lineare Interpolation zwischen den Stützstellen,
-   außerhalb wird der Randwert gehalten. Tabelle: { jahre: wert } oder
-   { jahre: {min,max} } (dann Seite angeben). */
-function kostenAusTabelle(tabelle, jahre, seite) {
-  const wert = (j) => (seite ? tabelle[j][seite] : tabelle[j]);
-  const stuetz = Object.keys(tabelle).map(Number).sort((a, b) => a - b);
-  if (jahre <= stuetz[0]) return wert(stuetz[0]);
-  const letzte = stuetz[stuetz.length - 1];
-  if (jahre >= letzte) return wert(letzte);
-  for (let i = 0; i < stuetz.length - 1; i++) {
-    const a = stuetz[i], b = stuetz[i + 1];
-    if (jahre >= a && jahre <= b) return wert(a) + (jahre - a) / (b - a) * (wert(b) - wert(a));
-  }
-  return wert(letzte);
-}
-const mantelkosten = (jahre) => kostenAusTabelle(CONFIG.provinzial.mantelkosten, jahre);
-const effektivkosten = (jahre, seite) => kostenAusTabelle(CONFIG.provinzial.effektivkosten, jahre, seite);
+/* Die laufzeitabhängigen Kostentabellen (mantelkosten, effektivkosten) liegen
+   weiterhin in CONFIG.provinzial, werden aktuell aber nicht gerechnet – die
+   Seite nutzt bewusst den Pauschalsatz. */
 
 /* =====================================================================
    Schluss-Ergebnis: Kapitalauszahlung × Rentenfaktor gegen die Rentenlücke
@@ -840,25 +822,26 @@ function renderFazit(c) {
   });
 
   const P = CONFIG.provinzial;
-  $("kostenBadge").textContent = `✓ ${P.kostenLabel} (${fmtKosten(kostenPa)} % p. a.)`;
+  // Kostensätze werden bewusst nicht angezeigt – nur die Tatsache, dass sie
+  // eingerechnet sind. Die vollständige Aufstellung steht im Basisinformationsblatt.
+  $("kostenBadge").textContent = `✓ ${P.kostenLabel}`;
   $("fazitSub").textContent =
     `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
     `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
     `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital. ` +
-    `Abzüglich ${fmtKosten(kostenPa)} % Effektivkosten p. a. der ${P.produkt}.`;
+    `Die Effektivkosten der ${P.produkt} sind bereits abgezogen.`;
 
   $("fazitGrid").innerHTML = szenarien.map((s) => `
     <div class="fzBox ${s.cls}">
       <div class="fzTitel">${s.name}</div>
-      <div class="fzRendite">${fmtNum(s.r)} % − ${fmtKosten(kostenPa)} % Kosten =
-        <b>${fmtNum(s.rNetto)} % p. a.</b></div>
+      <div class="fzRendite"><b>${fmtNum(s.rNetto)} % p. a.</b> nach Effektivkosten</div>
       <div class="fzVal">${fmtEur0(s.endwert)}</div>
       <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
       <div class="fzBar"><div class="fzBarFill ${s.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, s.deckung * 100)}%"></div></div>
       <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
     </div>`).join("");
 
-  renderKostenBlock(n, kostenPa, szenarien[1], rate);
+  renderKostenBlock();
 
   const mittel = szenarien[1];
   const vd = $("fazitVerdict");
@@ -882,26 +865,18 @@ function renderFazit(c) {
     "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
 }
 
-/* Kostentransparenz: was der Pauschalsatz umfasst und was der Vertrag dafür leistet */
-function renderKostenBlock(n, kostenPa, mittel, rate) {
+/* Kostenhinweis ohne Zahlen: nur die Tatsache der Berücksichtigung plus
+   Verweis auf das Basisinformationsblatt, dazu die Leistungen des Vertrags. */
+function renderKostenBlock() {
   const P = CONFIG.provinzial;
-  // Was hätte das Kapital ohne Produktkosten ergeben? (Transparenz-Zeile)
-  const ohneKosten = sparplanEndwert(rate, mittel.r, n).endwert;
-  const differenz = ohneKosten - mittel.endwert;
-
   $("kostenBlock").innerHTML = `
     <div class="infoBox">
-      <b>Kostentransparenz – ${P.produkt}</b> (${P.versicherer})
-      <table class="kette" style="margin-top:8px">
-        <tr><td>Effektivkosten über die gesamte Laufzeit<span class="sub">Abschlusskosten 2,5 % der Beitragssumme über die ersten ${P.zillmerungJahre} Jahre gezillmert, laufende Verwaltung und Fondskosten – Pauschalsatz laut ${P.mantelAnker.quelle}</span></td><td class="z">${fmtKosten(kostenPa)} % p. a.</td></tr>
-        <tr><td>Kapital im Durchschnittsszenario<span class="sub">nach Abzug dieser Kosten</span></td><td class="z">${fmtEur0(mittel.endwert)}</td></tr>
-        <tr><td>Rechnerisch ohne Kosten<span class="sub">reine Indexbetrachtung zum Vergleich</span></td><td class="z">${fmtEur0(ohneKosten)}</td></tr>
-        <tr class="sum"><td>Kostenwirkung über ${n} Jahre</td><td class="z">− ${fmtEur0(differenz)}</td></tr>
-      </table>
-      <div style="margin-top:10px" class="hint">
-        Grundlage: Basisinformationsblatt ${P.produkt}, Stand ${P.standBib}.
-        Bestandteile laut BIB: ${P.bestandteile.join(" · ")}.
-      </div>
+      <b>Kosten sind berücksichtigt.</b>
+      Alle Ergebnisse dieser Seite sind bereits um die Effektivkosten der ${P.produkt}
+      (${P.versicherer}) bereinigt – einschließlich der Abschlusskosten, die über die ersten
+      ${P.zillmerungJahre} Jahre verteilt werden, der laufenden Verwaltung und der Fondskosten.
+      Die vollständige Kostenaufstellung finden Sie im Basisinformationsblatt zum Tarif
+      (Stand ${P.standBib}), das Sie mit den Antragsunterlagen erhalten.
     </div>
     <div class="okBox">
       <b>Was der Vertrag dafür leistet (gegenüber einem reinen Depot):</b>
