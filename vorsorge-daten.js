@@ -95,7 +95,16 @@ const CONFIG = {
 
   /* ---------- Annahmen für die Sparraten-Orientierung ---------- */
   annahmen: {
-    rentenfaktorJe10k: 30,        // € Monatsrente je 10.000 € Kapital (Orientierungswert)
+    /* Rentenfaktor = monatliche Rente je 10.000 € Vertragsguthaben.
+       ACHTUNG: 30 € ist bis auf Weiteres eine ANNAHME, nicht der Tarifwert!
+       Die garantierten Rentenfaktoren der FondsRente Vario stehen laut § 2 Abs. 3
+       der Bedingungen im individuellen Versicherungsschein; sie hängen vom
+       Rentenbeginn ab (je Jahr der Abrufphase ein eigener Wert) und basieren auf
+       0,5 % Rechnungszins und einer aus DAV 2004R (50 %) abgeleiteten
+       geschlechtsneutralen Sterbetafel – daher liegen sie erfahrungsgemäß
+       spürbar unter 30 €. Sobald ein Musterangebot vorliegt: hier den
+       garantierten Faktor für das typische Rentenbeginnalter eintragen. */
+    rentenfaktorJe10k: 30,
     renditeMin: 0.02, renditeMax: 0.06, renditeDefault: 0.04,
     grvAnpassungLangfrist: 0.025, // Beispielannahme GRV-Dynamik für Kaufkraftvergleich
   },
