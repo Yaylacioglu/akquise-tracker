@@ -231,8 +231,11 @@ function zugangsfaktorGrv(c, variante) {
    beide hierauf zu, damit auf dem Bildschirm nie zwei Zahlen stehen. */
 function emRenteVollBrutto(c, grvErgebnis) {
   const eingabe = val("inEmRente");
-  if (eingabe > 0) return { brutto: eingabe, ausRenteninfo: true };
-  return { brutto: (grvErgebnis || calcGrv(c)).emBrutto, ausRenteninfo: false };
+  const brutto = eingabe > 0 ? eingabe : (grvErgebnis || calcGrv(c)).emBrutto;
+  // Netto nach den Abzügen jeder GRV-Rente: halber KV-Satz, PV voll
+  const kvSatzHalb = (CONFIG.kvpv.kvSatz + CONFIG.kvpv.kvZusatzDurchschnitt) / 2;
+  const netto = brutto * (1 - kvSatzHalb - pvSatz(c.kinderlos));
+  return { brutto, netto, ausRenteninfo: eingabe > 0 };
 }
 
 function calcGrv(c) {
@@ -280,9 +283,9 @@ function renderGrv(c) {
   const em = emRenteVollBrutto(c, r);
   $("grvEmBox").innerHTML =
     `<b>Gesprächseinstieg BU/EM:</b> Bei voller Erwerbsminderung heute ergäben sich ca. ` +
-    `<b>${fmtEur(em.brutto)}</b> brutto/Monat ` +
+    `<b>${fmtEur(em.brutto)}</b> brutto – nach KV und PV bleiben <b>${fmtEur(em.netto)}</b> im Monat ` +
     (em.ausRenteninfo
-      ? `(Wert aus der Renteninformation, oben eingetragen).`
+      ? `(Bruttowert aus der Renteninformation).`
       : `(Näherung: EP bisher + Zurechnungszeit bis ${CONFIG.grv.emZurechnungsalter2026.jahre} J. ` +
         `${CONFIG.grv.emZurechnungsalter2026.monate} M., Abschlag −10,8 %).`) +
     ` Voraussetzung u. a. 3/5-Belegung – dieser Schutz erlischt bei Lücken schleichend. ` +
@@ -369,11 +372,11 @@ function renderKrankheit(c) {
   const stufen = [
     { phase: "Lohnfortzahlung", dauer: `Woche 1–${K.lohnfortzahlungWochen}`, wert: r.netto,
       farbe: "var(--sage)", flex: 1, proz: "100 % Ihres Nettos" },
-    { phase: "Krankengeld", dauer: `Woche ${K.lohnfortzahlungWochen + 1}–${K.hoechstdauerWochen} (${r.kgWochen} Wochen)`,
+    { phase: "Krankengeld", dauer: `Woche ${K.lohnfortzahlungWochen + 1}–${K.hoechstdauerWochen} · ${fmtEur0(r.kgBrutto)} brutto`,
       wert: r.kgNetto, farbe: "var(--amber)", flex: 2.4,
       proz: fmtPct(r.kgNetto / r.netto, 0) + " Ihres Nettos" },
     { phase: state.emGrad === "voll" ? "Volle EM-Rente" : "Teilweise EM-Rente",
-      dauer: `ab Monat 18 (nach ${K.hoechstdauerWochen} Wochen)`, wert: r.emNetto,
+      dauer: `ab Monat 18 · ${fmtEur0(r.emBrutto)} brutto`, wert: r.emNetto,
       farbe: "var(--terracotta)", flex: 2,
       proz: fmtPct(r.emNetto / r.netto, 0) + " Ihres Nettos" },
   ];
