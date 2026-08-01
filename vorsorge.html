@@ -285,6 +285,32 @@
   .checkSummen .cs .n{font-family:var(--serif);font-size:20px;display:block;}
   .cs.g .n{color:var(--sage-dark);} .cs.y .n{color:var(--amber-dark);} .cs.r .n{color:var(--terracotta-dark);}
 
+  /* Haushaltsrechner */
+  .bedarfBox{
+    display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
+    background:var(--paper);border-radius:12px;padding:18px 20px;margin-top:18px;
+  }
+  .bedarfBox .bLbl{font-size:12.5px;color:var(--ink-soft);text-align:center;}
+  .bedarfBox .bVal{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--navy);
+    text-align:center;line-height:1.15;}
+  .bedarfSpaeter .bVal{color:var(--terracotta-dark);}
+  .bedarfPfeil{font-size:26px;color:var(--ink-faint);}
+  @media(max-width:560px){.bedarfPfeil{transform:rotate(90deg);}.bedarfBox .bVal{font-size:26px;}}
+
+  /* Dynamik-Kasten im Schluss-Ergebnis */
+  .dynBox{
+    background:var(--blue-light);border:1px solid var(--blue);border-radius:10px;
+    padding:14px 16px;margin-top:14px;
+  }
+  .dynBox .dynKopf{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .dynBox .dynKopf label{font-size:14px;font-weight:600;color:var(--blue);}
+  .dynBox .dynErgebnis{font-size:14px;color:var(--ink);line-height:1.6;}
+  .dynBox .dynErgebnis b{font-family:var(--serif);font-size:17px;}
+  .dynTabelle{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;}
+  .dynTabelle td{padding:4px 0;border-bottom:1px solid var(--line);}
+  .dynTabelle td.z{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+  .dynTabelle tr:last-child td{border-bottom:none;}
+
   /* Krankheits-Treppe */
   .treppe{position:relative;display:flex;align-items:flex-end;gap:6px;height:250px;
     padding-top:26px;margin-top:6px;}
@@ -443,12 +469,33 @@
           <div class="slHead"><label for="inKinder">Kinder</label><output id="outKinder"></output></div>
           <input type="range" id="inKinder" min="0" max="6" step="1" value="0" data-fmt="plain">
         </div>
-        <div class="sl">
-          <div class="slHead"><label for="inWunsch">Wunschrente (netto/Monat)</label><output id="outWunsch"></output></div>
-          <input type="range" id="inWunsch" min="800" max="5000" step="50" value="2000" data-fmt="eur0">
-        </div>
       </div>
       <p class="hint" id="pvHinweis"></p>
+    </div>
+
+    <!-- ===== Haushaltsrechner: Bedarf im Alter ===== -->
+    <div class="card" id="haushaltCard">
+      <h2>Was brauchen Sie im Alter jeden Monat?</h2>
+      <p class="cardSub">Die Posten grob schätzen – gemeinsam mit dem Kunden, Daumenwerte genügen.</p>
+      <div class="inGrid" id="haushaltGrid"></div>
+
+      <div class="bedarfBox">
+        <div class="bedarfHeute">
+          <div class="bLbl">Bedarf in heutigem Geld</div>
+          <div class="bVal" id="bedarfHeute">–</div>
+        </div>
+        <div class="bedarfPfeil" id="bedarfPfeil">→</div>
+        <div class="bedarfSpaeter">
+          <div class="bLbl" id="bedarfSpaeterLbl">bei Rentenbeginn</div>
+          <div class="bVal" id="bedarfSpaeter">–</div>
+        </div>
+      </div>
+
+      <div class="sl" style="max-width:420px;margin:16px auto 0">
+        <div class="slHead"><label for="inInflation">Angenommene Inflation p. a.</label><output id="outInflation"></output></div>
+        <input type="range" id="inInflation" min="1" max="4" step="0.1" value="2" data-fmt="infl">
+      </div>
+      <div class="warnBox" id="kaufkraftBox"></div>
     </div>
 
     <div id="rechnerContainer">
@@ -639,7 +686,7 @@
     </div>
 
     <div class="card" id="kombiCard" style="display:none">
-      <h2>Gesamtbild: Versorgung vs. Wunschrente</h2>
+      <h2>Gesamtbild: Versorgung vs. Bedarf</h2>
       <p class="cardSub">Netto-Schätzungen vor Steuern, je Baustein mit eigener Abzugslogik gerechnet.</p>
       <div class="balkenWrap">
         <div>
@@ -649,7 +696,7 @@
         </div>
         <div>
           <div class="balkenCol" id="balkenSoll"></div>
-          <div class="balkenLbl">Wunschrente</div>
+          <div class="balkenLbl">Bedarf im Alter</div>
           <div class="balkenSum" id="balkenSollSum"></div>
         </div>
       </div>
@@ -662,6 +709,21 @@
           <input type="range" id="inRendite" min="2" max="6" step="0.5" value="4" data-fmt="pct">
         </div>
         <div id="sparrateText"></div>
+      </div>
+
+      <div class="dynBox" id="dynBox">
+        <div class="dynKopf">
+          <label for="inDynamik">Sparrate zu hoch? Mit jährlicher Dynamik kleiner starten:</label>
+          <select id="inDynamik" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:15px;min-height:44px;background:var(--paper-card)">
+            <option value="0">ohne Dynamik</option>
+            <option value="2">2 % pro Jahr</option>
+            <option value="3">3 % pro Jahr</option>
+            <option value="5" selected>5 % pro Jahr</option>
+            <option value="8">8 % pro Jahr</option>
+            <option value="10">10 % pro Jahr</option>
+          </select>
+        </div>
+        <div class="dynErgebnis" id="dynErgebnis"></div>
       </div>
       <div class="warnBox" id="ruhensHinweis" style="display:none"></div>
     </div>

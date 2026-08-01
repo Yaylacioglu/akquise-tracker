@@ -61,6 +61,7 @@ function bindInputs(rootSelector) {
         case "eur0": out.textContent = fmtEur0(v); break;
         case "jahre": out.textContent = v + " Jahre"; break;
         case "pct": out.textContent = fmtPct(v / 100, 0); break;
+        case "infl": out.textContent = fmtPct(v / 100, 1); break;
         default: out.textContent = String(v);
       }
     };
@@ -74,6 +75,66 @@ function bindInputs(rootSelector) {
 }
 
 const val = (id) => parseFloat($(id).value) || 0;
+
+/* =====================================================================
+   Haushaltsrechner: Bedarf im Alter + Kaufkraft
+   ===================================================================== */
+function initHaushalt() {
+  $("haushaltGrid").innerHTML = CONFIG.haushalt.positionen.map((p) => `
+    <div class="sl">
+      <div class="slHead"><label for="inHh_${p.id}">${p.name}</label><output id="outHh_${p.id}"></output></div>
+      <input type="range" id="inHh_${p.id}" min="0" max="${p.max}" step="10" value="${p.start}" data-fmt="eur0">
+      <p class="hint">${p.hinweis}</p>
+    </div>`).join("");
+}
+
+/* Bedarf in heutigem Geld = Summe aller Haushaltsposten */
+function bedarfHeute() {
+  return CONFIG.haushalt.positionen.reduce((s, p) => s + val("inHh_" + p.id), 0);
+}
+const inflationssatz = () => val("inInflation") / 100;
+
+function renderHaushalt(c) {
+  const heute = bedarfHeute();
+  const i = inflationssatz();
+  const jahre = c.jahreBisRente;
+  const spaeter = heute * Math.pow(1 + i, jahre);
+  const kaufkraft = heute / Math.pow(1 + i, jahre); // was die heutige Summe dann noch wert ist
+
+  $("bedarfHeute").textContent = fmtEur0(heute);
+  $("bedarfSpaeter").textContent = fmtEur0(spaeter);
+  $("bedarfSpaeterLbl").textContent = jahre > 0
+    ? `bei Rentenbeginn in ${jahre} Jahren` : "bei Rentenbeginn";
+
+  $("kaufkraftBox").innerHTML = jahre > 0
+    ? `<b>Warum die Zahl rechts größer ist:</b>` +
+      `Bei ${fmtPct(i)} Inflation kostet Ihr heutiger Warenkorb in ${jahre} Jahren ` +
+      `<b>${fmtEur0(spaeter)}</b> statt ${fmtEur0(heute)}. Anders herum: Von ${fmtEur0(heute)} bliebe dann ` +
+      `nur die Kaufkraft von <b>${fmtEur0(kaufkraft)}</b> übrig – ${fmtPct(kaufkraft / heute, 0)} des heutigen Werts. ` +
+      `Deshalb rechnen wir die Versorgungslücke mit dem Bedarf von heute und die Sparrate mit der ` +
+      `Rendite nach Abzug der Inflation.`
+    : `<b>Rentenbeginn liegt nicht in der Zukunft</b> – der Bedarf wird ohne Inflationsaufschlag angesetzt.`;
+
+  return { heute, spaeter, kaufkraft, inflation: i };
+}
+
+/* =====================================================================
+   Entnahmephase: Welches Kapital trägt welche monatliche Entnahme?
+   (Ablaufmanagement – bewusst nicht auf der Seite erläutert)
+   ===================================================================== */
+/* Kapital, das nötig ist, um `rate` über `jahre` monatlich zu entnehmen,
+   während das Restkapital mit `zinsPa` verzinst wird (Rentenbarwert). */
+function entnahmeKapitalbedarf(rate, jahre = CONFIG.entnahme.dauerJahre, zinsPa = CONFIG.entnahme.renditeKonservativ) {
+  const n = jahre * 12;
+  const i = Math.pow(1 + zinsPa, 1 / 12) - 1;
+  return i === 0 ? rate * n : rate * (1 - Math.pow(1 + i, -n)) / i;
+}
+/* Umkehrung: Welche monatliche Entnahme trägt ein vorhandenes Kapital? */
+function entnahmeRate(kapital, jahre = CONFIG.entnahme.dauerJahre, zinsPa = CONFIG.entnahme.renditeKonservativ) {
+  const n = jahre * 12;
+  const i = Math.pow(1 + zinsPa, 1 / 12) - 1;
+  return i === 0 ? kapital / n : kapital * i / (1 - Math.pow(1 + i, -n));
+}
 
 /* ---------- Gemeinsame Größen ---------- */
 function commonWerte() {
@@ -89,7 +150,8 @@ function commonWerte() {
   const jahreBisRente = Math.max(0, rentenalter - alter);
   return {
     geburtsjahr, heute, alter, rentenalter, kinder, kinderlos,
-    brutto: val("inBrutto"), wunsch: val("inWunsch"),
+    // „Wunschrente“ = ermittelter Haushaltsbedarf in heutigem Geld
+    brutto: val("inBrutto"), wunsch: bedarfHeute(),
     rag, ragDezimal, rentenbeginnJahr, jahreBisRente,
   };
 }
@@ -681,7 +743,7 @@ function renderKombi(c) {
     ist += `<div class="balkenSeg luecke" style="height:${px(luecke)}px">` +
       (px(luecke) > 30 ? `<span class="segVal">−${fmtEur0(luecke)}</span>` : "") + `</div>`;
   }
-  ist += `<div class="wunschLinie" style="bottom:${Math.round(c.wunsch / maxVal * H)}px"><span>Wunsch ${fmtEur0(c.wunsch)}</span></div>`;
+  ist += `<div class="wunschLinie" style="bottom:${Math.round(c.wunsch / maxVal * H)}px"><span>Bedarf ${fmtEur0(c.wunsch)}</span></div>`;
   $("balkenIst").innerHTML = ist;
   $("balkenIst").style.height = H + "px";
   $("balkenIstSum").textContent = fmtEur0(summe) + " netto";
@@ -696,7 +758,7 @@ function renderKombi(c) {
   $("kombiKette").innerHTML = ketteHtml([
     ...teile.map((t) => ({ t: SYS_META[t.sys].name, sub: t.sub, v: fmtEur(t.netto) })),
     { t: "Versorgung netto (vor Steuern)", v: fmtEur(summe), art: "sum" },
-    { t: "Wunschrente netto", v: fmtEur(c.wunsch) },
+    { t: "Bedarf laut Haushaltsrechner", v: fmtEur(c.wunsch) },
     luecke > 0
       ? { t: "Versorgungslücke", v: "− " + fmtEur(luecke), art: "minus" }
       : { t: "Überschuss", v: "+ " + fmtEur(summe - c.wunsch), art: "plus" },
@@ -705,29 +767,38 @@ function renderKombi(c) {
   const lb = $("lueckeBlock");
   if (luecke > 0) {
     lb.className = "lueckeBlock";
-    lb.innerHTML = `<div class="lVal">− ${fmtEur(luecke)}</div><div class="lLbl">monatliche Versorgungslücke gegenüber der Wunschrente</div>`;
+    lb.innerHTML = `<div class="lVal">− ${fmtEur(luecke)}</div><div class="lLbl">monatliche Versorgungslücke gegenüber Ihrem Bedarf</div>`;
   } else {
     lb.className = "lueckeBlock ok";
-    lb.innerHTML = `<div class="lVal">${fmtEur(summe - c.wunsch)}</div><div class="lLbl">über der Wunschrente – keine rechnerische Lücke</div>`;
+    lb.innerHTML = `<div class="lVal">${fmtEur(summe - c.wunsch)}</div><div class="lLbl">über dem ermittelten Bedarf – keine rechnerische Lücke</div>`;
   }
 
-  // Sparraten-Orientierung (Annuitätennäherung)
-  const A = CONFIG.annahmen;
+  // Sparraten-Orientierung: Kapitalbedarf aus dem Entnahmeplan, real gerechnet
   const spar = $("sparrateText");
   if (luecke > 0 && c.jahreBisRente > 0) {
-    const kapital = luecke / A.rentenfaktorJe10k * 10000;
-    const i = val("inRendite") / 100 / 12, n = c.jahreBisRente * 12;
+    // Reale Rendite = Nominalrendite abzüglich Inflation, damit alles in heutigem Geld bleibt
+    const realZins = (CONFIG.entnahme.renditeKonservativ - inflationssatz()) /
+                     (1 + inflationssatz());
+    const kapital = entnahmeKapitalbedarf(luecke, CONFIG.entnahme.dauerJahre, realZins);
+    const rendite = val("inRendite") / 100;
+    const realRendite = (rendite - inflationssatz()) / (1 + inflationssatz());
+    const i = Math.pow(1 + Math.max(0, realRendite), 1 / 12) - 1;
+    const n = c.jahreBisRente * 12;
     const rate = i > 0 ? kapital * i / (Math.pow(1 + i, n) - 1) : kapital / n;
+    state.sparZiel = { kapital, rate, n, i, jahre: c.jahreBisRente, luecke };
     spar.innerHTML =
-      `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre ` +
-      `(Kapitalbedarf ≈ ${fmtEur0(kapital)} bei Rentenfaktor-Annahme ${fmtNum(A.rentenfaktorJe10k)} € Rente je 10.000 € Kapital – ` +
-      `tatsächliche Tarife weichen ab; bewusst nur Orientierung, keine Produktberechnung).`;
+      `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre. ` +
+      `Dafür wird ein Kapital von rund <b>${fmtEur0(kapital)}</b> aufgebaut, aus dem die Lücke von ` +
+      `${fmtEur0(luecke)} monatlich gedeckt wird. Alle Beträge in heutiger Kaufkraft ` +
+      `(Rendite abzüglich ${fmtPct(inflationssatz())} Inflation).`;
     msciRateVorschlag(rate);
   } else {
+    state.sparZiel = null;
     spar.innerHTML = luecke > 0
       ? "<b>Rentenbeginn liegt nicht in der Zukunft</b> – Sparraten-Orientierung nicht sinnvoll."
       : "<b>Keine Lücke</b> – keine Sparrate erforderlich.";
   }
+  renderDynamik();
 
   // Ruhensregelung § 55 BeamtVG bei Beamtenpension + GRV-Rente
   const ruhens = $("ruhensHinweis");
@@ -744,6 +815,7 @@ function recalc() {
   const c = commonWerte();
   $("ragAnzeige").innerHTML =
     `Regelaltersgrenze Jahrgang ${c.geburtsjahr}: <b>${fmtAlter(c.ragDezimal)}</b> (§§ 35, 235 SGB VI)`;
+  renderHaushalt(c);
   $("pvHinweis").textContent = c.kinderlos
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
@@ -926,6 +998,54 @@ const kostenPauschal = () => CONFIG.provinzial.effektivkostenPauschal;
    Seite nutzt bewusst den Pauschalsatz. */
 
 /* =====================================================================
+   Dynamische Sparrate: kleiner starten, jährlich steigern, gleiches Ziel
+   ===================================================================== */
+$("inDynamik").addEventListener("change", renderDynamik);
+
+/* Endwert einer Sparrate, die jährlich um `dyn` steigt – je Startrate 1 €.
+   Damit lässt sich die nötige Startrate direkt skalieren. */
+function dynFaktor(jahre, iMonat, dyn) {
+  let wert = 0;
+  for (let m = 0; m < jahre * 12; m++) {
+    const jahrIndex = Math.floor(m / 12);
+    const rate = Math.pow(1 + dyn, jahrIndex);          // Rate im Jahr k
+    wert = (wert + rate) * (1 + iMonat);                 // einzahlen, dann verzinsen
+  }
+  return wert;
+}
+
+function renderDynamik() {
+  const box = $("dynBox"), out = $("dynErgebnis");
+  const z = state.sparZiel;
+  if (!z) { box.style.display = "none"; return; }
+  box.style.display = "";
+
+  const dyn = parseFloat($("inDynamik").value) / 100;
+  if (dyn === 0) {
+    out.innerHTML = `Gleichbleibende Sparrate: <b>${fmtEur(z.rate)}</b> vom ersten bis zum letzten Monat.`;
+    return;
+  }
+  const faktor = dynFaktor(z.jahre, z.i, dyn);
+  const start = z.kapital / faktor;
+  const letzteRate = start * Math.pow(1 + dyn, z.jahre - 1);
+  const eingezahltDyn = (() => {
+    let s = 0;
+    for (let k = 0; k < z.jahre; k++) s += start * Math.pow(1 + dyn, k) * 12;
+    return s;
+  })();
+
+  out.innerHTML =
+    `Mit <b>${fmtPct(dyn, 0)}</b> jährlicher Steigerung starten Sie bei <b>${fmtEur(start)}</b> statt ` +
+    `${fmtEur(z.rate)} – das sind ${fmtEur(z.rate - start)} weniger im Monat.` +
+    `<table class="dynTabelle">
+       <tr><td>Startrate im ersten Jahr</td><td class="z">${fmtEur(start)}</td></tr>
+       <tr><td>Rate im letzten Jahr (${z.jahre}. Jahr)</td><td class="z">${fmtEur(letzteRate)}</td></tr>
+       <tr><td>Summe der Einzahlungen</td><td class="z">${fmtEur0(eingezahltDyn)}</td></tr>
+       <tr><td>Zielkapital – unverändert</td><td class="z">${fmtEur0(z.kapital)}</td></tr>
+     </table>`;
+}
+
+/* =====================================================================
    Schluss-Ergebnis: Kapitalauszahlung × Rentenfaktor gegen die Rentenlücke
    ===================================================================== */
 function renderFazit(c) {
@@ -937,7 +1057,10 @@ function renderFazit(c) {
 
   const rate = val("inMsciRate");
   const n = Math.round(c.jahreBisRente);
-  const RF = CONFIG.annahmen.rentenfaktorJe10k;
+  // Reale Sicht: Entnahme-Verzinsung abzüglich Inflation, damit die Beträge
+  // mit dem heutigen Haushaltsbedarf vergleichbar bleiben.
+  const realZinsEntnahme = (CONFIG.entnahme.renditeKonservativ - inflationssatz()) /
+                           (1 + inflationssatz());
 
   if (K.luecke <= 0) {
     $("fazitSub").textContent = "";
@@ -945,7 +1068,7 @@ function renderFazit(c) {
     const vd = $("fazitVerdict");
     vd.className = "lueckeBlock ok";
     vd.innerHTML = `<div class="lVal">Keine Lücke</div><div class="lLbl">Die Versorgung liegt bereits über der ` +
-      `Wunschrente – ein Sparplan baut zusätzliches Vermögen oder Spielraum für früheren Ruhestand auf.</div>`;
+      `Bedarf – ein Sparplan baut zusätzliches Vermögen oder Spielraum für früheren Ruhestand auf.</div>`;
     $("fazitHint").textContent = "";
     return;
   }
@@ -968,9 +1091,12 @@ function renderFazit(c) {
     { name: "Historischer Durchschnitt", r: st.avg, cls: "mittel" },
     { name: "Bester Fall", r: st.max, cls: "" },
   ].map((s) => {
-    const rNetto = s.r - kostenPa;
+    // real rechnen: Marktrendite abzüglich Produktkosten und Inflation,
+    // damit die Beträge zum heutigen Haushaltsbedarf passen
+    const nachKosten = (s.r - kostenPa) / 100;
+    const rNetto = (nachKosten - inflationssatz()) / (1 + inflationssatz()) * 100;
     const fv = sparplanEndwert(rate, rNetto, n);
-    const rente = fv.endwert / 10000 * RF;
+    const rente = entnahmeRate(fv.endwert, CONFIG.entnahme.dauerJahre, realZinsEntnahme);
     return { ...s, rNetto, endwert: fv.endwert, rente, deckung: rente / K.luecke };
   });
 
@@ -981,7 +1107,7 @@ function renderFazit(c) {
   $("fazitSub").textContent =
     `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
     `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
-    `Verrentung mit ${fmtNum(RF)} € je 10.000 € Kapital. ` +
+    `alle Beträge in heutiger Kaufkraft. ` +
     `Die Effektivkosten der ${P.produkt} sind bereits abgezogen.`;
 
   $("fazitGrid").innerHTML = szenarien.map((s) => `
@@ -1009,13 +1135,13 @@ function renderFazit(c) {
     const fehlt = K.luecke - mittel.rente;
     vd.innerHTML = `<div class="lVal">− ${fmtEur(fehlt)}</div><div class="lLbl">Auch im Durchschnittsszenario ` +
       `blieben ${fmtEur0(fehlt)}/Monat der Lücke offen (${Math.round(mittel.deckung * 100)} % gedeckt) – ` +
-      `Stellschrauben: Sparrate erhöhen, früher starten oder Wunschrente anpassen.</div>`;
+      `Stellschrauben: Sparrate erhöhen, früher starten oder den Bedarf anpassen.</div>`;
   }
 
   $("fazitHint").textContent =
     (n > 50 ? `Hinweis: Ansparzeit ${n} Jahre – historische Bandbreite auf 50 Jahre begrenzt. ` : "") +
     "Modellrechnung vor Steuern; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
-    "Verrentungsannahme wie in der Sparraten-Orientierung (" + fmtNum(RF) + " € je 10.000 €, in CONFIG änderbar).";
+    "Alle Beträge in heutiger Kaufkraft – die angenommene Inflation ist bereits herausgerechnet.";
 }
 
 /* Kostenhinweis ohne Zahlen: nur die Tatsache der Berücksichtigung plus
@@ -1151,6 +1277,7 @@ function renderCheck() {
   $("printDatum").textContent =
     "Erstellt am " + new Date().toLocaleDateString("de-DE") + " · " + standTxt +
     " · unverbindliche Orientierung";
+  initHaushalt();            // erzeugt die Haushalts-Slider, muss vor bindInputs laufen
   bindInputs("#mode-beratung");
   renderWissen();
   renderCheck();
