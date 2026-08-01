@@ -23,8 +23,12 @@ const $ = (id) => document.getElementById(id);
 /* ---------- Zustand (nur im Speicher, nie persistiert) ---------- */
 const state = {
   mode: "beratung",
-  systeme: { grv: false, zvk: false, beamte: false, vw: false },
+  systeme: { grv: false, zvk: false, beamte: false, vw: false, krank: false },
 };
+/* Nur diese Systeme fließen in Kombi-Balken und Schluss-Ergebnis ein –
+   „krank“ ist Risikoabsicherung, keine Altersversorgung. */
+const ALTERSSYSTEME = ["grv", "zvk", "beamte", "vw"];
+const altersSystemAktiv = () => ALTERSSYSTEME.some((s) => state.systeme[s]);
 
 /* ---------- Moduswechsel ---------- */
 document.querySelectorAll("#modeSwitch button").forEach((btn) => {
@@ -44,8 +48,6 @@ document.querySelectorAll("#sysWahl .sysChip").forEach((chip) => {
     chip.classList.toggle("on", state.systeme[sys]);
     const card = $("card-" + sys);
     if (card) card.classList.toggle("on", state.systeme[sys]);
-    // Die Krankheits-Treppe hängt an der GRV (Krankengeld und EM-Rente kommen von dort)
-    if (sys === "grv") $("card-krank").classList.toggle("on", state.systeme.grv);
     recalc();
   });
 });
@@ -414,7 +416,13 @@ function renderKrankheit(c) {
     `${fmtPct(r.emNetto / r.netto, 0)} des heutigen Einkommens. Bereits das Krankengeld kostet ` +
     `${fmtEur(r.netto - r.kgNetto)} im Monat.`;
 
+  // Ohne aktiven GRV-Rechner fehlen die Eingaben für die EM-Näherung
   $("krankHinweise").innerHTML =
+    (!state.systeme.grv && !r.quelleEm
+      ? `<b>Hinweis zur EM-Rente:</b> Der Wert ist eine Näherung aus den Standardangaben. ` +
+        `Für eine belastbare Zahl entweder die Kachel „GRV“ dazuschalten und die Beitragsjahre ` +
+        `bzw. Entgeltpunkte erfassen – oder oben die EM-Rente aus der Renteninformation eintragen.<br><br>`
+      : "") +
     `<b>Was in dieser Rechnung nicht steckt:</b>
      <ul style="margin:6px 0 0;padding-left:18px">
        <li>Die 78 Wochen gelten je Krankheit innerhalb von drei Jahren – bei einer neuen Erkrankung beginnt die Frist neu.</li>
@@ -726,9 +734,9 @@ function kombiBausteine(c) {
 function renderKombi(c) {
   const card = $("kombiCard");
   const teile = kombiBausteine(c);
-  const aktiv = Object.values(state.systeme).some(Boolean);
+  const aktiv = altersSystemAktiv();
   card.style.display = aktiv ? "" : "none";
-  if (!aktiv) return;
+  if (!aktiv) { state.kombiErgebnis = null; return; }
 
   const summe = teile.reduce((s, t) => s + t.netto, 0);
   const luecke = Math.max(0, c.wunsch - summe);
@@ -819,7 +827,8 @@ function recalc() {
   $("pvHinweis").textContent = c.kinderlos
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
-  if (state.systeme.grv) { renderGrv(c); renderKrankheit(c); } // Reihenfolge wie auf dem Bildschirm
+  if (state.systeme.grv) renderGrv(c);
+  if (state.systeme.krank) renderKrankheit(c);
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);
@@ -1051,8 +1060,7 @@ function renderDynamik() {
 function renderFazit(c) {
   const card = $("fazitCard");
   const K = state.kombiErgebnis;
-  const aktiv = Object.values(state.systeme).some(Boolean);
-  if (!aktiv || !K) { card.style.display = "none"; return; }
+  if (!altersSystemAktiv() || !K) { card.style.display = "none"; return; }
   card.style.display = "";
 
   const rate = val("inMsciRate");
