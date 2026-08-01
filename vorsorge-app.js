@@ -162,6 +162,15 @@ function zugangsfaktorGrv(c, variante) {
   return { faktor, detail, hinweis, effektivMon: wunschMon };
 }
 
+/* Einzige Quelle für die volle EM-Rente: Wert aus der Renteninformation, sonst
+   die Näherung aus den Entgeltpunkten. GRV-Karte und Krankheits-Treppe greifen
+   beide hierauf zu, damit auf dem Bildschirm nie zwei Zahlen stehen. */
+function emRenteVollBrutto(c, grvErgebnis) {
+  const eingabe = val("inEmRente");
+  if (eingabe > 0) return { brutto: eingabe, ausRenteninfo: true };
+  return { brutto: (grvErgebnis || calcGrv(c)).emBrutto, ausRenteninfo: false };
+}
+
 function calcGrv(c) {
   const G = CONFIG.grv, K = CONFIG.kvpv;
   const epProJahr = Math.min(c.brutto, G.bbgJahr) / G.durchschnittsentgelt;
@@ -204,11 +213,16 @@ function renderGrv(c) {
     `<b>Steuern:</b> Bei Rentenbeginn ${r.beginnJahr} sind ${fmtPct(r.bestAnteil, 1)} der Rente steuerpflichtig ` +
     `(84 % bei Start 2026, +0,5 %-Pkt. je Jahr, 100 % ab 2058). Die tatsächliche Steuer hängt vom Gesamteinkommen ab.` +
     (r.zf.hinweis ? `<br><b>Hinweis:</b> ${r.zf.hinweis}` : "");
+  const em = emRenteVollBrutto(c, r);
   $("grvEmBox").innerHTML =
-    `<b>Gesprächseinstieg BU/EM:</b> Bei voller Erwerbsminderung heute ergäbe die Näherung ca. ` +
-    `<b>${fmtEur(r.emBrutto)}</b> brutto/Monat (EP bisher + Zurechnungszeit bis ` +
-    `${CONFIG.grv.emZurechnungsalter2026.jahre} J. ${CONFIG.grv.emZurechnungsalter2026.monate} M., Abschlag −10,8 %). ` +
-    `Voraussetzung u. a. 3/5-Belegung – dieser Schutz erlischt bei Lücken schleichend.`;
+    `<b>Gesprächseinstieg BU/EM:</b> Bei voller Erwerbsminderung heute ergäben sich ca. ` +
+    `<b>${fmtEur(em.brutto)}</b> brutto/Monat ` +
+    (em.ausRenteninfo
+      ? `(Wert aus der Renteninformation, oben eingetragen).`
+      : `(Näherung: EP bisher + Zurechnungszeit bis ${CONFIG.grv.emZurechnungsalter2026.jahre} J. ` +
+        `${CONFIG.grv.emZurechnungsalter2026.monate} M., Abschlag −10,8 %).`) +
+    ` Voraussetzung u. a. 3/5-Belegung – dieser Schutz erlischt bei Lücken schleichend. ` +
+    `Die vollständige Kette steht oben in der Krankheits-Übersicht.`;
   $("grvKinderHint").innerHTML = c.kinder > 0
     ? `Kindererziehung: ${c.kinder} Kind(er) × ca. 3 EP ≈ <b>+ ${fmtEur(c.kinder * 3 * CONFIG.grv.rentenwert)}/Monat</b>, ` +
       `falls noch nicht in den Entgeltpunkten enthalten (§ 70 Abs. 2 SGB VI, Mütterrente III ab 2027 einheitlich 36 Monate).`
@@ -267,10 +281,9 @@ function calcKrankheit(c) {
   const abzuege = beitragsbasis * satz;
   const kgNetto = Math.max(0, kgBrutto - abzuege);
 
-  // EM-Rente: Eingabe aus der Renteninformation, sonst Näherung wie im GRV-Rechner
-  const emEingabe = val("inEmRente");
-  const grv = calcGrv(c);
-  const emVollBrutto = emEingabe > 0 ? emEingabe : grv.emBrutto;
+  // EM-Rente aus der gemeinsamen Quelle – identisch mit der Anzeige im GRV-Rechner
+  const em = emRenteVollBrutto(c);
+  const emVollBrutto = em.brutto;
   const faktor = state.emGrad === "voll" ? K.emFaktorVoll : K.emFaktorTeilweise;
   const emBrutto = emVollBrutto * faktor;
 
@@ -282,8 +295,8 @@ function calcKrankheit(c) {
 
   const kgWochen = K.hoechstdauerWochen - K.lohnfortzahlungWochen;
   return { netto, bruttoMonat, regelentgelt, ausBrutto, ausNetto, kgBrutto, deckelGreift,
-           satz, beitragsbasis, abzuege, kgNetto, emEingabe, emVollBrutto, faktor,
-           emBrutto, emKv, emPv, emNetto, kvSatzHalb, kgWochen, quelleEm: emEingabe > 0 };
+           satz, beitragsbasis, abzuege, kgNetto, emVollBrutto, faktor,
+           emBrutto, emKv, emPv, emNetto, kvSatzHalb, kgWochen, quelleEm: em.ausRenteninfo };
 }
 
 function renderKrankheit(c) {
@@ -734,7 +747,7 @@ function recalc() {
   $("pvHinweis").textContent = c.kinderlos
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
-  if (state.systeme.grv) { renderGrv(c); renderKrankheit(c); }
+  if (state.systeme.grv) { renderKrankheit(c); renderGrv(c); } // Reihenfolge wie auf dem Bildschirm
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);
