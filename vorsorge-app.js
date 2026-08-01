@@ -79,21 +79,10 @@ function bindInputs(rootSelector) {
 const val = (id) => parseFloat($(id).value) || 0;
 
 /* =====================================================================
-   Haushaltsrechner: Bedarf im Alter + Kaufkraft
+   Wunschrente & Kaufkraft
    ===================================================================== */
-function initHaushalt() {
-  $("haushaltGrid").innerHTML = CONFIG.haushalt.positionen.map((p) => `
-    <div class="sl">
-      <div class="slHead"><label for="inHh_${p.id}">${p.name}</label><output id="outHh_${p.id}"></output></div>
-      <input type="range" id="inHh_${p.id}" min="0" max="${p.max}" step="10" value="${p.start}" data-fmt="eur0">
-      <p class="hint">${p.hinweis}</p>
-    </div>`).join("");
-}
-
-/* Bedarf in heutigem Geld = Summe aller Haushaltsposten */
-function bedarfHeute() {
-  return CONFIG.haushalt.positionen.reduce((s, p) => s + val("inHh_" + p.id), 0);
-}
+/* Wunschrente in heutigem Geld – Basis für Lücke und Sparrate */
+const bedarfHeute = () => val("inWunsch");
 const inflationssatz = () => val("inInflation") / 100;
 
 function renderHaushalt(c) {
@@ -110,12 +99,12 @@ function renderHaushalt(c) {
 
   $("kaufkraftBox").innerHTML = jahre > 0
     ? `<b>Warum die Zahl rechts größer ist:</b>` +
-      `Bei ${fmtPct(i)} Inflation kostet Ihr heutiger Warenkorb in ${jahre} Jahren ` +
-      `<b>${fmtEur0(spaeter)}</b> statt ${fmtEur0(heute)}. Anders herum: Von ${fmtEur0(heute)} bliebe dann ` +
-      `nur die Kaufkraft von <b>${fmtEur0(kaufkraft)}</b> übrig – ${fmtPct(kaufkraft / heute, 0)} des heutigen Werts. ` +
-      `Deshalb rechnen wir die Versorgungslücke mit dem Bedarf von heute und die Sparrate mit der ` +
-      `Rendite nach Abzug der Inflation.`
-    : `<b>Rentenbeginn liegt nicht in der Zukunft</b> – der Bedarf wird ohne Inflationsaufschlag angesetzt.`;
+      `Bei ${fmtPct(i)} Inflation brauchen Sie in ${jahre} Jahren <b>${fmtEur0(spaeter)}</b>, ` +
+      `um sich das zu leisten, was heute ${fmtEur0(heute)} kostet. Anders herum: Von ${fmtEur0(heute)} ` +
+      `bliebe dann nur die Kaufkraft von <b>${fmtEur0(kaufkraft)}</b> übrig – ${fmtPct(kaufkraft / heute, 0)} ` +
+      `des heutigen Werts. Deshalb rechnen wir die Versorgungslücke mit der Wunschrente von heute und ` +
+      `die Sparrate mit der Rendite nach Abzug der Inflation.`
+    : `<b>Rentenbeginn liegt nicht in der Zukunft</b> – die Wunschrente wird ohne Inflationsaufschlag angesetzt.`;
 
   return { heute, spaeter, kaufkraft, inflation: i };
 }
@@ -1095,63 +1084,58 @@ function renderFazit(c) {
     return;
   }
 
-  const st = msciStatistik(Math.min(n, 50));
   const kostenPa = kostenPauschal();
-
-  const szenarien = [
-    { name: "Schlechtester Fall", r: st.min, cls: "" },
-    { name: "Historischer Durchschnitt", r: st.avg, cls: "mittel" },
-    { name: "Bester Fall", r: st.max, cls: "" },
-  ].map((s) => {
-    // real rechnen: Marktrendite abzüglich Produktkosten und Inflation,
-    // damit die Beträge zum heutigen Haushaltsbedarf passen
-    const nachKosten = (s.r - kostenPa) / 100;
-    const rNetto = (nachKosten - inflationssatz()) / (1 + inflationssatz()) * 100;
-    const fv = sparplanEndwert(rate, rNetto, n);
-    const rente = entnahmeRate(fv.endwert, CONFIG.entnahme.dauerJahre, realZinsEntnahme);
-    return { ...s, rNetto, endwert: fv.endwert, rente, deckung: rente / K.luecke };
-  });
+  // Ein Szenario: historischer Durchschnitt (feste Annahme aus CONFIG),
+  // abzüglich Effektivkosten und Inflation → reale Rendite
+  const bruttoProz = CONFIG.annahmen.renditeSparphase * 100;
+  const nachKosten = (bruttoProz - kostenPa) / 100;
+  const rNetto = (nachKosten - inflationssatz()) / (1 + inflationssatz()) * 100;
+  const fv = sparplanEndwert(rate, rNetto, n);
+  const rente = entnahmeRate(fv.endwert, CONFIG.entnahme.dauerJahre, realZinsEntnahme);
+  const szenario = { rNetto, endwert: fv.endwert, eingezahlt: fv.eingezahlt,
+                     rente, deckung: rente / K.luecke };
 
   const P = CONFIG.provinzial;
   // Kostensätze werden bewusst nicht angezeigt – nur die Tatsache, dass sie
   // eingerechnet sind. Die vollständige Aufstellung steht im Basisinformationsblatt.
   $("kostenBadge").textContent = `✓ ${P.kostenLabel}`;
   $("fazitSub").textContent =
-    `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, angesetzt mit der historischen ` +
-    `Bandbreite aller ${Math.min(n, 50)}-Jahres-Sparpläne im MSCI World (${st.n} Zeiträume seit 1973) – ` +
-    `alle Beträge in heutiger Kaufkraft. ` +
-    `Die Effektivkosten der ${P.produkt} sind bereits abgezogen.`;
+    `Sparrate ${fmtEur0(rate)}/Monat über ${n} Jahre bis zur Rente, gerechnet mit dem historischen ` +
+    `Durchschnitt von ${fmtPct(CONFIG.annahmen.renditeSparphase, 0)} p. a. ` +
+    `Die Effektivkosten der ${P.produkt} sind abgezogen, alle Beträge stehen in heutiger Kaufkraft.`;
 
-  $("fazitGrid").innerHTML = szenarien.map((s) => `
-    <div class="fzBox ${s.cls}">
-      <div class="fzTitel">${s.name}</div>
-      <div class="fzRendite"><b>${fmtNum(s.rNetto)} % p. a.</b> nach Effektivkosten</div>
-      <div class="fzVal">${fmtEur0(s.endwert)}</div>
-      <div class="fzRente">Kapitalauszahlung → <b>${fmtEur0(s.rente)}/Monat</b> Zusatzrente</div>
-      <div class="fzBar"><div class="fzBarFill ${s.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, s.deckung * 100)}%"></div></div>
-      <div class="fzDeckung ${s.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(s.deckung * 100)} % der Lücke gedeckt</div>
-    </div>`).join("");
+  $("fazitGrid").innerHTML = `
+    <div class="fzBox mittel" style="grid-column:1/-1">
+      <div class="fzTitel">Historischer Durchschnitt</div>
+      <div class="fzRendite">${fmtPct(CONFIG.annahmen.renditeSparphase, 0)} p. a. – nach Effektivkosten
+        und Inflation <b>${fmtNum(szenario.rNetto)} % p. a.</b> real</div>
+      <div class="fzVal">${fmtEur0(szenario.endwert)}</div>
+      <div class="fzRente">Kapitalauszahlung – eingezahlt ${fmtEur0(szenario.eingezahlt)}<br>
+        ergibt <b>${fmtEur0(szenario.rente)}/Monat</b> Zusatzrente</div>
+      <div class="fzBar" style="max-width:440px;margin:10px auto 0">
+        <div class="fzBarFill ${szenario.deckung < 1 ? "rot" : ""}" style="width:${Math.min(100, szenario.deckung * 100)}%"></div>
+      </div>
+      <div class="fzDeckung ${szenario.deckung >= 1 ? "gut" : "schlecht"}">${Math.round(szenario.deckung * 100)} % der Lücke gedeckt</div>
+    </div>`;
 
   renderKostenBlock();
 
-  const mittel = szenarien[1];
+  const mittel = szenario;
   const vd = $("fazitVerdict");
   if (mittel.deckung >= 1) {
     vd.className = "lueckeBlock ok";
     vd.innerHTML = `<div class="lVal">Lücke geschlossen</div><div class="lLbl">Im historischen Durchschnitt ` +
       `stünden ${fmtEur0(mittel.endwert)} Kapital bereit – das sind ${fmtEur0(mittel.rente)}/Monat bei einer Lücke von ` +
-      `${fmtEur0(K.luecke)} (${Math.round(mittel.deckung * 100)} %). Selbst der schlechteste historische Verlauf ` +
-      `hätte ${Math.round(szenarien[0].deckung * 100)} % gedeckt.</div>`;
+      `${fmtEur0(K.luecke)} – das sind ${Math.round(mittel.deckung * 100)} % der Lücke.</div>`;
   } else {
     vd.className = "lueckeBlock";
     const fehlt = K.luecke - mittel.rente;
-    vd.innerHTML = `<div class="lVal">− ${fmtEur(fehlt)}</div><div class="lLbl">Auch im Durchschnittsszenario ` +
-      `blieben ${fmtEur0(fehlt)}/Monat der Lücke offen (${Math.round(mittel.deckung * 100)} % gedeckt) – ` +
-      `Stellschrauben: Sparrate erhöhen, früher starten oder den Bedarf anpassen.</div>`;
+    vd.innerHTML = `<div class="lVal">− ${fmtEur(fehlt)}</div><div class="lLbl">Es blieben ` +
+      `${fmtEur0(fehlt)}/Monat der Lücke offen (${Math.round(mittel.deckung * 100)} % gedeckt) – ` +
+      `Stellschrauben: Sparrate erhöhen, früher starten oder die Wunschrente anpassen.</div>`;
   }
 
   $("fazitHint").textContent =
-    (n > 50 ? `Hinweis: Ansparzeit ${n} Jahre – historische Bandbreite auf 50 Jahre begrenzt. ` : "") +
     "Modellrechnung vor Steuern; historische Renditen sind kein verlässlicher Indikator für die Zukunft. " +
     "Alle Beträge in heutiger Kaufkraft – die angenommene Inflation ist bereits herausgerechnet.";
 }
@@ -1289,7 +1273,6 @@ function renderCheck() {
   $("printDatum").textContent =
     "Erstellt am " + new Date().toLocaleDateString("de-DE") + " · " + standTxt +
     " · unverbindliche Orientierung";
-  initHaushalt();            // erzeugt die Haushalts-Slider, muss vor bindInputs laufen
   bindInputs("#mode-beratung");
   renderWissen();
   renderCheck();

@@ -107,16 +107,8 @@ const CONFIG = {
     befreiungsfristMonate: 3,          // § 6 Abs. 4 SGB VI – Antrag binnen 3 Monaten, elektronisch
   },
 
-  /* ---------- Haushaltsrechner: Was braucht der Kunde im Alter? ---------- */
+  /* ---------- Inflationsannahme für die Kaufkraft-Darstellung ---------- */
   haushalt: {
-    positionen: [
-      { id: "wohnen",   name: "Wohnen",                  hinweis: "Miete oder Instandhaltung, Nebenkosten, Strom", start: 800, max: 2500 },
-      { id: "leben",    name: "Lebensmittel & Haushalt", hinweis: "Einkauf, Drogerie, Haushaltsbedarf",            start: 450, max: 1500 },
-      { id: "mobil",    name: "Mobilität",               hinweis: "Auto, Versicherung, Sprit, ÖPNV",               start: 250, max: 1200 },
-      { id: "gesund",   name: "Versicherungen & Gesundheit", hinweis: "Kranken-/Pflegezusatz, Zuzahlungen, Brille, Zahnersatz", start: 300, max: 1500 },
-      { id: "freizeit", name: "Freizeit & Reisen",       hinweis: "Hobbys, Urlaub, Restaurant, Enkel",             start: 350, max: 2000 },
-      { id: "sonst",    name: "Sonstiges & Puffer",      hinweis: "Kleidung, Geschenke, Unvorhergesehenes",        start: 200, max: 1500 },
-    ],
     inflationDefault: 0.02, inflationMin: 0.01, inflationMax: 0.04,
   },
 
