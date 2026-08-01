@@ -222,7 +222,7 @@ function renderGrv(c) {
       : `(Näherung: EP bisher + Zurechnungszeit bis ${CONFIG.grv.emZurechnungsalter2026.jahre} J. ` +
         `${CONFIG.grv.emZurechnungsalter2026.monate} M., Abschlag −10,8 %).`) +
     ` Voraussetzung u. a. 3/5-Belegung – dieser Schutz erlischt bei Lücken schleichend. ` +
-    `Die vollständige Kette steht oben in der Krankheits-Übersicht.`;
+    `Die vollständige Kette steht unten in der Krankheits-Übersicht.`;
   $("grvKinderHint").innerHTML = c.kinder > 0
     ? `Kindererziehung: ${c.kinder} Kind(er) × ca. 3 EP ≈ <b>+ ${fmtEur(c.kinder * 3 * CONFIG.grv.rentenwert)}/Monat</b>, ` +
       `falls noch nicht in den Entgeltpunkten enthalten (§ 70 Abs. 2 SGB VI, Mütterrente III ab 2027 einheitlich 36 Monate).`
@@ -747,7 +747,7 @@ function recalc() {
   $("pvHinweis").textContent = c.kinderlos
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
-  if (state.systeme.grv) { renderKrankheit(c); renderGrv(c); } // Reihenfolge wie auf dem Bildschirm
+  if (state.systeme.grv) { renderGrv(c); renderKrankheit(c); } // Reihenfolge wie auf dem Bildschirm
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);

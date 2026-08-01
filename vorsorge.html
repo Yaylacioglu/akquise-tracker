@@ -453,39 +453,6 @@
 
     <div id="rechnerContainer">
 
-      <!-- ===== Was passiert bei Krankheit? (steht bewusst VOR der Altersrente) ===== -->
-      <div class="card sysCard" id="card-krank" style="--sysColor:var(--terracotta)">
-        <h2>Was passiert bei längerer Krankheit?</h2>
-        <p class="cardSub">Lohnfortzahlung → Krankengeld → Erwerbsminderungsrente: der Weg nach unten in drei Stufen.</p>
-        <div class="inGrid" style="margin-bottom:6px">
-          <div class="sl">
-            <div class="slHead"><label for="inNetto">Aktuelles Nettoeinkommen / Monat</label><output id="outNetto"></output></div>
-            <input type="range" id="inNetto" min="800" max="6000" step="50" value="2400" data-fmt="eur0">
-            <p class="hint">Folgt automatisch dem Jahresbrutto, bis der Regler bewegt wird.</p>
-          </div>
-          <div>
-            <div class="numIn">
-              <label for="inEmRente">Volle EM-Rente lt. Renteninformation (€/Monat brutto, optional)</label>
-              <input type="number" id="inEmRente" min="0" max="4000" step="10" placeholder="leer = Näherung aus den Entgeltpunkten" inputmode="decimal">
-              <span class="hint">Dieser Wert gilt auch für den EM-Hinweis im GRV-Rechner unten.</span>
-            </div>
-            <div style="margin-top:12px">
-              <label style="font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px">Grad der Erwerbsminderung</label>
-              <div class="segRow" id="emGrad">
-                <button data-g="voll" class="active">Voll (unter 3 Std./Tag)</button>
-                <button data-g="teil">Teilweise (3 bis unter 6 Std.)</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="treppe" id="krankTreppe"></div>
-        <table class="kette" id="krankKette" style="max-width:620px;margin:18px auto 0"></table>
-        <div class="warnBox" id="krankLuecke"></div>
-        <div class="infoBox" id="krankHinweise"></div>
-        <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="krankWeg"></div></details>
-      </div>
-
       <!-- ===== GRV ===== -->
       <div class="card sysCard" id="card-grv" style="--sysColor:var(--blue)">
         <h2>Gesetzliche Rente (GRV)</h2>
@@ -519,6 +486,39 @@
             <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="grvWeg"></div></details>
           </div>
         </div>
+      </div>
+
+      <!-- ===== Was passiert bei Krankheit? ===== -->
+      <div class="card sysCard" id="card-krank" style="--sysColor:var(--terracotta)">
+        <h2>Was passiert bei längerer Krankheit?</h2>
+        <p class="cardSub">Lohnfortzahlung → Krankengeld → Erwerbsminderungsrente: der Weg nach unten in drei Stufen.</p>
+        <div class="inGrid" style="margin-bottom:6px">
+          <div class="sl">
+            <div class="slHead"><label for="inNetto">Aktuelles Nettoeinkommen / Monat</label><output id="outNetto"></output></div>
+            <input type="range" id="inNetto" min="800" max="6000" step="50" value="2400" data-fmt="eur0">
+            <p class="hint">Folgt automatisch dem Jahresbrutto, bis der Regler bewegt wird.</p>
+          </div>
+          <div>
+            <div class="numIn">
+              <label for="inEmRente">Volle EM-Rente lt. Renteninformation (€/Monat brutto, optional)</label>
+              <input type="number" id="inEmRente" min="0" max="4000" step="10" placeholder="leer = Näherung aus den Entgeltpunkten" inputmode="decimal">
+              <span class="hint">Dieser Wert gilt auch für den EM-Hinweis im GRV-Rechner oben.</span>
+            </div>
+            <div style="margin-top:12px">
+              <label style="font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px">Grad der Erwerbsminderung</label>
+              <div class="segRow" id="emGrad">
+                <button data-g="voll" class="active">Voll (unter 3 Std./Tag)</button>
+                <button data-g="teil">Teilweise (3 bis unter 6 Std.)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="treppe" id="krankTreppe"></div>
+        <table class="kette" id="krankKette" style="max-width:620px;margin:18px auto 0"></table>
+        <div class="warnBox" id="krankLuecke"></div>
+        <div class="infoBox" id="krankHinweise"></div>
+        <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="krankWeg"></div></details>
       </div>
 
       <!-- ===== ZVK / VBL ===== -->
