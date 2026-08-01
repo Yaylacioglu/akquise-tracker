@@ -44,6 +44,8 @@ document.querySelectorAll("#sysWahl .sysChip").forEach((chip) => {
     chip.classList.toggle("on", state.systeme[sys]);
     const card = $("card-" + sys);
     if (card) card.classList.toggle("on", state.systeme[sys]);
+    // Die Krankheits-Treppe hängt an der GRV (Krankengeld und EM-Rente kommen von dort)
+    if (sys === "grv") $("card-krank").classList.toggle("on", state.systeme.grv);
     recalc();
   });
 });
@@ -219,6 +221,144 @@ function renderGrv(c) {
     { t: "KV-Beitrag (Rentner zahlt die Hälfte)", f: `${fmtEur(r.brutto)} × (14,6 % + 2,9 %) ÷ 2 = ${fmtEur(r.kv)}`, q: "§ 249a SGB V" },
     { t: "PV-Beitrag (Rentner allein)", f: `${fmtEur(r.brutto)} × ${fmtPct(pvSatz(c.kinderlos))} = ${fmtEur(r.pv)}`, q: "§ 59 SGB XI" },
     { t: "EM-Näherung", f: `(${fmtNum(r.epBisher)} EP + Zurechnung bis 66 J. 3 M.) × 0,892 × ${fmtEur(CONFIG.grv.rentenwert)} = ${fmtEur(r.emBrutto)}`, q: "§§ 59, 77 SGB VI" },
+  ]);
+}
+
+/* =====================================================================
+   Krankheits-Verlauf: Lohnfortzahlung → Krankengeld → EM-Rente
+   ===================================================================== */
+state.emGrad = "voll";
+document.querySelectorAll("#emGrad button").forEach((b) => {
+  b.addEventListener("click", () => {
+    state.emGrad = b.dataset.g;
+    document.querySelectorAll("#emGrad button").forEach((x) => x.classList.toggle("active", x === b));
+    recalc();
+  });
+});
+
+/* Netto folgt dem Brutto, bis der Berater den Regler selbst anfasst */
+state.nettoTouched = false;
+$("inNetto").addEventListener("input", () => { state.nettoTouched = true; });
+$("inBrutto").addEventListener("input", () => {
+  if (!state.nettoTouched) {
+    // grobe Startschätzung: rund 60 % des Bruttos bleiben netto
+    const v = Math.max(800, Math.min(6000, Math.round(val("inBrutto") / 12 * 0.6 / 50) * 50));
+    $("inNetto").value = v;
+    $("outNetto").textContent = fmtEur0(v);
+  }
+});
+
+function calcKrankheit(c) {
+  const K = CONFIG.krankheit;
+  const netto = val("inNetto");
+  const bruttoMonat = c.brutto / 12;
+  const regelentgelt = Math.min(bruttoMonat, K.bbgKvMonat);
+
+  // Krankengeld: 70 % vom Regelentgelt, gedeckelt auf 90 % des Nettos (§ 47 SGB V)
+  const ausBrutto = regelentgelt * K.krankengeldSatzBrutto;
+  const ausNetto = netto * K.krankengeldDeckelNetto;
+  const kgBrutto = Math.min(ausBrutto, ausNetto);
+  const deckelGreift = ausNetto < ausBrutto;
+
+  // Beitragspflichtig sind 80 % des Regelentgelts; KV entfällt, RV/AV/PV bleiben
+  const B = K.anBeitraege;
+  const satz = B.rv + B.av + B.pv + (c.kinderlos ? B.pvKinderlosZuschlag : 0);
+  const beitragsbasis = regelentgelt * K.beitragsbasisAnteil;
+  const abzuege = beitragsbasis * satz;
+  const kgNetto = Math.max(0, kgBrutto - abzuege);
+
+  // EM-Rente: Eingabe aus der Renteninformation, sonst Näherung wie im GRV-Rechner
+  const emEingabe = val("inEmRente");
+  const grv = calcGrv(c);
+  const emVollBrutto = emEingabe > 0 ? emEingabe : grv.emBrutto;
+  const faktor = state.emGrad === "voll" ? K.emFaktorVoll : K.emFaktorTeilweise;
+  const emBrutto = emVollBrutto * faktor;
+
+  // Abzüge wie bei jeder GRV-Rente: halber KV-Satz, PV voll
+  const kvSatzHalb = (CONFIG.kvpv.kvSatz + CONFIG.kvpv.kvZusatzDurchschnitt) / 2;
+  const emKv = emBrutto * kvSatzHalb;
+  const emPv = emBrutto * pvSatz(c.kinderlos);
+  const emNetto = emBrutto - emKv - emPv;
+
+  const kgWochen = K.hoechstdauerWochen - K.lohnfortzahlungWochen;
+  return { netto, bruttoMonat, regelentgelt, ausBrutto, ausNetto, kgBrutto, deckelGreift,
+           satz, beitragsbasis, abzuege, kgNetto, emEingabe, emVollBrutto, faktor,
+           emBrutto, emKv, emPv, emNetto, kvSatzHalb, kgWochen, quelleEm: emEingabe > 0 };
+}
+
+function renderKrankheit(c) {
+  const K = CONFIG.krankheit;
+  const r = calcKrankheit(c);
+  const stufen = [
+    { phase: "Lohnfortzahlung", dauer: `Woche 1–${K.lohnfortzahlungWochen}`, wert: r.netto,
+      farbe: "var(--sage)", flex: 1, proz: "100 % Ihres Nettos" },
+    { phase: "Krankengeld", dauer: `Woche ${K.lohnfortzahlungWochen + 1}–${K.hoechstdauerWochen} (${r.kgWochen} Wochen)`,
+      wert: r.kgNetto, farbe: "var(--amber)", flex: 2.4,
+      proz: fmtPct(r.kgNetto / r.netto, 0) + " Ihres Nettos" },
+    { phase: state.emGrad === "voll" ? "Volle EM-Rente" : "Teilweise EM-Rente",
+      dauer: `ab Monat 18 (nach ${K.hoechstdauerWochen} Wochen)`, wert: r.emNetto,
+      farbe: "var(--terracotta)", flex: 2,
+      proz: fmtPct(r.emNetto / r.netto, 0) + " Ihres Nettos" },
+  ];
+  const maxWert = Math.max(r.netto, ...stufen.map((s) => s.wert), 1);
+  const H = 224; // Balkenfläche in px (Container 250 minus Kopfraum)
+
+  $("krankTreppe").innerHTML =
+    `<div class="tNettoLinie" style="bottom:${Math.round(r.netto / maxWert * H) + 26}px">
+       <span>heutiges Netto ${fmtEur0(r.netto)}</span></div>` +
+    stufen.map((s) => {
+      const h = Math.max(26, Math.round(s.wert / maxWert * H));
+      return `<div class="tStufe" style="flex:${s.flex}">
+        <div class="tBalken" style="height:${h}px;background:${s.farbe}">
+          <span class="tVal">${fmtEur0(s.wert)}</span>
+          ${h > 56 ? `<span class="tProz">${s.proz}</span>` : ""}
+        </div>
+        <div class="tFuss"><div class="tPhase">${s.phase}</div><div class="tDauer">${s.dauer}</div></div>
+      </div>`;
+    }).join("");
+
+  $("krankKette").innerHTML = ketteHtml([
+    { t: "Krankengeld brutto", sub: r.deckelGreift
+        ? `90 %-Deckel auf das Netto greift (70 % vom Brutto wären ${fmtEur(r.ausBrutto)})`
+        : `70 % des Regelentgelts ${fmtEur(r.regelentgelt)}`, v: fmtEur(r.kgBrutto) },
+    { t: "Beiträge RV / AV / PV", sub: `${fmtPct(r.satz, 1)} auf 80 % des Regelentgelts – die Krankenkasse trägt die andere Hälfte`,
+      v: "− " + fmtEur(r.abzuege), art: "minus" },
+    { t: "Krankengeld ausgezahlt", v: fmtEur(r.kgNetto), art: "sum" },
+    { t: state.emGrad === "voll" ? "EM-Rente brutto (voll)" : "EM-Rente brutto (teilweise, Faktor 0,5)",
+      sub: r.quelleEm ? "aus der Renteninformation" : "Näherung: Entgeltpunkte + Zurechnungszeit, Abschlag −10,8 %",
+      v: fmtEur(r.emBrutto) },
+    { t: "KV + PV auf die Rente", sub: `KV halber Satz (${fmtPct(r.kvSatzHalb, 2)}), PV voll (${fmtPct(pvSatz(c.kinderlos))})`,
+      v: "− " + fmtEur(r.emKv + r.emPv), art: "minus" },
+    { t: "EM-Rente ausgezahlt (vor Steuern)", v: fmtEur(r.emNetto), art: "sum" },
+  ]);
+
+  const luecke = r.netto - r.emNetto;
+  $("krankLuecke").innerHTML =
+    `<b>Einkommenslücke ab Monat 18: ${fmtEur(luecke)} im Monat</b>` +
+    `Aus ${fmtEur0(r.netto)} Nettoeinkommen werden ${fmtEur0(r.emNetto)} – das sind ` +
+    `${fmtPct(r.emNetto / r.netto, 0)} des heutigen Einkommens. Bereits das Krankengeld kostet ` +
+    `${fmtEur(r.netto - r.kgNetto)} im Monat.`;
+
+  $("krankHinweise").innerHTML =
+    `<b>Was in dieser Rechnung nicht steckt:</b>
+     <ul style="margin:6px 0 0;padding-left:18px">
+       <li>Die 78 Wochen gelten je Krankheit innerhalb von drei Jahren – bei einer neuen Erkrankung beginnt die Frist neu.</li>
+       <li>Die EM-Rente kommt nicht automatisch: Sie muss beantragt und durch Gutachten bewilligt werden. Voraussetzung sind u. a. 36 Pflichtbeitragsmonate in den letzten 60 (3/5-Regel).</li>
+       <li>Wird der Antrag abgelehnt oder zieht sich das Verfahren, greift zwischenzeitlich meist Arbeitslosengeld (Nahtlosigkeitsregelung § 145 SGB III) – nicht selten mit Lücke dazwischen.</li>
+       <li>Bei teilweiser EM wird erwartet, dass 3–6 Stunden täglich gearbeitet wird. Findet sich keine Stelle, kann daraus eine Arbeitsmarktrente werden.</li>
+     </ul>`;
+
+  $("krankWeg").innerHTML = wegHtml([
+    { t: "Lohnfortzahlung", f: `${K.lohnfortzahlungWochen} Wochen volles Arbeitsentgelt = ${fmtEur(r.netto)} netto`, q: "§ 3 Abs. 1 EFZG, gesetze-im-internet.de" },
+    { t: "Regelentgelt", f: `min(${fmtEur(r.bruttoMonat)} Bruttomonatsentgelt; BBG ${fmtEur(K.bbgKvMonat)}) = ${fmtEur(r.regelentgelt)}`, q: "§ 47 Abs. 1, 6 SGB V" },
+    { t: "Krankengeld brutto", f: `min(70 % × ${fmtEur(r.regelentgelt)} = ${fmtEur(r.ausBrutto)}; 90 % × ${fmtEur(r.netto)} = ${fmtEur(r.ausNetto)}) = ${fmtEur(r.kgBrutto)}`, q: "§ 47 Abs. 1 SGB V" },
+    { t: "Beitragsabzug", f: `80 % × ${fmtEur(r.regelentgelt)} = ${fmtEur(r.beitragsbasis)} × ${fmtPct(r.satz, 1)} (RV 9,3 % + AV 1,3 % + PV ${c.kinderlos ? "2,4" : "1,8"} %) = ${fmtEur(r.abzuege)}`, q: "§§ 226, 232a SGB V; § 166 SGB VI" },
+    { t: "Krankengeld ausgezahlt", f: `${fmtEur(r.kgBrutto)} − ${fmtEur(r.abzuege)} = ${fmtEur(r.kgNetto)}`, q: "eigene Berechnung" },
+    { t: "Höchstdauer", f: `${K.hoechstdauerWochen} Wochen je Krankheit in 3 Jahren, abzüglich ${K.lohnfortzahlungWochen} Wochen Lohnfortzahlung = ${r.kgWochen} Wochen Krankengeld`, q: "§ 48 Abs. 1 SGB V" },
+    { t: "EM-Rente", f: r.quelleEm
+        ? `${fmtEur(r.emVollBrutto)} lt. Renteninformation × Faktor ${fmtNum(r.faktor)} = ${fmtEur(r.emBrutto)}`
+        : `Näherung ${fmtEur(r.emVollBrutto)} × Faktor ${fmtNum(r.faktor)} = ${fmtEur(r.emBrutto)}`,
+      q: "§ 43 SGB VI; Zurechnungszeit § 59 SGB VI" },
   ]);
 }
 
@@ -594,7 +734,7 @@ function recalc() {
   $("pvHinweis").textContent = c.kinderlos
     ? "Pflegeversicherung: Zuschlag für Kinderlose ab 23 (" + fmtPct(CONFIG.kvpv.pvSatzKinderlos) + ") wird angesetzt."
     : "Pflegeversicherung: Satz " + fmtPct(CONFIG.kvpv.pvSatz) + " (mit Kind).";
-  if (state.systeme.grv) renderGrv(c);
+  if (state.systeme.grv) { renderGrv(c); renderKrankheit(c); }
   if (state.systeme.zvk) renderZvk(c);
   if (state.systeme.beamte) renderBeamte(c);
   if (state.systeme.vw) renderVw(c);

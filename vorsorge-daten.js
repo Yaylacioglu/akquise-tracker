@@ -37,6 +37,20 @@ const CONFIG = {
     kezMonateAb2027: 36,          // Mütterrente III: einheitlich 36 Monate ab 01.01.2027
   },
 
+  /* ---------- Absicherung bei Krankheit: Lohnfortzahlung → Krankengeld → EM ---------- */
+  krankheit: {
+    lohnfortzahlungWochen: 6,        // § 3 EFZG: 6 Wochen volles Entgelt
+    krankengeldSatzBrutto: 0.70,     // § 47 SGB V: 70 % des Regelentgelts …
+    krankengeldDeckelNetto: 0.90,    // … höchstens 90 % des Nettoarbeitsentgelts
+    beitragsbasisAnteil: 0.80,       // beitragspflichtig sind 80 % des Regelentgelts
+    hoechstdauerWochen: 78,          // je Krankheit in 3 Jahren, inkl. Lohnfortzahlung
+    // Arbeitnehmeranteile, die vom Krankengeld einbehalten werden (KV entfällt)
+    anBeitraege: { rv: 0.093, av: 0.013, pv: 0.018, pvKinderlosZuschlag: 0.006 },
+    bbgKvMonat: 5812.50,             // BBG KV/PV 2026 monatlich (69.750 €/Jahr)
+    emFaktorVoll: 1.0,               // volle EM: unter 3 Std./Tag
+    emFaktorTeilweise: 0.5,          // teilweise EM: 3 bis unter 6 Std./Tag
+  },
+
   /* ---------- Kranken-/Pflegeversicherung der Rentner ---------- */
   kvpv: {
     kvSatz: 0.146,                // allgemeiner KV-Satz – Rentner zahlt die Hälfte

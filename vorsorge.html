@@ -285,6 +285,29 @@
   .checkSummen .cs .n{font-family:var(--serif);font-size:20px;display:block;}
   .cs.g .n{color:var(--sage-dark);} .cs.y .n{color:var(--amber-dark);} .cs.r .n{color:var(--terracotta-dark);}
 
+  /* Krankheits-Treppe */
+  .treppe{position:relative;display:flex;align-items:flex-end;gap:6px;height:250px;
+    padding-top:26px;margin-top:6px;}
+  .tStufe{display:flex;flex-direction:column;justify-content:flex-end;min-width:0;position:relative;}
+  .tBalken{
+    border-radius:8px 8px 0 0;display:flex;flex-direction:column;align-items:center;
+    justify-content:flex-start;padding:8px 4px;color:#fff;overflow:hidden;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .tBalken .tVal{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.1;white-space:nowrap;}
+  .tBalken .tProz{font-size:11.5px;opacity:0.85;margin-top:2px;}
+  .tFuss{text-align:center;padding:8px 2px 0;border-top:2px solid var(--ink);}
+  .tFuss .tPhase{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;}
+  .tFuss .tDauer{font-size:11.5px;color:var(--ink-faint);margin-top:2px;}
+  .tNettoLinie{position:absolute;left:0;right:0;border-top:2px dashed var(--ink-faint);z-index:1;}
+  .tNettoLinie span{position:absolute;right:0;top:-17px;font-size:11px;font-weight:600;
+    color:var(--ink-soft);background:var(--paper-card);padding:0 6px;white-space:nowrap;}
+  @media(max-width:620px){
+    .treppe{height:210px;}
+    .tBalken .tVal{font-size:15px;}
+    .tFuss .tPhase{font-size:11.5px;}
+  }
+
   /* MSCI-Renditedreieck */
   .mWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
   .mGridBox{min-width:760px;}
@@ -463,6 +486,38 @@
             <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="grvWeg"></div></details>
           </div>
         </div>
+      </div>
+
+      <!-- ===== Was passiert bei Krankheit? ===== -->
+      <div class="card sysCard" id="card-krank" style="--sysColor:var(--terracotta)">
+        <h2>Was passiert bei längerer Krankheit?</h2>
+        <p class="cardSub">Lohnfortzahlung → Krankengeld → Erwerbsminderungsrente: der Weg nach unten in drei Stufen.</p>
+        <div class="inGrid" style="margin-bottom:6px">
+          <div class="sl">
+            <div class="slHead"><label for="inNetto">Aktuelles Nettoeinkommen / Monat</label><output id="outNetto"></output></div>
+            <input type="range" id="inNetto" min="800" max="6000" step="50" value="2400" data-fmt="eur0">
+            <p class="hint">Folgt automatisch dem Jahresbrutto, bis der Regler bewegt wird.</p>
+          </div>
+          <div>
+            <div class="numIn">
+              <label for="inEmRente">Volle EM-Rente lt. Renteninformation (€/Monat brutto, optional)</label>
+              <input type="number" id="inEmRente" min="0" max="4000" step="10" placeholder="leer = Näherung wie im GRV-Rechner" inputmode="decimal">
+            </div>
+            <div style="margin-top:12px">
+              <label style="font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px">Grad der Erwerbsminderung</label>
+              <div class="segRow" id="emGrad">
+                <button data-g="voll" class="active">Voll (unter 3 Std./Tag)</button>
+                <button data-g="teil">Teilweise (3 bis unter 6 Std.)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="treppe" id="krankTreppe"></div>
+        <table class="kette" id="krankKette" style="max-width:620px;margin:18px auto 0"></table>
+        <div class="warnBox" id="krankLuecke"></div>
+        <div class="infoBox" id="krankHinweise"></div>
+        <details class="rechenweg"><summary>Rechenweg &amp; Quellen</summary><div id="krankWeg"></div></details>
       </div>
 
       <!-- ===== ZVK / VBL ===== -->
