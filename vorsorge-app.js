@@ -791,7 +791,7 @@ function renderKombi(c) {
     const realZins = (CONFIG.entnahme.renditeKonservativ - inflationssatz()) /
                      (1 + inflationssatz());
     const kapital = entnahmeKapitalbedarf(luecke, CONFIG.entnahme.dauerJahre, realZins);
-    const rendite = val("inRendite") / 100;
+    const rendite = CONFIG.annahmen.renditeSparphase;
     const realRendite = (rendite - inflationssatz()) / (1 + inflationssatz());
     const i = Math.pow(1 + Math.max(0, realRendite), 1 / 12) - 1;
     const n = c.jahreBisRente * 12;
@@ -800,8 +800,9 @@ function renderKombi(c) {
     spar.innerHTML =
       `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre. ` +
       `Dafür wird ein Kapital von rund <b>${fmtEur0(kapital)}</b> aufgebaut, aus dem die Lücke von ` +
-      `${fmtEur0(luecke)} monatlich gedeckt wird. Alle Beträge in heutiger Kaufkraft ` +
-      `(Rendite abzüglich ${fmtPct(inflationssatz())} Inflation).`;
+      `${fmtEur0(luecke)} monatlich gedeckt wird. Angenommen sind ${fmtPct(rendite, 0)} Rendite p. a. ` +
+      `in der Ansparphase; alle Beträge stehen in heutiger Kaufkraft, die Inflation von ` +
+      `${fmtPct(inflationssatz())} ist bereits abgezogen.`;
     msciRateVorschlag(rate);
   } else {
     state.sparZiel = null;

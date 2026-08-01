@@ -142,7 +142,11 @@ const CONFIG = {
        spürbar unter 30 €. Sobald ein Musterangebot vorliegt: hier den
        garantierten Faktor für das typische Rentenbeginnalter eintragen. */
     rentenfaktorJe10k: 30,
-    renditeMin: 0.02, renditeMax: 0.06, renditeDefault: 0.04,
+    /* Feste Annahme für die Ansparphase (Festlegung Muratcan 07/2026): 8 % p. a.
+       nominal – liegt in der Größenordnung der historischen MSCI-World-Rendite
+       (Ø 9,7 % p. a. seit 1975 laut Deutschem Aktieninstitut) und damit bewusst
+       etwas darunter. In der Rechnung wird davon die Inflation abgezogen. */
+    renditeSparphase: 0.08,
     grvAnpassungLangfrist: 0.025, // Beispielannahme GRV-Dynamik für Kaufkraftvergleich
   },
 
