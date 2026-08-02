@@ -421,6 +421,23 @@ function renderKrankheit(c) {
     `${fmtPct(r.emNetto / r.netto, 0)} des heutigen Einkommens. Bereits das Krankengeld kostet ` +
     `${fmtEur(r.netto - r.kgNetto)} im Monat.`;
 
+  // Einordnung: EM-Rente im Verhältnis zur späteren Altersrente – beantwortet
+  // die häufige Rückfrage „ist die EM nicht die Hälfte der Altersrente?“
+  const altersrente = calcGrv(c).brutto;
+  const anteil = altersrente > 0 ? r.emBrutto / altersrente : 0;
+  $("krankVergleich").innerHTML =
+    `<b>Einordnung zur Altersrente:</b>` +
+    `Ihre Altersrente mit ${c.rentenalter} läge bei ${fmtEur(altersrente)} brutto. Die ` +
+    `${state.emGrad === "voll" ? "volle" : "teilweise"} EM-Rente beträgt ${fmtEur(r.emBrutto)} – ` +
+    `das sind ${fmtPct(anteil, 0)} davon. ` +
+    (state.emGrad === "voll"
+      ? `Die volle EM-Rente ist bewusst <b>keine halbierte Altersrente</b>: Über die Zurechnungszeit ` +
+        `werden Sie so gestellt, als hätten Sie bis ${CONFIG.grv.emZurechnungsalter2026.jahre} J. ` +
+        `${CONFIG.grv.emZurechnungsalter2026.monate} M. weitergearbeitet. Der Unterschied entsteht ` +
+        `im Wesentlichen durch den Abschlag von 10,8 %.`
+      : `Der Faktor 0,5 bezieht sich auf die <b>volle EM-Rente</b> (§ 67 SGB VI), nicht auf die ` +
+        `Altersrente: volle EM ${fmtEur(r.emVollBrutto)} → teilweise EM die Hälfte davon.`);
+
   // Ohne aktiven GRV-Rechner fehlen die Eingaben für die EM-Näherung
   $("krankHinweise").innerHTML =
     (!state.systeme.grv && !r.quelleEm
