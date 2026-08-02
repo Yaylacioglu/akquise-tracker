@@ -113,6 +113,19 @@ function renderHaushalt(c) {
    Entnahmephase: Welches Kapital trägt welche monatliche Entnahme?
    (Ablaufmanagement – bewusst nicht auf der Seite erläutert)
    ===================================================================== */
+/* Reale Rendite der ANSPARPHASE: Marktannahme minus Produktkosten minus Inflation.
+   Einzige Quelle für Sparraten-Empfehlung UND Schluss-Ergebnis – beide müssen
+   zwingend denselben Wert verwenden, sonst passen Empfehlung und Ergebnis nicht
+   zusammen. */
+function realRenditeAnsparphase() {
+  const nachKosten = CONFIG.annahmen.renditeSparphase - kostenPauschal() / 100;
+  return (nachKosten - inflationssatz()) / (1 + inflationssatz());
+}
+/* Reale Verzinsung der ENTNAHMEPHASE (konservativ angelegtes Restkapital). */
+function realZinsEntnahmephase() {
+  return (CONFIG.entnahme.renditeKonservativ - inflationssatz()) / (1 + inflationssatz());
+}
+
 /* Kapital, das nötig ist, um `rate` über `jahre` monatlich zu entnehmen,
    während das Restkapital mit `zinsPa` verzinst wird (Rentenbarwert). */
 function entnahmeKapitalbedarf(rate, jahre = CONFIG.entnahme.dauerJahre, zinsPa = CONFIG.entnahme.renditeKonservativ) {
@@ -776,12 +789,9 @@ function renderKombi(c) {
   // Sparraten-Orientierung: Kapitalbedarf aus dem Entnahmeplan, real gerechnet
   const spar = $("sparrateText");
   if (luecke > 0 && c.jahreBisRente > 0) {
-    // Reale Rendite = Nominalrendite abzüglich Inflation, damit alles in heutigem Geld bleibt
-    const realZins = (CONFIG.entnahme.renditeKonservativ - inflationssatz()) /
-                     (1 + inflationssatz());
-    const kapital = entnahmeKapitalbedarf(luecke, CONFIG.entnahme.dauerJahre, realZins);
-    const rendite = CONFIG.annahmen.renditeSparphase;
-    const realRendite = (rendite - inflationssatz()) / (1 + inflationssatz());
+    // Beide Größen aus der gemeinsamen Quelle – identisch zum Schluss-Ergebnis
+    const kapital = entnahmeKapitalbedarf(luecke, CONFIG.entnahme.dauerJahre, realZinsEntnahmephase());
+    const realRendite = realRenditeAnsparphase();
     const i = Math.pow(1 + Math.max(0, realRendite), 1 / 12) - 1;
     const n = c.jahreBisRente * 12;
     const rate = i > 0 ? kapital * i / (Math.pow(1 + i, n) - 1) : kapital / n;
@@ -789,7 +799,7 @@ function renderKombi(c) {
     spar.innerHTML =
       `<b>Benötigte mtl. Sparrate als Orientierung: ${fmtEur(rate)}</b> über ${c.jahreBisRente} Jahre. ` +
       `Dafür wird ein Kapital von rund <b>${fmtEur0(kapital)}</b> aufgebaut, aus dem die Lücke von ` +
-      `${fmtEur0(luecke)} monatlich gedeckt wird. Angenommen sind ${fmtPct(rendite, 0)} Rendite p. a. ` +
+      `${fmtEur0(luecke)} monatlich gedeckt wird. Angenommen sind ${fmtPct(CONFIG.annahmen.renditeSparphase, 0)} Rendite p. a. ` +
       `in der Ansparphase; alle Beträge stehen in heutiger Kaufkraft, die Inflation von ` +
       `${fmtPct(inflationssatz())} ist bereits abgezogen.`;
     msciRateVorschlag(rate);
@@ -1058,10 +1068,7 @@ function renderFazit(c) {
 
   const rate = val("inMsciRate");
   const n = Math.round(c.jahreBisRente);
-  // Reale Sicht: Entnahme-Verzinsung abzüglich Inflation, damit die Beträge
-  // mit dem heutigen Haushaltsbedarf vergleichbar bleiben.
-  const realZinsEntnahme = (CONFIG.entnahme.renditeKonservativ - inflationssatz()) /
-                           (1 + inflationssatz());
+  const realZinsEntnahme = realZinsEntnahmephase();
 
   if (K.luecke <= 0) {
     $("fazitSub").textContent = "";
@@ -1084,12 +1091,9 @@ function renderFazit(c) {
     return;
   }
 
-  const kostenPa = kostenPauschal();
-  // Ein Szenario: historischer Durchschnitt (feste Annahme aus CONFIG),
-  // abzüglich Effektivkosten und Inflation → reale Rendite
-  const bruttoProz = CONFIG.annahmen.renditeSparphase * 100;
-  const nachKosten = (bruttoProz - kostenPa) / 100;
-  const rNetto = (nachKosten - inflationssatz()) / (1 + inflationssatz()) * 100;
+  // Ein Szenario: historischer Durchschnitt abzüglich Effektivkosten und Inflation.
+  // Gleiche Quelle wie die Sparraten-Empfehlung, damit beide zusammenpassen.
+  const rNetto = realRenditeAnsparphase() * 100;
   const fv = sparplanEndwert(rate, rNetto, n);
   const rente = entnahmeRate(fv.endwert, CONFIG.entnahme.dauerJahre, realZinsEntnahme);
   const szenario = { rNetto, endwert: fv.endwert, eingezahlt: fv.eingezahlt,
@@ -1125,8 +1129,8 @@ function renderFazit(c) {
   if (mittel.deckung >= 1) {
     vd.className = "lueckeBlock ok";
     vd.innerHTML = `<div class="lVal">Lücke geschlossen</div><div class="lLbl">Im historischen Durchschnitt ` +
-      `stünden ${fmtEur0(mittel.endwert)} Kapital bereit – das sind ${fmtEur0(mittel.rente)}/Monat bei einer Lücke von ` +
-      `${fmtEur0(K.luecke)} – das sind ${Math.round(mittel.deckung * 100)} % der Lücke.</div>`;
+      `stünden ${fmtEur0(mittel.endwert)} Kapital bereit. Daraus ergeben sich ${fmtEur0(mittel.rente)}/Monat – ` +
+      `bei einer Lücke von ${fmtEur0(K.luecke)} sind das ${Math.round(mittel.deckung * 100)} % Deckung.</div>`;
   } else {
     vd.className = "lueckeBlock";
     const fehlt = K.luecke - mittel.rente;
@@ -1165,7 +1169,7 @@ function renderKostenBlock() {
 function msciRateVorschlag(rate) {
   $("msciRateHint").textContent = "Vorschlag aus der Lücken-Rechnung: " + fmtEur0(rate) + "/Monat.";
   if (!state.msciRateTouched) {
-    const v = Math.max(25, Math.min(1500, Math.round(rate / 25) * 25));
+    const v = Math.max(10, Math.min(3000, Math.round(rate / 5) * 5));
     $("inMsciRate").value = v;
     $("outMsciRate").textContent = fmtEur0(v);
     renderMsciDetail();
