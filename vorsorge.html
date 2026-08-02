@@ -566,9 +566,11 @@
           </div>
           <div>
             <div class="numIn">
-              <label for="inEmRente">Volle EM-Rente lt. Renteninformation (€/Monat brutto, optional)</label>
-              <input type="number" id="inEmRente" min="0" max="4000" step="10" placeholder="leer = Näherung aus den Entgeltpunkten" inputmode="decimal">
-              <span class="hint">Dieser Wert gilt auch für den EM-Hinweis im GRV-Rechner oben.</span>
+              <label for="inEmRente">Volle EM-Rente lt. Renteninformation – <b>Eurobetrag</b> pro Monat (brutto)</label>
+              <input type="number" id="inEmRente" min="0" max="4000" step="10" placeholder="z. B. 1150 – leer = Näherung" inputmode="decimal">
+              <span class="hint">Optional. Gilt auch für den EM-Hinweis im GRV-Rechner oben.
+                <b>Entgeltpunkte</b> gehören nicht hierher, sondern in das Feld „Bisherige Entgeltpunkte“ im GRV-Rechner.</span>
+              <span class="hint" id="emPlausi" style="color:var(--terracotta-dark)"></span>
             </div>
             <div style="margin-top:12px">
               <label style="font-size:13px;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:6px">Grad der Erwerbsminderung</label>

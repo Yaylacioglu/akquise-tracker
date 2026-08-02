@@ -421,6 +421,15 @@ function renderKrankheit(c) {
     `${fmtPct(r.emNetto / r.netto, 0)} des heutigen Einkommens. Bereits das Krankengeld kostet ` +
     `${fmtEur(r.netto - r.kgNetto)} im Monat.`;
 
+  // Häufige Verwechslung: Entgeltpunkte statt Eurobetrag ins EM-Feld eingetragen
+  const emEingabe = val("inEmRente");
+  $("emPlausi").innerHTML = (emEingabe > 0 && emEingabe < 100)
+    ? `Achtung: ${fmtNum(emEingabe)} sieht nach <b>Entgeltpunkten</b> aus. Dieses Feld erwartet ` +
+      `einen Eurobetrag – ${fmtNum(emEingabe)} Entgeltpunkte ergäben rund ` +
+      `${fmtEur0(emEingabe * CONFIG.grv.rentenwert)} Rente. Entgeltpunkte bitte oben im ` +
+      `GRV-Rechner unter „Bisherige Entgeltpunkte“ eintragen.`
+    : "";
+
   // Plausibilität: passt das eingetragene Netto zum Bruttoeinkommen?
   const quote = r.bruttoMonat > 0 ? r.netto / r.bruttoMonat : 0;
   $("nettoPlausi").innerHTML = (quote > 0.85 || quote < 0.45)
