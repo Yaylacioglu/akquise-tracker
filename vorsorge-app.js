@@ -891,7 +891,7 @@ const MSCI = (() => {
   return { matrix, startMin, zielMax: D.zielMax };
 })();
 
-state.msciSel = { start: 1984, ziel: MSCI.zielMax }; // Beispiel aus dem Beratungsalltag
+state.msciSel = { start: 1999, ziel: MSCI.zielMax }; // bewusst der schlechte Einstieg vor Dotcom
 state.msciRateTouched = false;
 
 /* Sparrate: Regler und eurogenaues Eingabefeld halten sich gegenseitig aktuell.
@@ -915,16 +915,6 @@ $("inMsciRateNum").addEventListener("input", () => {
 });
 /* Beim Verlassen des Feldes den gültigen Wert zurückschreiben (leer, 0, > 3.000) */
 $("inMsciRateNum").addEventListener("blur", () => { $("inMsciRateNum").value = val("inMsciRate"); });
-
-function msciFarbklasse(r) {
-  if (r >= 8) return "mc5";
-  if (r >= 4) return "mc4";
-  if (r >= 0.5) return "mc3";
-  if (r > -0.5) return "mc2";
-  if (r > -10) return "mc1";
-  return "mc0";
-}
-const istKrisenjahr = (j) => CONFIG.msciSparplan.krisen.some((k) => j >= k.von && j <= k.bis);
 
 /* Endwert eines monatlichen Sparplans bei Rendite r % p.a. über n Jahre */
 function sparplanEndwert(rate, rProzent, jahre) {
@@ -954,76 +944,137 @@ const msciSichereDauer = (() => {
   return null;
 })();
 
-function renderMsciGrid() {
-  const frag = [];
-  for (let start = MSCI.zielMax - 1; start >= MSCI.startMin; start--) {
-    const row = MSCI.zielMax - 1 - start + 1;
-    for (let ziel = start + 1; ziel <= MSCI.zielMax; ziel++) {
-      const r = MSCI.matrix[start][ziel];
-      const col = ziel - MSCI.startMin; // 1974 → Spalte 1
-      frag.push(`<div class="mCell ${msciFarbklasse(r)}" data-s="${start}" data-z="${ziel}" ` +
-        `style="grid-row:${row};grid-column:${col}" title="Start ${start} → Ziel ${ziel}: ${fmtNum(r)} % p.a."></div>`);
-    }
-    if (start % 5 === 0 || start === MSCI.startMin || start === MSCI.zielMax - 1) {
-      frag.push(`<div class="mRowLbl" style="grid-row:${row}">${start}</div>`);
-    }
+/* Wertverlauf eines Sparplans ab `start`: für jedes Zieljahr liefert das
+   DAI-Dreieck die Durchschnittsrendite, daraus wird der Depotwert berechnet. */
+function verlaufDaten(start, rate) {
+  const punkte = [];
+  for (let ziel = start + 1; ziel <= MSCI.zielMax; ziel++) {
+    const r = MSCI.matrix[start][ziel];
+    if (r === undefined) continue;
+    const jahre = ziel - start;
+    const fv = sparplanEndwert(rate, r, jahre);
+    punkte.push({ jahr: ziel, jahre, rendite: r, wert: fv.endwert, eingezahlt: fv.eingezahlt });
   }
-  $("msciGrid").innerHTML = frag.join("");
+  return punkte;
+}
 
-  const axe = [];
-  for (let ziel = MSCI.startMin + 1; ziel <= MSCI.zielMax; ziel++) {
-    const col = ziel - MSCI.startMin;
-    const kr = istKrisenjahr(ziel);
-    if (ziel % 5 === 0 || kr) {
-      axe.push(`<span class="${kr ? "krise" : ""}" style="grid-column:${col}">${ziel}</span>`);
-    }
-  }
-  $("msciAxe").innerHTML = axe.join("");
+/* Startjahr-Schnellwahl: markante Einstiegszeitpunkte, bewusst inklusive
+   der schlechtesten (direkt vor einer Krise). */
+const STARTJAHRE = [
+  { jahr: 1973, label: "1973 – vor der Ölkrise" },
+  { jahr: 1987, label: "1987 – vor dem Crash" },
+  { jahr: 1999, label: "1999 – vor Dotcom" },
+  { jahr: 2007, label: "2007 – vor der Finanzkrise" },
+  { jahr: 2013, label: "2013 – vor 10 Jahren" },
+];
 
-  $("msciGrid").addEventListener("click", (e) => {
-    const c = e.target.closest(".mCell");
-    if (!c) return;
-    state.msciSel = { start: +c.dataset.s, ziel: +c.dataset.z };
-    renderMsciDetail();
+function renderStartWahl() {
+  $("startWahl").innerHTML = STARTJAHRE.map((s) =>
+    `<button data-start="${s.jahr}"${s.jahr === state.msciSel.start ? ' class="active"' : ""}>${s.label}</button>`).join("");
+  document.querySelectorAll("#startWahl button").forEach((b) => {
+    b.addEventListener("click", () => {
+      state.msciSel = { start: +b.dataset.start, ziel: MSCI.zielMax };
+      renderMsciDetail();
+    });
   });
 }
 
-/* Jahr-Regler ↔ Dreieck koppeln (Regler bewegen = Zelle wählen, Zelle tippen = Regler stellen) */
-function msciSelVonReglern(vonSlider) {
-  let s = val("inMsciStart"), z = val("inMsciZiel");
-  if (z <= s) { if (vonSlider === "start") z = Math.min(s + 1, MSCI.zielMax); else s = Math.max(z - 1, MSCI.startMin); }
-  state.msciSel = { start: s, ziel: z };
-  renderMsciDetail();
+/* Verlaufschart als Inline-SVG – keine externe Bibliothek (offline-tauglich). */
+function renderVerlaufChart(start, rate) {
+  const P = verlaufDaten(start, rate);
+  if (!P.length) return;
+  const W = 800, H = 340, mL = 66, mR = 16, mT = 18, mB = 34;
+  const x = (jahr) => mL + (jahr - start) / (MSCI.zielMax - start) * (W - mL - mR);
+  const maxWert = Math.max(...P.map((p) => p.wert), ...P.map((p) => p.eingezahlt));
+  const skala = Math.pow(10, Math.floor(Math.log10(maxWert)));
+  const yMax = Math.ceil(maxWert / skala) * skala;
+  const y = (v) => H - mB - v / yMax * (H - mT - mB);
+
+  const s = [];
+  // Krisenjahre als senkrechte Bänder
+  CONFIG.msciSparplan.krisen.filter((k) => k.bis >= start).forEach((k) => {
+    const x1 = x(Math.max(k.von, start)), x2 = x(Math.min(k.bis, MSCI.zielMax));
+    s.push(`<rect class="krisenBand" x="${x1}" y="${mT}" width="${Math.max(4, x2 - x1)}" height="${H - mT - mB}"/>`);
+    s.push(`<text class="krisenLbl" x="${x1 + 3}" y="${mT + 12}">${k.von}</text>`);
+  });
+  // Gitter und Y-Achsenbeschriftung
+  for (let i = 0; i <= 4; i++) {
+    const v = yMax / 4 * i, yy = y(v);
+    s.push(`<line class="gitter" x1="${mL}" y1="${yy}" x2="${W - mR}" y2="${yy}"/>`);
+    s.push(`<text x="${mL - 8}" y="${yy + 4}" text-anchor="end">${fmtEur0(v)}</text>`);
+  }
+  // Fläche ZWISCHEN Einzahlung und Depotwert – rot solange darunter, grün darüber.
+  // Genau hier wird sichtbar, dass es zwischendurch nach unten geht.
+  for (let i = 0; i < P.length - 1; i++) {
+    const a = P[i], b = P[i + 1];
+    const imMinus = (a.wert + b.wert) / 2 < (a.eingezahlt + b.eingezahlt) / 2;
+    s.push(`<polygon class="${imMinus ? "flMinus" : "flPlus"}" points="` +
+      `${x(a.jahr)},${y(a.wert)} ${x(b.jahr)},${y(b.wert)} ` +
+      `${x(b.jahr)},${y(b.eingezahlt)} ${x(a.jahr)},${y(a.eingezahlt)}"/>`);
+  }
+  const pfad = (feld) => P.map((p, i) => `${i ? "L" : "M"}${x(p.jahr).toFixed(1)},${y(p[feld]).toFixed(1)}`).join(" ");
+  s.push(`<path class="linieEin" d="${pfad("eingezahlt")}"/>`);
+  s.push(`<path class="linieWert" d="${pfad("wert")}"/>`);
+  // X-Achse mit Jahren
+  s.push(`<line class="achse" x1="${mL}" y1="${H - mB}" x2="${W - mR}" y2="${H - mB}"/>`);
+  P.forEach((p) => {
+    if (p.jahr % 10 === 0 || p.jahr === MSCI.zielMax) {
+      s.push(`<text x="${x(p.jahr)}" y="${H - mB + 18}" text-anchor="middle">${p.jahr}</text>`);
+    }
+  });
+  // Antippbare Punkte je Jahr
+  P.forEach((p) => {
+    const sel = p.jahr === state.msciSel.ziel;
+    s.push(`<circle class="punkt${sel ? " sel" : ""}" cx="${x(p.jahr)}" cy="${y(p.wert)}" r="${sel ? 7 : 3.5}" data-jahr="${p.jahr}"/>`);
+    s.push(`<rect class="tapZone" x="${x(p.jahr) - 9}" y="${mT}" width="18" height="${H - mT - mB}" data-jahr="${p.jahr}"/>`);
+  });
+  // Endwert beschriften
+  const letzte = P[P.length - 1];
+  s.push(`<text class="endLbl" x="${x(letzte.jahr)}" y="${y(letzte.wert) - 12}" text-anchor="end">${fmtEur0(letzte.wert)}</text>`);
+
+  const svg = $("verlaufChart");
+  svg.innerHTML = s.join("");
+  svg.querySelectorAll("[data-jahr]").forEach((el) => {
+    el.addEventListener("click", () => {
+      state.msciSel = { start, ziel: +el.dataset.jahr };
+      renderMsciDetail();
+    });
+  });
 }
-$("inMsciStart").addEventListener("input", () => msciSelVonReglern("start"));
-$("inMsciZiel").addEventListener("input", () => msciSelVonReglern("ziel"));
 
 function renderMsciDetail() {
   const { start, ziel } = state.msciSel;
-  $("inMsciStart").value = start; $("outMsciStart").textContent = start;
-  $("inMsciZiel").value = ziel;   $("outMsciZiel").textContent = ziel;
+  const rate = val("inMsciRate");
   const r = MSCI.matrix[start][ziel];
   const dauer = ziel - start;
-  const rate = val("inMsciRate");
   const fv = sparplanEndwert(rate, r, dauer);
+  const gewinn = fv.endwert - fv.eingezahlt;
   const krisen = CONFIG.msciSparplan.krisen.filter((k) => k.bis > start && k.von <= ziel);
-  const st = msciStatistik(dauer);
 
-  document.querySelectorAll("#msciGrid .mCell.sel").forEach((c) => c.classList.remove("sel"));
-  const cell = document.querySelector(`#msciGrid .mCell[data-s="${start}"][data-z="${ziel}"]`);
-  if (cell) cell.classList.add("sel");
+  document.querySelectorAll("#startWahl button").forEach((b) =>
+    b.classList.toggle("active", +b.dataset.start === start));
+  renderVerlaufChart(start, rate);
+
+  // Tiefster Punkt des Verlaufs: wie weit ging es zwischenzeitlich unter die Einzahlung?
+  const P = verlaufDaten(start, rate);
+  let schlimmster = null;
+  P.forEach((p) => {
+    const quote = p.wert / p.eingezahlt;
+    if (!schlimmster || quote < schlimmster.quote) schlimmster = { ...p, quote };
+  });
 
   $("msciDetail").innerHTML = `
     <div>
-      <div class="mdBig">${fmtNum(r)} % p. a.</div>
-      <div class="mdLbl">Sparplan Ende ${start} bis Ende ${ziel} (${dauer} ${dauer === 1 ? "Jahr" : "Jahre"}) –
-        zum Vergleich alle ${dauer}-Jahres-Zeiträume:
-        min. ${fmtNum(st.min)} % · Ø ${fmtNum(st.avg)} % · max. ${fmtNum(st.max)} %</div>
+      <div class="mdBig">${fmtEur0(fv.endwert)}</div>
+      <div class="mdLbl">Depotwert Ende ${ziel} – nach ${dauer} ${dauer === 1 ? "Jahr" : "Jahren"}
+        mit ${fmtEur0(rate)}/Monat. Eingezahlt ${fmtEur0(fv.eingezahlt)},
+        Wertzuwachs <b>${fmtEur0(gewinn)}</b> (${fmtNum(r)} % p. a.)</div>
     </div>
     <div>
-      <div class="mdBig">${fmtEur0(fv.endwert)}</div>
-      <div class="mdLbl">Endwert bei ${fmtEur0(rate)}/Monat – eingezahlt ${fmtEur0(fv.eingezahlt)},
-        Wertzuwachs ${fmtEur0(fv.endwert - fv.eingezahlt)}</div>
+      <div class="mdBig">${schlimmster && schlimmster.quote < 1 ? fmtPct(schlimmster.quote - 1, 0) : "nie im Minus"}</div>
+      <div class="mdLbl">${schlimmster && schlimmster.quote < 1
+        ? `tiefster Stand gegenüber den Einzahlungen (Ende ${schlimmster.jahr}) – danach ging es wieder aufwärts`
+        : `Der Depotwert lag zu keinem Jahresende unter den Einzahlungen.`}</div>
     </div>
     <div class="mdKrisen">
       <b>${krisen.length ? "Durchlebte Krisen – trotzdem dieses Ergebnis:" : "Keine große Krise im Zeitraum."}</b>
@@ -1034,8 +1085,8 @@ function renderMsciDetail() {
 function initMsci() {
   const D = CONFIG.msciSparplan;
   $("msciSub").textContent =
-    `Was ein monatlicher Sparplan (${D.produktBeispiel}) historisch gebracht hätte – jedes Kästchen antippen: ` +
-    `Startjahr trifft Zieljahr. Datenbasis: ${D.quelle}.`;
+    `Was ein monatlicher Sparplan (${D.produktBeispiel}) historisch gebracht hätte. ` +
+    `Startjahr wählen, dann einzelne Jahre im Verlauf antippen. Datenbasis: ${D.quelle}.`;
   $("msciSicherheit").innerHTML = msciSichereDauer
     ? `<b>Das Sicherheits-Argument:</b> In 50 Jahren MSCI World gab es ab <b>${msciSichereDauer.dauer} Jahren Spardauer ` +
       `keinen einzigen Zeitraum mit negativer Rendite</b> (schlechtester Fall: +${fmtNum(msciSichereDauer.min)} % p. a.). ` +
@@ -1046,7 +1097,7 @@ function initMsci() {
     `und Produktgebühren. Wertentwicklungen der Vergangenheit sind kein verlässlicher Indikator für die künftige ` +
     `Wertentwicklung. Kein Angebot und keine Anlageempfehlung – Produktauswahl und Geeignetheitsprüfung erfolgen ` +
     `im Beratungsgespräch. Quelle: <a href="${D.quelleUrl}" target="_blank" rel="noopener">Deutsches Aktieninstitut</a>, Stand 12/2023.`;
-  renderMsciGrid();
+  renderStartWahl();
   renderMsciDetail();
 }
 

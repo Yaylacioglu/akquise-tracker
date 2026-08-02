@@ -346,26 +346,25 @@
   .rateEdit input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
   .rateEdit input:focus{border-color:var(--amber);outline:none;}
 
-  /* MSCI-Renditedreieck */
-  .mWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
-  .mGridBox{min-width:760px;}
-  .mGrid{display:grid;grid-template-columns:repeat(50,1fr) 44px;gap:1px;}
-  .mCell{aspect-ratio:1/1;border-radius:2px;cursor:pointer;min-width:0;
+  /* Sparplan-Verlaufschart */
+  .chartWrap{width:100%;overflow:hidden;}
+  #verlaufChart{width:100%;height:auto;display:block;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  #verlaufChart .krisenBand{fill:var(--terracotta-light);opacity:0.55;}
+  #verlaufChart .gitter{stroke:var(--line);stroke-width:1;}
+  #verlaufChart .achse{stroke:var(--ink-faint);stroke-width:1.5;}
+  #verlaufChart .flPlus{fill:var(--sage);opacity:0.35;}
+  #verlaufChart .flMinus{fill:var(--terracotta);opacity:0.55;}
+  #verlaufChart .linieWert{fill:none;stroke:var(--sage-dark);stroke-width:3;
+    stroke-linejoin:round;stroke-linecap:round;}
+  #verlaufChart .linieEin{fill:none;stroke:var(--ink-faint);stroke-width:2;stroke-dasharray:6 4;}
+  #verlaufChart .punkt{fill:var(--sage-dark);cursor:pointer;}
+  #verlaufChart .punkt.sel{fill:var(--navy);}
+  #verlaufChart .tapZone{fill:transparent;cursor:pointer;}
+  #verlaufChart text{font-family:system-ui,sans-serif;fill:var(--ink-faint);font-size:12px;}
+  #verlaufChart text.krisenLbl{fill:var(--terracotta-dark);font-size:11px;font-weight:600;}
+  #verlaufChart text.endLbl{fill:var(--sage-dark);font-size:14px;font-weight:700;}
   .balkenSeg,.balkenSeg.luecke{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .mCell:active{transform:scale(1.25);}
-  .mCell.sel{outline:2.5px solid var(--navy);outline-offset:1px;z-index:2;position:relative;}
-  .mc5{background:#3D7A46;} .mc4{background:#6B9F71;} .mc3{background:#A8C7A0;}
-  .mc2{background:#EDE9DC;} .mc1{background:#D98B80;} .mc0{background:#B14A3E;}
-  .mRowLbl{font-size:10px;color:var(--ink-faint);display:flex;align-items:center;padding-left:4px;
-    grid-column:51;white-space:nowrap;}
-  .mAxe{display:grid;grid-template-columns:repeat(50,1fr) 44px;gap:1px;margin-top:3px;}
-  .mAxe span{font-size:9.5px;color:var(--ink-faint);writing-mode:vertical-rl;transform:rotate(180deg);
-    justify-self:center;line-height:1;}
-  .mAxe span.krise{color:var(--terracotta-dark);font-weight:700;}
-  .mKrisenDot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--terracotta);}
-  .mAxe .dotCell{display:flex;align-items:flex-start;justify-content:center;padding-top:1px;}
-  .mAxeLbl{font-size:11px;color:var(--ink-faint);margin-top:6px;}
   .mDetail{
     background:var(--paper);border-radius:10px;padding:16px 18px;margin-top:16px;
     display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;align-items:center;
@@ -762,31 +761,18 @@
         <div class="okBox" id="msciSicherheit" style="margin-top:0"></div>
       </div>
 
-      <div class="inGrid" style="margin-bottom:12px">
-        <div class="sl">
-          <div class="slHead"><label for="inMsciStart">Startjahr (Sparbeginn Ende …)</label><output id="outMsciStart"></output></div>
-          <input type="range" id="inMsciStart" min="1973" max="2022" step="1" value="1984" data-fmt="plain">
-        </div>
-        <div class="sl">
-          <div class="slHead"><label for="inMsciZiel">Zieljahr (Auszahlung Ende …)</label><output id="outMsciZiel"></output></div>
-          <input type="range" id="inMsciZiel" min="1974" max="2023" step="1" value="2023" data-fmt="plain">
-        </div>
-      </div>
+      <p class="hint" style="margin-bottom:8px">Wann hätte der Sparplan begonnen? Bewusst auch die schlechtesten Zeitpunkte antippen:</p>
+      <div class="segRow" id="startWahl" style="margin-bottom:14px"></div>
 
-      <div class="mWrap">
-        <div class="mGridBox">
-          <div class="mGrid" id="msciGrid"></div>
-          <div class="mAxe" id="msciAxe"></div>
-          <div class="mAxeLbl">Zieljahr (Verkauf) → · rechts: Startjahr · <span class="mKrisenDot"></span> = Krisenjahr</div>
-        </div>
+      <div class="chartWrap">
+        <svg id="verlaufChart" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid meet" role="img"></svg>
       </div>
       <div class="legende">
-        <span class="lg"><span class="sw" style="background:#3D7A46"></span>&gt; 8 % p. a.</span>
-        <span class="lg"><span class="sw" style="background:#6B9F71"></span>4–8 %</span>
-        <span class="lg"><span class="sw" style="background:#A8C7A0"></span>0–4 %</span>
-        <span class="lg"><span class="sw" style="background:#EDE9DC"></span>um 0 %</span>
-        <span class="lg"><span class="sw" style="background:#D98B80"></span>0 bis −10 %</span>
-        <span class="lg"><span class="sw" style="background:#B14A3E"></span>&lt; −10 %</span>
+        <span class="lg"><span class="sw" style="background:var(--sage-dark)"></span>Wert des Sparplans</span>
+        <span class="lg"><span class="sw" style="background:var(--ink-faint)"></span>eingezahlt</span>
+        <span class="lg"><span class="sw" style="background:var(--sage);opacity:.5"></span>im Plus</span>
+        <span class="lg"><span class="sw" style="background:var(--terracotta);opacity:.6"></span>unter der Einzahlung</span>
+        <span class="lg"><span class="sw" style="background:var(--terracotta-light);border:1px solid var(--terracotta)"></span>Krisenjahre</span>
       </div>
 
       <div class="mDetail" id="msciDetail"></div>
