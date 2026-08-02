@@ -859,11 +859,28 @@ const MSCI = (() => {
 
 state.msciSel = { start: 1984, ziel: MSCI.zielMax }; // Beispiel aus dem Beratungsalltag
 state.msciRateTouched = false;
-$("inMsciRate").addEventListener("input", () => {
-  state.msciRateTouched = true;
+
+/* Sparrate: Regler und eurogenaues Eingabefeld halten sich gegenseitig aktuell.
+   Führende Größe bleibt der Regler (inMsciRate), er wird überall ausgelesen. */
+function msciRateSetzen(wert, vonEingabefeld) {
+  const v = Math.max(1, Math.min(3000, Math.round(wert) || 1));
+  $("inMsciRate").value = v;
+  // Während des Tippens das Feld nicht überschreiben – sonst springt der Cursor
+  if (!vonEingabefeld) $("inMsciRateNum").value = v;
   renderMsciDetail();
   renderFazit(commonWerte());
+}
+$("inMsciRate").addEventListener("input", () => {
+  state.msciRateTouched = true;
+  msciRateSetzen(val("inMsciRate"), false);
 });
+$("inMsciRateNum").addEventListener("input", () => {
+  state.msciRateTouched = true;
+  const roh = parseFloat($("inMsciRateNum").value);
+  if (!isNaN(roh)) msciRateSetzen(roh, true);
+});
+/* Beim Verlassen des Feldes den gültigen Wert zurückschreiben (leer, 0, > 3.000) */
+$("inMsciRateNum").addEventListener("blur", () => { $("inMsciRateNum").value = val("inMsciRate"); });
 
 function msciFarbklasse(r) {
   if (r >= 8) return "mc5";
@@ -1169,9 +1186,9 @@ function renderKostenBlock() {
 function msciRateVorschlag(rate) {
   $("msciRateHint").textContent = "Vorschlag aus der Lücken-Rechnung: " + fmtEur0(rate) + "/Monat.";
   if (!state.msciRateTouched) {
-    const v = Math.max(10, Math.min(3000, Math.round(rate / 5) * 5));
+    const v = Math.max(1, Math.min(3000, Math.round(rate)));   // eurogenau übernehmen
     $("inMsciRate").value = v;
-    $("outMsciRate").textContent = fmtEur0(v);
+    $("inMsciRateNum").value = v;
     renderMsciDetail();
   }
 }
