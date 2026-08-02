@@ -421,6 +421,14 @@ function renderKrankheit(c) {
     `${fmtPct(r.emNetto / r.netto, 0)} des heutigen Einkommens. Bereits das Krankengeld kostet ` +
     `${fmtEur(r.netto - r.kgNetto)} im Monat.`;
 
+  // Plausibilität: passt das eingetragene Netto zum Bruttoeinkommen?
+  const quote = r.bruttoMonat > 0 ? r.netto / r.bruttoMonat : 0;
+  $("nettoPlausi").innerHTML = (quote > 0.85 || quote < 0.45)
+    ? `Hinweis: ${fmtEur0(r.netto)} netto sind ${fmtPct(quote, 0)} von ${fmtEur0(r.bruttoMonat)} ` +
+      `Bruttomonatsgehalt – üblich sind rund 55–70 %. Bitte prüfen, sonst verzerrt der ` +
+      `90-%-Deckel das Krankengeld.`
+    : "";
+
   // Einordnung: EM-Rente im Verhältnis zur späteren Altersrente – beantwortet
   // die häufige Rückfrage „ist die EM nicht die Hälfte der Altersrente?“
   const altersrente = calcGrv(c).brutto;

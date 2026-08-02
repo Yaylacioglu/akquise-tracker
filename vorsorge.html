@@ -559,7 +559,10 @@
           <div class="sl">
             <div class="slHead"><label for="inNetto">Aktuelles Nettoeinkommen / Monat</label><output id="outNetto"></output></div>
             <input type="range" id="inNetto" min="800" max="6000" step="50" value="2400" data-fmt="eur0">
-            <p class="hint">Folgt automatisch dem Jahresbrutto, bis der Regler bewegt wird.</p>
+            <p class="hint">Folgt automatisch dem Jahresbrutto, bis der Regler bewegt wird.
+              Steuert die <b>Lohnfortzahlung</b> und den 90-%-Deckel beim <b>Krankengeld</b>.
+              Die <b>EM-Rente</b> hängt dagegen am Jahresbrutto oben – sie wird aus Entgeltpunkten berechnet.</p>
+            <p class="hint" id="nettoPlausi" style="color:var(--terracotta-dark)"></p>
           </div>
           <div>
             <div class="numIn">
