@@ -115,6 +115,30 @@
     white-space:nowrap;
   }
   nav.tabs button.active{color:var(--navy);border-bottom-color:var(--amber);font-weight:600;}
+  .tabBadge{
+    display:inline-block;margin-left:5px;padding:1px 7px;border-radius:999px;
+    background:var(--amber-light);color:var(--amber-dark);font-size:11.5px;font-weight:700;
+    font-family:'Inter',sans-serif;vertical-align:1px;
+  }
+  .tabBadge.zero{background:var(--line);color:var(--ink-faint);}
+
+  /* ---------- Neueintragungen ---------- */
+  .neuRow{
+    display:flex;align-items:center;gap:11px;
+    background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:11px 14px;margin-bottom:7px;
+  }
+  .neuRow:hover{border-color:var(--ink-faint);}
+  .neuRow.taken{opacity:0.55;}
+  .neuRow input[type=checkbox]{width:17px;height:17px;cursor:pointer;accent-color:var(--navy);flex:none;}
+  .neuBody{min-width:0;flex:1;}
+  .neuName{font-size:14.5px;font-weight:600;line-height:1.3;word-break:break-word;}
+  .neuMeta{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .neuTakenTag{
+    flex:none;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;
+    background:var(--sage-light);color:var(--sage-dark);
+  }
+  .neuMore{text-align:center;padding:14px;color:var(--ink-faint);font-size:13px;}
 
   main{padding:24px 28px 60px;max-width:1000px;margin:0 auto;}
 
@@ -316,6 +340,7 @@
   <nav class="tabs">
     <button data-tab="heute" class="active">Heute</button>
     <button data-tab="kontakte">Alle Kontakte</button>
+    <button data-tab="neu">Neueintragungen <span class="tabBadge" id="neuBadge">0</span></button>
     <button data-tab="statistik">Statistik</button>
   </nav>
 
@@ -365,6 +390,33 @@
         <button class="btn sm" id="bulkClearKontakte">Auswahl aufheben</button>
       </div>
       <div id="kontakteList"></div>
+    </div>
+
+    <div id="tab-neu" style="display:none;">
+      <div class="rowBetween">
+        <div>
+          <h2 class="sectionTitle">Neu im Handelsregister · NRW</h2>
+          <p class="subText" id="neuStand">Wird geladen…</p>
+        </div>
+        <button class="btn primary" id="neuImportBtn">Auswahl als Kontakte übernehmen</button>
+      </div>
+      <div class="filterRow">
+        <input type="text" id="neuSearch" placeholder="Suche nach Firma oder Registergericht...">
+        <select id="neuGericht"><option value="">Alle Registergerichte</option></select>
+        <select id="neuRechtsform"><option value="">Alle Rechtsformen</option></select>
+        <select id="neuVorhanden">
+          <option value="offen">Nur noch nicht übernommene</option>
+          <option value="">Alle anzeigen</option>
+        </select>
+      </div>
+      <div class="rowBetween" style="margin-bottom:12px;">
+        <span class="quickHint" id="neuCount" style="margin:0;"></span>
+        <div style="display:flex;gap:8px;">
+          <button class="btn sm" id="neuSelectAll">Alle sichtbaren auswählen</button>
+          <button class="btn sm" id="neuClear">Auswahl aufheben</button>
+        </div>
+      </div>
+      <div id="neuList"></div>
     </div>
 
     <div id="tab-statistik" style="display:none;">
@@ -723,6 +775,7 @@ async function enterApp(){
   await fetchContacts();
   populateStatusSelects();
   renderAll();
+  loadNeueintragungen();
 }
 
 document.getElementById('logoutBtn').onclick = async ()=>{
@@ -740,7 +793,7 @@ document.querySelectorAll('nav.tabs button').forEach(btn=>{
   btn.onclick = ()=>{
     document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    ['heute','kontakte','statistik'].forEach(t=>{
+    ['heute','kontakte','neu','statistik'].forEach(t=>{
       document.getElementById('tab-'+t).style.display = (t===btn.dataset.tab)?'block':'none';
     });
     renderAll();
@@ -769,6 +822,7 @@ function renderAll(){
   renderHeute();
   renderKontakte();
   renderStatistik();
+  renderNeu();
   updateAllBulkBars();
 }
 
@@ -1023,6 +1077,153 @@ document.getElementById('importSave').onclick = async ()=>{
   renderAll();
   alert(inserted.length+' Kontakt(e) importiert.');
 };
+
+/* ---------------- Neueintragungen Handelsregister ---------------- */
+let neuData = null;
+let neuLoaded = false;
+let neuSelected = new Set();
+
+function neuKey(f){ return (f.firma||'').toLowerCase().trim(); }
+
+// Firmennamen vergleichbar machen: Rechtsformzusaetze und Sonderzeichen raus.
+function neuNorm(name){
+  return String(name||'')
+    .toLowerCase()
+    .replace(/\(haftungsbeschr[aä]nkt\)/g,' ')
+    .replace(/\b(gmbh|ug|ag|kg|ohg|mbh|mbb|gbr|egbr|e\.?\s?k\.?|e\.?\s?v\.?|eg|co\.?|und|&)\b/g,' ')
+    .replace(/[^a-z0-9äöüß]+/g,' ')
+    .trim();
+}
+
+async function loadNeueintragungen(){
+  try{
+    const res = await fetch('data/neueintragungen.json?v='+Date.now());
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    neuData = await res.json();
+  }catch(e){
+    console.error('Neueintragungen konnten nicht geladen werden', e);
+    neuData = null;
+  }
+  neuLoaded = true;
+  if(neuData){
+    const gerichte = [...new Set(neuData.firmen.map(f=>f.gericht))].sort((a,b)=>a.localeCompare(b,'de'));
+    const formen = [...new Set(neuData.firmen.map(f=>f.rechtsform))].sort((a,b)=>a.localeCompare(b,'de'));
+    document.getElementById('neuGericht').innerHTML =
+      '<option value="">Alle Registergerichte</option>' + gerichte.map(g=>`<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
+    document.getElementById('neuRechtsform').innerHTML =
+      '<option value="">Alle Rechtsformen</option>' + formen.map(r=>`<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
+  }
+  renderNeu();
+}
+
+function neuVisible(){
+  if(!neuData) return [];
+  const q = (document.getElementById('neuSearch').value||'').toLowerCase().trim();
+  const g = document.getElementById('neuGericht').value;
+  const r = document.getElementById('neuRechtsform').value;
+  const v = document.getElementById('neuVorhanden').value;
+  const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
+  return neuData.firmen.filter(f=>{
+    if(g && f.gericht!==g) return false;
+    if(r && f.rechtsform!==r) return false;
+    if(q && !(f.firma.toLowerCase().includes(q) || f.gericht.toLowerCase().includes(q))) return false;
+    if(v==='offen' && bekannt.has(neuNorm(f.firma))) return false;
+    return true;
+  });
+}
+
+function renderNeu(){
+  const list = document.getElementById('neuList');
+  if(!list) return;
+  const standEl = document.getElementById('neuStand');
+  const badge = document.getElementById('neuBadge');
+
+  if(!neuData){
+    standEl.textContent = neuLoaded ? 'Liste konnte nicht geladen werden.' : 'Wird geladen…';
+    list.innerHTML = neuLoaded
+      ? '<div class="empty"><div class="mark">📄</div><div>Noch keine Liste vorhanden. Sie wird montags automatisch aktualisiert.</div></div>'
+      : '';
+    badge.textContent = '0'; badge.classList.add('zero');
+    return;
+  }
+
+  const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
+  const offen = neuData.firmen.filter(f=>!bekannt.has(neuNorm(f.firma))).length;
+  badge.textContent = offen;
+  badge.classList.toggle('zero', offen===0);
+
+  const stand = neuData.stand ? fmtDate(neuData.stand) : '—';
+  standEl.textContent = `${neuData.firmen.length} Firmen · Stand ${stand} · ${offen} noch nicht übernommen`;
+
+  const rows = neuVisible();
+  document.getElementById('neuCount').textContent =
+    `${rows.length} von ${neuData.firmen.length} angezeigt · ${neuSelected.size} ausgewählt`;
+
+  if(rows.length===0){
+    list.innerHTML = '<div class="empty"><div class="mark">✓</div><div>Keine Treffer für diese Filter.</div></div>';
+    return;
+  }
+
+  const MAX = 400;
+  list.innerHTML = rows.slice(0,MAX).map(f=>{
+    const k = neuKey(f);
+    const taken = bekannt.has(neuNorm(f.firma));
+    return `<div class="neuRow${taken?' taken':''}">
+      <input type="checkbox" data-k="${escapeHtml(k)}"${neuSelected.has(k)?' checked':''}${taken?' disabled':''}>
+      <div class="neuBody">
+        <div class="neuName">${escapeHtml(f.firma)}</div>
+        <div class="neuMeta">${escapeHtml(f.gericht)} · ${escapeHtml(f.rechtsform)}</div>
+      </div>
+      ${taken?'<span class="neuTakenTag">im Tracker</span>':''}
+    </div>`;
+  }).join('') + (rows.length>MAX ? `<div class="neuMore">… ${rows.length-MAX} weitere. Grenze die Filter ein, um sie zu sehen.</div>` : '');
+
+  list.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.onchange = ()=>{
+      if(cb.checked) neuSelected.add(cb.dataset.k); else neuSelected.delete(cb.dataset.k);
+      document.getElementById('neuCount').textContent =
+        `${rows.length} von ${neuData.firmen.length} angezeigt · ${neuSelected.size} ausgewählt`;
+    };
+  });
+}
+
+try{
+  ['neuSearch','neuGericht','neuRechtsform','neuVorhanden'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener(id==='neuSearch'?'input':'change', renderNeu);
+  });
+  document.getElementById('neuSelectAll').onclick = ()=>{
+    const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
+    neuVisible().forEach(f=>{ if(!bekannt.has(neuNorm(f.firma))) neuSelected.add(neuKey(f)); });
+    renderNeu();
+  };
+  document.getElementById('neuClear').onclick = ()=>{ neuSelected.clear(); renderNeu(); };
+  document.getElementById('neuImportBtn').onclick = async ()=>{
+    if(!neuData || neuSelected.size===0){ alert('Bitte zuerst Firmen auswählen.'); return; }
+    const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
+    const picked = neuData.firmen.filter(f=>neuSelected.has(neuKey(f)) && !bekannt.has(neuNorm(f.firma)));
+    if(picked.length===0){ alert('Alle ausgewählten Firmen sind bereits im Tracker.'); neuSelected.clear(); renderNeu(); return; }
+    if(!confirm(picked.length+' Firma(en) als neue Kontakte mit Status "Kalt" anlegen?')) return;
+    const stand = neuData.stand ? fmtDate(neuData.stand) : '';
+    const rows = picked.map(f=>({
+      firma: f.firma,
+      ansprechpartner:'', telefon:'', email:'',
+      adresse: f.gericht,
+      bewertung:'', webseite:'', objekte:null,
+      status:'kalt',
+      notizen:'Handelsregister-Neueintragung, Stand '+stand+'. Rechtsform: '+f.rechtsform+
+              '. "'+f.gericht+'" ist das Registergericht, nicht die geprüfte Firmenanschrift.',
+      calls: [],
+    }));
+    const inserted = await dbInsertMany(rows);
+    if(inserted.length){
+      contacts = [...inserted, ...contacts];
+      neuSelected.clear();
+      renderAll();
+      alert(inserted.length+' Kontakt(e) übernommen.');
+    }
+  };
+}catch(e){ console.error('Neueintragungen-Bindung fehlgeschlagen', e); }
 
 /* ---------------- Voice-to-text (Diktieren) ---------------- */
 const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
