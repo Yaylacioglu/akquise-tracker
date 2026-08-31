@@ -1,0 +1,8455 @@
+{
+ "bundesland": "Nordrhein-Westfalen",
+ "kw": 36,
+ "stand": "2026-08-28",
+ "erstellt": "2026-08-31",
+ "quelle": "online-handelsregister.de/neueintragungsliste",
+ "hinweis": "Nur Kapital- und Personenhandelsgesellschaften. Vereine (e.V.), Genossenschaften (eG) und eingetragene GbR (eGbR) sind herausgefiltert.",
+ "firmen": [
+  {
+   "firma": "360° Company GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AIOX Gebäude- & Objektservice UG (haftungsbeschrän...",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Annett´s Alltags- und Seniorenbetreuung UG (haftun...",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AuraGamedev GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bauens Bau & Finanz UG (haftungsbeschränkt) & Co....",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bauens Bau & Finanz Verwaltungs UG (haftungsbeschr...",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Brixstone Capital GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cannabox GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CBTS Solutions UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Centroplan Energy GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "City-Parking Solutions GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cliff Advisory GmbH & Co. KG",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Cliff Advisory Verwaltungs GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CS Holding UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "di.monta GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Die Heilmanufaktur Aachen GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DKS Europa-Allee Projekt Verwaltung GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Edel Holding GmbH Steuerberatungsgesellschaft",
+   "gericht": "Aachen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "EMKA GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EVIO UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EVO 631. GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EVO 636. GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Excited Quanta GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "F-Bureaucracy UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Heatster GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heim Holding GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HME BAU GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "India House Saini GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "IPAC Health Education GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kronshage Technik UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lichtblick Klara UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lutz Helbig GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mangold WS GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mavigök Bau e.K.",
+   "gericht": "Aachen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Mavigök Bau und Bautenschutz GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Melontico GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mema Bau Hochbau GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mohr & More Communication e.K.",
+   "gericht": "Aachen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "naion.tech GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NK Alpha Jobs Global UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NordWest-Com GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OCE ventures UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "pbo Umwelt und Prognose GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Piesel Piepser GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Quast Ventures UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Rutten Transport und Logistik GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schiffers & partners Rhld. GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "Sendlinger Grundvermögen Verwaltungs GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sixt West GmbH & Co. KG",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "SmileLogic.ai GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "sun seven GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SURA GmbH & Co. KG",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "SURA Verwaltungs GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TaxAachen UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "thirteen seven Development GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "transportami AG",
+   "gericht": "Aachen",
+   "rechtsform": "AG"
+  },
+  {
+   "firma": "Triesoul UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Valeno UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "VARENIQ Onlinehandel UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Verhaelen Bau GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Viktoria Baumanagement Unternehmergesellschaft (ha...",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Voqel.AI GmbH",
+   "gericht": "Aachen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WOHNO UG (haftungsbeschränkt)",
+   "gericht": "Aachen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Aura Flavors of India UG (haftungsbeschränkt)",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bathe Bedachungen GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Böhmer Holding GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Brickscape UG (haftungsbeschränkt)",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CareXOT GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CH Holding GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Chakroun Holding GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Conversio DE GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CORE SIX GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CPJ Bau UG (haftungsbeschränkt)",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DFP Pott Holding UG (haftungsbeschränkt) & Co. KG",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG & Co. KG"
+  },
+  {
+   "firma": "Enser Estrich Werk GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Greune Immobilien GmbH & Co. KG",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "hees energy GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Henne Ruhr Consulting GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HSK Vertriebswerk GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jan Fobbe e.K.",
+   "gericht": "Arnsberg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "light 11 GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Limanski Holding UG (haftungsbeschränkt)",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LippeVital Ergotherapie GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Livon Property Management GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LoyalPrinter GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lübke Bau e.K.",
+   "gericht": "Arnsberg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "MOLL-prd GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mönig Vermögensbeteiligungs GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "päd-werk EGH GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Precision Histogenomics Holding GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PROGO GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RaiffeisenVolt Asset Management GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ribel Holding GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sallys Pflegedienst GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Scutum-Systems Trade GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Shlash Logistik UG (haftungsbeschränkt)",
+   "gericht": "Arnsberg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SURATEK e.K.",
+   "gericht": "Arnsberg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "U & P GmbH & Co. KG",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "U & P Verwaltungs GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ViDeVu GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Weyhausen An der Klanze GmbH",
+   "gericht": "Arnsberg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Artelt Holding UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ARWORA living GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Autohaus Erdbrügger GmbH & Co. KG",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Autoservice Büsching Verwaltungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "aventor Holding GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BelVita Transport GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BODDS UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Böden Online GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CaDa GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "core.two Immobilienverwaltungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DIGIT AI GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dittmar Verwaltungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EbTec GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FRESA Kälte-Klimatechnik GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gerda-Grube-Parkhaus GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Güngör Kurier- und Transportdienste UG (haftungsbe...",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "HBS Heinz Bals GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HYPE Ventures GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jondal Energiegesellschaft mbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KRUPIC Holding UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "KurstadtConnect GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "L::eS UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MNZR Consulting UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MUG Umweltdienste NordWest GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OWL-Quartier GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Place4Life Real Estate Holding GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Polypack GmbH & Co. Verpackungsmaschinen",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ramöller Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Reinhard Schwier Beteiligungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rose Krankenfahrdienst GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sportpark Eickum UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Stephan Müller Verwaltungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Swierzy Immobilien- und Maschinenverwaltung UG (ha...",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Thoss Beteiligungs GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vitalis IT UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Vitro Laser GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VIVARO Immobilien GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wagner Capital UG (haftungsbeschränkt)",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Westfalen Grund- und Werte GmbH",
+   "gericht": "Bad Oeynhausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "33SIEBEN GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AILE Robotics UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Alves Management UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Biofidus GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BV Charter GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Café Möller Verwaltungs GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Canna - Nation UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Club Sam´s e. K., Inhaber Serkan Besiróglu",
+   "gericht": "Bielefeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Dreyer Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Expert Gutachten OWL GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fluxtec GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "getspecialfasteners GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Grothaus GmbH & Co. KG",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Grothaus Verwaltungs GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gulpinar Holding UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Heiler Holding UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hoelzel Holding GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HRS Verwaltungs GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jörg Grothaus e.K.",
+   "gericht": "Bielefeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Julia Völzow Fotografie e.K.",
+   "gericht": "Bielefeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Kamphof SP GmbH & Co. KG",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Kamphof SP Verwaltungs GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Margenau Energie GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MSPmate GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MYKU BEE GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Noves GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OH Beauty Auraa UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Schönefeldt Immobilien GmbH & Co. KG",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Seekrug am Obersee GmbH & Co. KG",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Seekrug am Obersee, Inhaber Christian Schulz e.K.",
+   "gericht": "Bielefeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "SheFa Pharmahandel GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "spring techno Verwaltungs- GmbH",
+   "gericht": "Bielefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Tecto UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Tetti Verwaltung UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Yigiter Holding UG (haftungsbeschränkt)",
+   "gericht": "Bielefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "B & R GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bakas International Spedition GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Better Physio GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blessed Food I GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BOFS Holding GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "COMKOM Base GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DaheimHerz Alltagshilfe GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DaheimHerz Pflege GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "denki labs UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Die Baulöwen GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Digital Ambassador UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dossha Europe UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Driller Bochum GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EPP Unna GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FALKE Direkt GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FM Bausachverständige GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GAGFAH Beteiligungs GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gastro Team Donath UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "General Multivisions GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HausWatt GmbH & Co. KG",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "knipski GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "lab medien UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Meridian Health UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MERVAL DIGITALE UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Nexpipe GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nola Care AquiCo 1 GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Pegasus Duisburg GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PicoShape GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Primex Dienstleistungs GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Pro Garant GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Quattro FleetLink UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "RR Prüftechnik Service GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RSX exklusive GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VITA-GUARD-RETTUNGSSCHULE GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wildkühlsysteme GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WohnVest GmbH",
+   "gericht": "Bochum",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ZERRIN HOLDING UG (haftungsbeschränkt)",
+   "gericht": "Bochum",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "5BWS GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Albrecht Holding GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Andreas Berger e.K.",
+   "gericht": "Bonn",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Axis One GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Batsch Holding GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BB Capital Holding GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bonnataxi UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dachtechnik Böhm GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dyshi UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Exner Holding GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Express Monteur Zimmer GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fahrschule Pro GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Florack Holding UG (haftungsbeschränkt) & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "UG & Co. KG"
+  },
+  {
+   "firma": "Florack Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "FM Immobiliengesellschaft mbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "G&B Wegbegleiter Kinder- und Jugendhilfe GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gala-Bau König UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Godesberg Nord Immobilien Verwaltungs GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Habibi Power GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heikamp Finanzkompetenz UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hodforming Extreme Lightweight Solutions GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HSU 10 UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "IF Italy Food Gastro GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "IMS Motion GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ivan Golovko e.K.",
+   "gericht": "Bonn",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Janssen Besitz Verwaltungs-GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jaros Invest GmbH & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "jemoes Verwaltungsgesellschaft mbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JJF Real Estate GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kissel Immobilienservice UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "knallkorall UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Konstant Jugendhilfe GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KundenLoop UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Max Schwarz UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MW Immobilien GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "nooTill Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "nurelia UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Phil Peters KG",
+   "gericht": "Bonn",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Pionke Grundbesitzverwaltung KG",
+   "gericht": "Bonn",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Preston Consira GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RAU Mobility GmbH & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "RAU Mobility Verwaltungs GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Salmo Transport GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Scripta Viva Verlagsgesellschaft mbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SMG - Steubenring Music Group UG (haftungsbeschrän...",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SMV Immo GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SnackSnapper+ GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Soganci UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Stadtoldendorf MFH GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Steinblank UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Stephan Türck GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Superes GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TB VV Holding GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TE green Mobility Service Group Rheinland UG (haft...",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Ultra Taxi GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Validatus UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Vier Wände GmbH",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "von der Au Immobilien e.K. Inhaber: Gerd Hemb",
+   "gericht": "Bonn",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "W & U Maschinenbau UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Wagner Holding UG (haftungsbeschränkt) & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "UG & Co. KG"
+  },
+  {
+   "firma": "Wagner Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "We3C Europe gUG (haftungsbeschränkt)",
+   "gericht": "Bonn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Wing Star Rent GmbH & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "WS Eigentumsverwaltung GmbH & Co. KG",
+   "gericht": "Bonn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Yournetworld e.K.",
+   "gericht": "Bonn",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "AH-Mietpark Merten GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ALTA Real Estate II GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Am Zoll GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aureon Medical GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bauerngut Niessing GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Bauerngut Niessing Verwaltungs GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Belong Padel GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bioenergie Altenberge GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Bioenergie Altenberge Verwaltungs-GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BLE UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Brauhaus Stephanus GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "CleanA GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dieter Hovestadt e.K.",
+   "gericht": "Coesfeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Emming Immobilien GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fahrzeuge Loker GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Freizeit Center Herzog GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fun on Ice UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hoeck Familien GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Hoff. Ing. Verwaltungs GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JH Invest GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kerina e.K.",
+   "gericht": "Coesfeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "KUPPA GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Küpper & Froböse OHG",
+   "gericht": "Coesfeld",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "LGH GmbH & Co KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Linke Tiefbau GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Linus Wandzioch UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Metallbau & Bauschlosserei Overkamp GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Moubis Holding GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Move Bocholt GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nienhaus GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Nolte Schramm Technical Services GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Overkamp Verwaltungsgesellschaft mbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Papersea GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Patrizienne GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "praemium finance GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RemoteFlats GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Riela Care GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SB Besitz GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schloss Senden Service-GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schmeing Werkfachmarkt & Landtechnik GmbH & Co. KG",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Semeion Data GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Shelly Sapphire Ink UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Teschner UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Thomas Stenvers Besitzunternehmen e.K.",
+   "gericht": "Coesfeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "TipTipp UG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Velion Holding GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Velion Immobilien GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Velion Wohnbau GmbH",
+   "gericht": "Coesfeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Weiße Elfen Münsterland gUG (haftungsbeschränkt)",
+   "gericht": "Coesfeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WML Facility Services e.K.",
+   "gericht": "Coesfeld",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "2Pro-Immobilien UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Abbruchtechnik NRW UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Argentarius Steuerberatungsgesellschaft mbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Arthur Dechant e.K.",
+   "gericht": "Dortmund",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Arus Service UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Aviators PPL Flight School GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Baulogistik Süd GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Belen Körne UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Börgers Planungsingenieure GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bravo Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Butgereit MDI UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CareService24 GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Coll Barcelo UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DAFSA Projektbau GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "David Bauer Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DB Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dechant Performance GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "e2ik Consulting UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EHB Verwaltung UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Elektrotechnik Küssner UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Erinpark Immobilien GmbH & Co. KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "F&S Transporte GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FF Global Services UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "FocusOne Management UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gartenservice NRW UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gastro Germany e.K.",
+   "gericht": "Dortmund",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "GB Capital Holding UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "GO! Express & Logistics Dortmund GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GVF Service UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "HBH GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hortig & Insel Vermögensverwaltung GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Horus Versicherungskonzepte GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hosseini Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HS28 Immobilien GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "INCAHO GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kersten Ventures UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Khora Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KW Buchhaltung UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LT InveStra GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LZ Co-Investor GmbH & Co. KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Maaß Scholz & Partners Steuerberatungsgesellschaft...",
+   "gericht": "Dortmund",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "Maler & Bau Design DLX GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MATT Security und Dienstleistungen UG (haftungsbes...",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Menschenkompass GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MenschenMobil UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MF Ausbau und Montage Service GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MHK Dienstleistungen GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Morberg GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MSD Invest GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Neumann Service UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Neumann´s Haus und Gartenpflege UG (haftungsbeschr...",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ON Energy Solarprojekt Fünfundsiebzig GmbH & Co. K...",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ONH GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PALDO GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Phoenix Bau & Service UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Plantiflor GmbH & Co.KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Plinty UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PottExpress GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PP Handel GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PUMO GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ralf Prothmann e. K.",
+   "gericht": "Dortmund",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "RM Immo GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rösler Polymers GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Royal Gastro Frischcenter GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SAFE Jugendhilfe GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sasse Steuerberatungsgesellschaft mbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schlüter & Beyer GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schöning Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sicard&Lüders ImmoPartners GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Steinkamp GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TWININVEST UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "UP Projekt 04 GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Urbanpower Projects GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vehling Mobility GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ViaCore Travel GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WDB Digital UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WIL GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Windpark Bliesen GmbH & Co. KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Windpark Größnitz GmbH & Co. KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Windpark Herzberg GmbH & Co. KG",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Yayla Holding GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Yüce Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Dortmund",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Zentachain GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zeretzke Gewerbeimmobilien GmbH",
+   "gericht": "Dortmund",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "3E Energy Vision GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Agvo Design & Mobiltiy UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Alexander Anders e. K.",
+   "gericht": "Duisburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Anatolien Management GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AS EXPORT GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aygenius GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AYT Dienstleistung GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Baukraft N.R.W. GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bazaj Bau UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BDM Textil GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BKB Druck GmbH & Co. Kommanditgesellschaft",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bl-GE Holding GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BOLLI Betriebs GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Colsero Beteiligungs GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Comparivo UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dilayc UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Fliesen Seifert GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frank Mellies e.K.",
+   "gericht": "Duisburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "FreshX Technology Operations UG (haftungsbeschränk...",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gabriele Philippi GmbH & Co. KG",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Gastro Orient GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Go Up Projects GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gram Holding UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "H+K Systemgastronomie Betriebs GmbH + Co. KG",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Haubond Logistics GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hetzel Immobilien GmbH & Co. KG",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Hoffmann Liegenschaften II Verwaltungs UG (haftung...",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "IchKann Erlebnis gGmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "gGmbH"
+  },
+  {
+   "firma": "IMMOPOINT NIEDERRHEIN KG",
+   "gericht": "Duisburg",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Italbar Krefeld UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "JPV Holding GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JUKA Ventures UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kre8ive Evolution UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kristic und Dermanowicz Holding GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LGSC UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Linde Bau UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LTP Rail GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LUMI Event & Services UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "M&G Holding GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "menea Beratungs- und Beteiligungs GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mercator Verwaltungs-GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nagle GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nehring Europacking GmbH & Co. KG",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Nguyen Khang Tran Holding UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NovaEstate GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Plücker Holding GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Primus Immobilien GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Projekt ARZ 6940 GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Reichert Plan UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "REV-M Gmbh",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ride GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RU Brandschutz GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RU Vermögensverwaltung GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ruhrmont GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sabine Hospital Hünxe e.K.",
+   "gericht": "Duisburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Schmitz Grundbesitz Verwaltungs-GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schweikart Handelsvertretung GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "sens.ation GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SK Handels und Dienstleistungs GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "T.L.C Transport Logistik Consulting UG (haftungsbe...",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Technische Dienste Linstädt GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Therapiezentrum Königsgalerie Verwaltungs UG (haft...",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Tool Time NRW GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Verwaltio UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WZ Essentials UG (haftungsbeschränkt)",
+   "gericht": "Duisburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Zörner Consulting GmbH",
+   "gericht": "Duisburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ARGE Weihnachtsmarkt Merode GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ArtClubbing GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bantu Nation UG (haftungsbeschränkt)",
+   "gericht": "Düren",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BikeAround Düren GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blaustein Solutions UG (haftungsbeschränkt)",
+   "gericht": "Düren",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Drăghici Logistik GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ealytics group Holding GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Haus & Garten Dienstleistungen UG (haftungsbeschrä...",
+   "gericht": "Düren",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ICOND GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JaYu Ventures GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Limitless Health UG (haftungsbeschränkt)",
+   "gericht": "Düren",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Messerschmitt Mobility GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MN Energy Solutions GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MRS Holding GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NEUSITE GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nutva GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Orthopädie Fergen GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Philip Böhr Garten- und Landschaftsbau e.K.",
+   "gericht": "Düren",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "PRISMARE Reisebüro GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Prof. Ruschitzka Consulting GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "proXmolds GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RATH Immobilien GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sascha Wolff Bauunternehmung e.K.",
+   "gericht": "Düren",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Semptys GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Subterra Dynamics GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VDS optilab Chromatographietechnik GmbH",
+   "gericht": "Düren",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "1A Alltagshelfer e.K.",
+   "gericht": "Düsseldorf",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "4BIZZ Solutions UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "9K5 GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "A+ Gebäudetechnik GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ABSF Energie GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ABSF GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ADORA Verwaltungsgesellschaft mbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AK Capital UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Akdemir Gastro GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Akia Mobile-Service GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Albrecht & Ochs OHG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "Aldenhoff & Schäfer Immobilien GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alfrat Sicherheitsdienste GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alici GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alloheim Senioren-Residenzen Einundvierzigste GmbH...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ALN Methodik GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altora Technologies UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "André Lautermann Immobilienberater GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "André Lautermann Sachverständigen GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ANFLADAGIMA UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Apex Development GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Apex Hospitality GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AR Media GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ARC pluswerk Geschäftsführungs-GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ASTA Projekt GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ASV MotorSecure GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Atop Consulting GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aurantis Holding UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Auxerrois Immobilien GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AVP Systems GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AZIZrobotics GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Basycon Vermögensholding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BauVanta GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blck Horizon Solutions GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BOLDBRANDS Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bonaparte Creative GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Chargeurs Wool Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Charleston Düsseldorf GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CIQTEK Europe GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CK Internationale FISKAL GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cremer Bürowerk Unternehmergesellschaft (haftungsb...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CustomsBest UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "D2 Estate GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DA Bau- und Immobilien Service GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DATAFINANCE Vermittlung & Beratung UG (haftungsbes...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DAYO Bewegungshelden GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DCP Projekt 001 B.V. & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Decebal-Daniel Lupu e.K.",
+   "gericht": "Düsseldorf",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Deniz Sivrel Holding UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Diamant 322. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Diamant 323. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DioStar UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DNC Gebäudeinstandhaltungs GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Domabaem Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dr. Kostara Consulting UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DXPX Capital Lighthearted Ai GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "DXPX Capital Loop DX GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Eigenlob Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EMKW Projektgesellschaft mbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ener-Q Energie im Quartier GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Enerwe Haustechnik GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EREO Grundbesitz 10 UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EREO Grundbesitz 6 UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EREO Grundbesitz 8 UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EVO 623. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EVO 632. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EYS Umwelttechnik GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fact Base Germany GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Falk Industries GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Farsol Services GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FineArt Koe GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fliits Germany GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Freddy Bioenergy GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Friedrich Apotheke MOVE OHG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "Gabbiano UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gerresheimer Primary Packaging Plastics GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Global Nirwana UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Glüxpänz gGmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "gGmbH"
+  },
+  {
+   "firma": "Göldenitz-Vermögensverwaltung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Greenquadrat Projektentwicklung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Greiner Handels UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gronowski VermögensVerwaltung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Groten GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GrundInvest Immobilien 35 GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Grüne Passion GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Happy Hills GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Harbour Intelligence GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heroes Düsseldorf GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Heroes Freiburg GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Heroes Trashbox UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "HTL Concept GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ilyas Altioglu Vermögensverwaltungs UG (haftungsbe...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Immobiliaris Invest GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "In Marketing We Trust GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "iSTRX Neunburg GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Itzamu UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "JTT Großplastiken GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jungesblut consulting GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kaiser Taxi GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KATHARINENHOF Service Wohnen Beteiligungs GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Keller Prozess Technik GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KK Ventures UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kontor AK26 UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kronen 3232 GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KRUPKA Concept GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KW Unternehmensberatung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LANDSPIDER TIRE GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "lenaa UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lewijo Holding UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lexen Engineering UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Limberg & Schmidt Immobilien GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LIVÉRA Property Care GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LogCo Kremmen GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "M-Art GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "M&M Maribella Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Malzkorn Interiors Frankfurt GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Markwart Lüftung Heizung Klima GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Master of Fix & Flipp GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Masurensee GGS Bauträgergesellschaft mbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MEGATECH Operations UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Mehner Immobilienverwaltung UG (haftungsbeschränkt...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MFCI Europe GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MMB Ventures GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MONTROC GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mouhim Holding UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MPA Invest GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MS Vermögensverwaltung UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Mubell Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MVZ Augenzentrum Langenfeld GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "n-factorial D 2250 GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nathan Studio UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NELYFA UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Neslihan Altioglu Vermögensverwaltungs UG (haftung...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NMM UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Objekt Noervenich GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OPN Technologies GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ostertag DeTeWe Group GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "P2 Diagnostics GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "pertus 212. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "pertus 213. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "pertus 214. GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Pineca Play GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Planium 2. Beteiligungsgesellschaft mbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "preussentac GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Projekta PDW 76 UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Prosec UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Quantory Solutions GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Recommerce Devices and Solutions Deutschland GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "REGO UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ReNova Physio und Sport GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RESIDAI UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "REVEON GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinsee 1252. V V GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinsee 1259. V V GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinsee 1260. V V GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinsee 1262. V V GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinsee 1263. V V GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Riech Immobilien GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "ROSINTA Grundstücks-Vermietungsgesellschaft mbH &...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sandra Weber GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Schwarz Press UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SD Hotels GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "sds-publ UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SHBS GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SICHTHELD GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Signium International GmbH Stefan Müller",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SO Immobilien Invest GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Spatium Invest GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Specter Sensing GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Steuerberatungskanzlei Klein GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Suada Berhisha e.K.",
+   "gericht": "Düsseldorf",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "SV Deutschland UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SV PV Michelbach GmbH & Co. KG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Taxiunternehmen Carmen Kaurschill UG (haftungsbesc...",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "TCR Consulting GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Tim Markus Stegemann e. K.",
+   "gericht": "Düsseldorf",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "TKD Horses UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "TOONA Advisory GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TradingControl UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "TRIBICON AI GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Tzadetzi GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vermögensverwaltung Weichel GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Versorger Allianz 450 Verwaltungsgesellschaft mbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vincimus Rhenania GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VIRAMEX Verwaltungs-GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vocon Bude GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VVB Immobilien GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "W2 Steuerberatungsgesellschaft GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wadenpohl Bedachungen UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Wehron GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Weiler Grundbesitz GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WeitBlick Holding GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Westfalen Gleis & BauPartner GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "wisit media GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WorkAbroad GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WP Vermögensverwaltung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Yamos Pizzeria UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "YATRANY UG (haftungsbeschränkt)",
+   "gericht": "Düsseldorf",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "YAY Beteiligung GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "YAY Investment GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Youco D-H26297 Vorrats-AG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "AG"
+  },
+  {
+   "firma": "Youco D-H26298 Vorrats-AG",
+   "gericht": "Düsseldorf",
+   "rechtsform": "AG"
+  },
+  {
+   "firma": "Zentrix Engineering Deutschland GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ZZ Imperial GmbH",
+   "gericht": "Düsseldorf",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "1. LYO Projektentwicklung GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "3. LYO Projektentwicklung GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "4. LYO Projektentwicklung GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "6. LYO Projektentwicklung GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "A&K Ingenieure Partnerschaft",
+   "gericht": "Essen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "Aedificator Development GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AGM Performance GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AKÖ CONTROL UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Alerion HealthSolutions GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Allround Handwerk Service UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Altintas Management Holding UG (haftungsbeschränkt...",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Amin Jaber GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Arcus Automotive GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Axionomis GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "B & U Rhein Ruhr Invest GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BAK Consulting GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Balticmore World GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Basha Holding GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bilican Holding UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Blatz Immobilien GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BNA IMPORTS UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BU Energy GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cagatay Holding GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CHCG Steuerberater Partnerschaft mbB",
+   "gericht": "Essen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "Die Netzwerkpartner Services GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dilli GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DOi-Ingenieurgesellschaft mbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ETL 2026 NewCo Nr. 30 GmbH Steuerberatungsgesellsc...",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EVO 633. GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EVO 638. GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fruchtfleisch Vegan Food GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Future Listening Institute GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gastro GTX GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Global Konzept GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Granum Holding UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "GRWN.space UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Healthy Car GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hensenda GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Honsic Bauunternehmung GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "InCurea Pflegehilfsmittel GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ION Fusion GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "K 1 Medical GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KA Vermietung & Verpachtung GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KITCUCINA GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Komfort Dienst GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Konrad Verwaltung GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KS IntensivCare GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Küchen & Möbelhandel Willmes e.K.",
+   "gericht": "Essen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "LeanTec GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "M7 Sovereign UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Mahalo Capital GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Markus Altmann & Tim Kamchen, Steuerberater, PartG...",
+   "gericht": "Essen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "MegaPool Entertainment GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Meister Service Schulgin GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MK Projekt & Immobilien GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nassau & Niebert Immobilien UG (haftungsbeschränkt...",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NEXUS Netzwerk UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "O Digital UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Phoenix Management Partners UG (haftungsbeschränkt...",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PMF GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Purple Holding GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RANZAU GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rura Holding GmbH & Co. KG",
+   "gericht": "Essen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Schwarz Immobilien GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sen Holding GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sentrix GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "slowly media GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Steinke & Dausner PartG mbB",
+   "gericht": "Essen",
+   "rechtsform": "Partnerschaft (PartG/mbB)"
+  },
+  {
+   "firma": "t4k-online UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Trust in Progress UG (haftungsbeschränkt)",
+   "gericht": "Essen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "TSW Wohnbau GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 119. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 120. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 121. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 122. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 123. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 124. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 125. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 127. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zechengrün 128. V V GmbH",
+   "gericht": "Essen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "A & A Dienstleistungen GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "A. Kunkel Holding GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alpha Shield Security UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "APPDRIVE MOBILITY GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ATIK Gastro Food & More GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Auto Direkt GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bandol Brand Management GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "beproba UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BESTH Verwaltungs-GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Better Call Nick UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BI Beteiligungsgesellschaft mbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BTK Service GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CLS Vermögensverwaltung UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dentix GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dextera Elektrotechnik GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dynora Physiopraxis GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ElektroBooster UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Font Constructions GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "G und S Gleissicherung und Schadstoffsanierung UG...",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gerhardt Dienste GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gerhardt Vermögensverwaltung GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "geskes.hack Landschaftsarchitekten GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gridtox Power GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gridtox Service GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HK Eterno Automotive GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Industrieservice Grossmann UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "JG Holding GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jules Herzensreisen GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "K & K Besitzgesellschaft mbH & Co. KG",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "L-Bau Baumanagement GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LuMontis GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MIA Service UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MIVK GmbH Medical Immobilien & Verwaltungskanzlei",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nord Stein GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nordstern Logistik GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nova Clean GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nutzfahrzeuge DreamCars GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OE Compliance GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Omnibusbetrieb Christa Pollak e.K., Inhaber Ludger...",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Optimum Plus Immobilien UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Ordevia UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Pfeifer Überdachungen UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Premium Beef Manufaktur GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RBB Baudienstleistungen GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SB Holding GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SLSP Holding GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "tat und rat GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Taxverse GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Titan Bahndienste GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VWR Holding GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Westmont Capital UG (haftungsbeschränkt)",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "XER Gerüstbau GmbH",
+   "gericht": "Gelsenkirchen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "B22 Grundbesitz GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Böttcher, Jörg e.K.",
+   "gericht": "Gütersloh",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Carmigo GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dorn Immobilien Verwaltungs-GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Elektra X Grundstücksgesellschaft mbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "femoDO e.K., Inhaber Klaus-Dieter Dorn",
+   "gericht": "Gütersloh",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Flaskamp GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Forthaus Besitz GmbH & Co. KG",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Frerk Advisory GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FWS Holding GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GEORGI Finanzstrategie GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Himmeldirk Besitz GmbH & Co. KG",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Himmeldirk Verwaltungs GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "IK - Bau e.K., Inh. Isa Kasumaj",
+   "gericht": "Gütersloh",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "J. Böttcher GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Josef Uhrmeister Verwaltungs GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kfz-Zulassungsdienst Clarholz UG (haftungsbeschrän...",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Madriani e.K.",
+   "gericht": "Gütersloh",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Mardiny Transport UG (haftungsbeschränkt)",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MCK Holding UG (haftungsbeschränkt)",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MKK Containertrucking GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MN-Baudienstleistungen e.K.",
+   "gericht": "Gütersloh",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Nöller & Hirsch Innovations UG (haftungsbeschränkt...",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PWS Holding GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rüpp Vermögensverwaltung UG (haftungsbeschränkt)",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Smyczek Holding GmbH & Co. KG",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Smyczek Verwaltungs GmbH",
+   "gericht": "Gütersloh",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sowada OHG",
+   "gericht": "Gütersloh",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "SP Gala-Bau UG (haftungsbeschränkt) & Co. KG",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG & Co. KG"
+  },
+  {
+   "firma": "ToSaLa Invest UG (haftungsbeschränkt)",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ZweiDee UG (haftungsbeschränkt)",
+   "gericht": "Gütersloh",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "\"Lesezirkel Die Medien-Palette GmbH & Co.KG\"",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "A.K. Dienstleistungen e. K.",
+   "gericht": "Hagen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "AK LogistiX GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "All out Medicine GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "B4 Smart Energy GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BBuV GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BDU GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blume Projekt GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EH Mobilitätsdienste GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Engenova GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Finn Roggenthien Holding GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fliesen Feist e.K.",
+   "gericht": "Hagen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "flobio GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Immkoll fünfte GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Immobilienverwaltung T. Schnepper GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Klawek Grundstücksverwaltung UG (haftungsbeschränk...",
+   "gericht": "Hagen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kobler GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Koch Marketing e. K.",
+   "gericht": "Hagen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Mader Frischecenter GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MGM Bahndienste GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MP Verwaltungs-GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MWS Care UG (haftungsbeschränkt)",
+   "gericht": "Hagen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NexaVion GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "O3 Reinigung und Transport UG (haftungsbeschränkt)",
+   "gericht": "Hagen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Pflege und Betreuung Volmarstein gGmbH",
+   "gericht": "Hagen",
+   "rechtsform": "gGmbH"
+  },
+  {
+   "firma": "PKGV GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ramaj Garten- und Landschaftsbau GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Robotik-Schulungszentrum Hagen UG (haftungsbeschrä...",
+   "gericht": "Hagen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Sanitätshaus Rossa e.K.",
+   "gericht": "Hagen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "SeniorenService Ruhr GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SL Fenster & Türen UG (haftungsbeschränkt)",
+   "gericht": "Hagen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "STAHLKONTOR Academy GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "W & S Immobilien GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WohlStand Generalbau GmbH",
+   "gericht": "Hagen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "a&f Stahl GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "André Fritzsche Holding UG (haftungsbeschränkt)",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Badger Ventures GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bait Loft e.K.",
+   "gericht": "Hamm",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "BOTA GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Camping Butler GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Der Garten Andric GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Eventcafé de Wendel UG (haftungsbeschränkt)",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "GebärdenConnect UG (haftungsbeschränkt)",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Immobilien J+S GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jouha GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JR Sicherheit UG (haftungsbeschränkt)",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Kaiserau Carrée GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lenga Invest GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "M.S. Immobilien e.K.",
+   "gericht": "Hamm",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Marcus Rumpf e. K.",
+   "gericht": "Hamm",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Milan Immobilien GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Monster Services GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MTF Engineering Bau GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rumpf Holding GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schlüsseldienst Schlang GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Solarpark Neuenrade GmbH & Co. KG",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Stockhausen Healthcare GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Till Johannes Group e. K.",
+   "gericht": "Hamm",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "TKS GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "UKBS Kommunal und Service GmbH",
+   "gericht": "Hamm",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Velora UG (haftungsbeschränkt)",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "VitaCompain - Natürlich gut. UG (haftungsbeschränk...",
+   "gericht": "Hamm",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Advanced Engineering Lab - Aella GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Airoba Kierspe UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AlexGroup UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Animour KG",
+   "gericht": "Iserlohn",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "CGF 2026 E GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CP Immobilien GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DayCare GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dojo Schalksmühle UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dunkel Capital GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GESOL Technologies GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heisse Werbemittel GmbH & Co. KG",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "JOBRA Verwaltungs GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JOSC Invest UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lallensack Besitz GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lars Rosier Immobilien GmbH & Co. KG",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "MKT Holding GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NaDoree GmbH & Co. KG",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Nordstern UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Raum & Bad Kowalczyk GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RM Kierspe UG (haftungsbeschränkt)",
+   "gericht": "Iserlohn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "SPS-Gastro GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Straßen- und Tiefbau Hölcke GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vape King GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "W & W GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zydek Digital GmbH",
+   "gericht": "Iserlohn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "A&H Glasfasertechnik UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ACP Aluminium Handels GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Almin Smajlovic e.K.",
+   "gericht": "Kleve",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Aurelia Hamam & Wellness UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bess Speicher Gelderland GmbH & Co. KG",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "BJK Immobilien Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BlackSea Consulting GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BLV Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bondar eCom UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bongards Sachverständigenbüro UG (haftungsbeschrän...",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Cocomo Lounge UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CWB Immobilien Hürth GmbH & Co. KG",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Domum Phoenicis GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Elsner Familiengesellschaft mbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EMZA Immobilien GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frater Minor Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Genender Platz 1 Grundstücks GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Greener Palace GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GRÜNBERG Bau GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "H2Vital UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hubert Clees & Sohn Verwaltungs GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Immobilien Oppolzer GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Jagd & Sport Xanten GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JVJV-Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "K2 Vertex GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KB Schuhtechnik GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Küppers Transporte GmbH & Co. KG",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "KV Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lemkens & Lemkens 14. Vorrats GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LoMa Agrar UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LoMa Holding GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LoMa Immobilien UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Loot Holding UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LTA Net GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "M&S Bau Group UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MyCarID UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Nextstep Business & Finance Consulting UG (haftung...",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Nikodemus GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NM Verwaltungs GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PW Ventures UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "QENARO GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sabine Hospital Geldern e.K.",
+   "gericht": "Kleve",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Sabine Hospital Kerken e.K.",
+   "gericht": "Kleve",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Sagir Messeservice GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sealed Edge GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Segeska Consulting GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Stackvault UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Steinwerk UG Galabau (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Tebaru UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Van Houtum Immobilien GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VERHOEVEN ARCHITEKTEN GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ViDaLi Immobilien GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Viktors Meisterwerk Stahlbaumontagen GmbH",
+   "gericht": "Kleve",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ZH Transvita UG (haftungsbeschränkt)",
+   "gericht": "Kleve",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "0x11 UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "21 Oaks Innovative Capital GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "3ElevenPerformance UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "A+S Company GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AC Pharma Medicals GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Accura IV GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ad.nio GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aerynt UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Afrea UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AGAS GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "aktuaro consulting GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "all4marine GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alps Chemicals Europe GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 765. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 766. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 767. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 768. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 769. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 770. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 771. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 772. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 773. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Altstadtsee 774. V V GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AmiSana MS UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AmiSana Plus UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Andreadis Care GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Apaso Verpackungen GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ASAHL 11 UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Averia Beteiligungs GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BAHRTEC GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Balog Vermögensverwaltung GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BernsteinBau GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Beton Konkret Akademie GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BEW Special Solutions GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Beyond Academy 360 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BitSchmidt GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bluestaq Germany GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blum Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BMI Rental GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BN Express UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bock Beteiligungen UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Briefgeflüster GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Burnout Industries UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Busse Projekt GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "C- Boehme Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cablera Solution Service UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CANBY UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CAP by Dan Wirtz e.K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "capacura Holding 8 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Christian Pohl Beteiligungs GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Coenen Transporte GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "COLLECT4 UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CP Agency UG (haftungsbeschränkt) Booking & Licens...",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Cubana 88 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Curavena UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CVK Consulting UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dach vom Fach Ouaddaf e. K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "dda complete GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Deep Sauce Labs GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DELUS Immobilien 3 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DELUS lmmobilien 1 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DELUS lmmobilien 6 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "digidrive GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DML Bauingenieure GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dr. Bernd Schulze Zumloh Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dr. Manka Immobilien GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dr. Weyer GmbH & Co. Vermögensverwaltung KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dreamisu UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Eagle VV 3 GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Eagle VV 4 GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "EB EEE Frankreich GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EdGRID - das Lernnetzwerk gUG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Eiden & Claßen Verwaltungs-GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Eiserbeck Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ejder Immobilien GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Eliassen Company GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EMK Transport GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Enego GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Eric Blass Immobilien GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "eurotec group GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fastnachtallee 43. V V UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Fastnachtallee 44. V V UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Fastnachtallee 45. V V UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Feigenwerk & Co. GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Felix Beilharz Speaker e.K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "FlexFam Service GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "For All Company UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "FrameOn Bau GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Franzrahe Krämer Steuerberatungsgesellschaft mbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frappant Lichterfeld Catering GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FREISTIL Energy GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frische Briese Auf dem Lieh KG",
+   "gericht": "Köln",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "GaTa Consulting UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gerüstbau Block GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gridstone Advisory UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "HaFu Immobilien GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heinen & Heinen GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heinze & Neumann GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Herzenssache Assistenz GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HES Dienstleistungen GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Heuts Invest GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HK Growth UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hohenfels Investment Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Horn Enterprises UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hoymes Invest GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HPM Neuburger Aktuar-GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HYGIEA REINIGUNGSSERVICE GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ImmoSeneca GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "innoscripta Scale Cologne GmbH & Co KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Inside Investments Ghasemi GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Insta Solutions GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "intyme GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "IQ Projekt Neustraße GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "ISLA PIRULETA Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "J.SIN Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "JOC UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Jokey USA Beteiligungsgesellschaft mbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JQ Capital GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "JWG Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "K&K Steelsolution GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kappes & Malzkorn Verwaltungs GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kast Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "KELORA RITUALS UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Key2Health GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Keyser & Mackay Deutschland GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kim Supreme Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "KINGROUP Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KLA Elektrotechnik GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Knitting Vibez UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Knoblauch Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "KOCH Werkzeuge & Industriebedarf GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kristall 322. GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kristall 325. GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kronen 3263 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KS Beteiligungs GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kurprinz 2447 UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Lars Eiserbeck e. K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "LD Holdings GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Leitner Federspiel GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LeKo Agrarservice GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LMOE Lern- und Loungemöbel GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LR Capital Beteiligungs-GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LuPeRi Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lynvest Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MA Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MA Verwaltungs-UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Makrokozmos EBA GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mare4 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MAYA Forum GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MCF Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Melita.io GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Metropolis GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MG Eventmanagement GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Michael Heidel e.K",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Millard Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MIQ - Medical Intelliogence GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Montera Crest GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Moreaux GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MS Capital Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MS Maison Studios GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NaIs Tool UG (haftungbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NativaPharma GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nazif Management GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nefertari Gastronomie UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NexLog UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "nexthands UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NextXpress GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Nikolov Ingenieure GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NK18 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NovaNest GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OBKconnect UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Oliver Ruhnau UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "OmniClavis GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Omwani Coffee Company GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OneVision GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Oparo GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "orqestral UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Ortiz Entertainment GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OW Oberberg Workspace UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "P&P Rail Services GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Paas Medien GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Pausenclown Media GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PBW Beteiligungs UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PE Ost 03 GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Pelóci GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PetRi Beteiligungs-GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PHASE8CONSULT GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PMS Pro Montage Service GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Precis Hospitality Personalservice UG (haftungsbes...",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PreventiQs GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Prinz Verwaltungs-GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "qibriX GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Quad Head GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Quiesel Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "R&A Trans GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rau Liegenschaften GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "RAW Aussenwerbung Eins GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RH Rheinland Hotels GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinaustraße 88 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RheinReinSicherheit GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ricksha Köln GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rofass GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ROOM BOOM Rheinland UG (Haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "RT Health UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "S.A.R.A. GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Salinpro GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Samtio GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sarbar Invest GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SCHMITT GmbH Pflege- und Betreuungsdienst",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Shivan GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sigma3X Nutrition GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "sinfood GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Smolis Sanitär und Heizung e. K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Social Heaven Studios UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Solira UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Sommer & Hoffmann Vermögensverwaltung GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "STAK Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ströer One GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "studio108 GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Susanne Grah e.K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Talentis Solution GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Terra Fractalis e.K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "TH Holding GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Thorsten Heilig e.K.",
+   "gericht": "Köln",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Tierlichkeit UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Tural GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TW Godorf GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "U.M.A.M.I. Köln GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "UK Eigelstein GmbH & Co. KG",
+   "gericht": "Köln",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "UliLang Holding UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "UMRIS TRADING UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Uzman Ria Transport GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VRM Management GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Waldora Dienstleistungen GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Weckwert Sports GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WerteWerk Rheinland GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WvF GmbH",
+   "gericht": "Köln",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zapatero Investments UG (haftungsbeschränkt)",
+   "gericht": "Köln",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ag holding GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "AG"
+  },
+  {
+   "firma": "Ark Holding GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "B532 GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BaseTruck GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BeeGee Services GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BIDA & Partner GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Brickweb UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CoolForU-Logistics GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dataphronix GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Deden & Michalski Steuerberatung GmbH & Co. KG",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Drive Consulting GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EloTec GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Familie Stücken GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gemüsebau Therstappen GmbH & Co. KG",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Hali Gastronomie GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Intensivhüpfer UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MedStructura UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MisterDotCom GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ocean Holding GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "One Level Ahead Node UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PFF Special Alloys GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Pulseready MedSystems UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Rossbach Bau GmbH & Co. KG",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "SB Concordia Holding GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schaale Immo GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Smartpro Operations GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "suresecure Holding GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sylvalibra Holding and Management UG (haftungsbesc...",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "thp treuhandpartner GmbH & Co. KG Wirtschaftsprüfu...",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "TOC-consult GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VAB Krefeld UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Vierkant AI GmbH",
+   "gericht": "Krefeld",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Zalillo UG (haftungsbeschränkt)",
+   "gericht": "Krefeld",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "August Küster & Söhne GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BetreuungONE UG (haftungsbeschränkt)",
+   "gericht": "Lemgo",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DG Glas GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DINO Bauunternehmen GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Essentials by Freifrau GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ETG Holding GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fairy Nail Inh. Alicia Tcheon e.K.",
+   "gericht": "Lemgo",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Glauert Holdings UG (haftungsbeschränkt)",
+   "gericht": "Lemgo",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Henschelberg Verwaltungs GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Inomerce UG (haftungsbeschränkt)",
+   "gericht": "Lemgo",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "J-K Verwaltungs GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kreischer Investment Holding GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kreutzheide Bauelemente e.K.",
+   "gericht": "Lemgo",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Kronshage AdVentures GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LERO Bau GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LuRo Jugendhilfe GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mavie Ecom, Inh. Robin Derbas e.K.",
+   "gericht": "Lemgo",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "n-ideas GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ostiva Logistics UG (haftungsbeschränkt)",
+   "gericht": "Lemgo",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "OWL Bau GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Stefan Dreischmeier Elektrotechnik e.K.",
+   "gericht": "Lemgo",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Strehlau Investment GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TarifNetzwerk GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Thiele Holding GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Uwe Finnern Systemische Organisationsberatung e.K.",
+   "gericht": "Lemgo",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "VeroNex VERLAG GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Westwerk Bau GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Xspire UG (haftungsbeschränkt)",
+   "gericht": "Lemgo",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "zweiund50 GmbH",
+   "gericht": "Lemgo",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "A&J GLOBAL UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "A&N Bedachungen Meisterbetrieb GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ABCD Consulting GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AMI Gallery Gesellschaft für das Besondere mbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Arotec Quality GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Atlas Service GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Baran Akmis e.K.",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "bc4ai Holding UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "cadma solutions UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DeRa Hotels GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Eule Robotics Service e.K.",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Feies Planungsgesellschaft mbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frozen Concepts GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FuFu Holding GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Gilges Holding UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Helicon Holding GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "House of SandyRocks GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HX2 UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "I.S.Se.L. K9 GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "JASU Marktforschung und Datenservice GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "M & B Dienstleistung GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "mAKSimal Service GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MiHo Vermögensverwaltung GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mobiustream GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NiLu Electronics GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NL Gebäudeservice GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NOW Komplementär GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "nutriam UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ofkurs UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Posaikon Services GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "project office 4 finance GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Projekt 100 GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ProLack MG GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "QUINT. Data UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "REST Systems GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ROBIN GUT Venture GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RZ Holding UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Schroer Family Invest GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sinan Kurt Fußballschule UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Telxa Heavy Cranes GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Twinss UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Ventus Verwaltungs GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Vitareon Biotech GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Volt Mover GmbH",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ZETT UG (haftungsbeschränkt)",
+   "gericht": "Mönchengladbach",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Accotex GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AI-Impact Ventures GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AIS Ahlener Industrie Service GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AIS Industriemontagen e.K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "ASEA Wohnbedarf UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Belego GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Billa Solutions UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bövingloh & Nolte GmbH & Co. Immobilien KG",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BRIDLERY GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "building values and partnerships GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "cathana engineering GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Cihan Turhan e.K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Cohrs Bau GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Detlef Diehr Holding GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Domon Gastro GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dr. Cuenca Pinkert Rechtsanwalts GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Egger Hagedorn lmmobilien GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ESPJA Marinaccio Holding GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Farmlux 24 UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Fischer Vermögensverwaltung UG (haftungsbeschränkt...",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "GapSpot UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hanisch und Peitz Immobilien GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hedo GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Klimenta Holding GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kocer Service UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "liora.health GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mascaro e. K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Maximilian Heiland e. K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "MediNexus Workforce GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Mentrup e. K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "MGB Telecom GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OFENBUDE e.K.",
+   "gericht": "Münster",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "OnlyTax GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Plattfaut Ventures GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "propable Software GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Raumfabrik Münster GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Reych Grundbesitz GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RheinLöwe Nutzfahrzeuge GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Riedel Grundstücksverwaltungs-GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ruscher Immobilien GmbH & Co. KG",
+   "gericht": "Münster",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Sterling Art GmbH & Co. KG",
+   "gericht": "Münster",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Telgter Wohnungsbau GmbH & Co. KG",
+   "gericht": "Münster",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Thorwesten Group GmbH & Co. KG",
+   "gericht": "Münster",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Thorwesten Management GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TonkaCoffee GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Veltmann Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Vintage Moll & Nossek UG (haftungsbeschränkt)",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WARPCOM Unternehmergesellschaft (haftungsbeschränk...",
+   "gericht": "Münster",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WSM GmbH",
+   "gericht": "Münster",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AFEC 2026 KG",
+   "gericht": "Neuss",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Arventis Holding GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Atelier.C GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Autoservice Weiss e.K.",
+   "gericht": "Neuss",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Autozentrum24 GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CAPARIS Consulting GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FABLS Real Estate GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Frischecenter Rädle GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HDC UG (haftungsbeschränkt)",
+   "gericht": "Neuss",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Hendricks Immobilienpark GmbH & Co. KG",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Hengstermann Finanzdienstleistungen OHG",
+   "gericht": "Neuss",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "inpuncto:gruda gmbh",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kegeljan Immo GmbH & Co. KG",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Klangwerkstatt GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LaBo Holding GmbH Wirtschaftsprüfungsgesellschaft",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Matthäus Baron e.K.",
+   "gericht": "Neuss",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "MKLSDEV GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Paragon Germany GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Physioreha-Hilgers GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PREMURA Immobilienverwaltung KG",
+   "gericht": "Neuss",
+   "rechtsform": "KG"
+  },
+  {
+   "firma": "Schmitz Feuerschutz e.K.",
+   "gericht": "Neuss",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "SEPTEX Biotech GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SPO-Projekte GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Tante Emmchen GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TOMALIN Finanzkontor GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Truck Fleet GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Trusteventservices UG (haftungsbeschränkt)",
+   "gericht": "Neuss",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "vom Hagen Grundstücks Gemeinschaft GmbH & Co. KG",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Wallrafen Beteiligungs UG (haftungsbeschränkt)",
+   "gericht": "Neuss",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Weiss Autoservice GmbH",
+   "gericht": "Neuss",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Algion GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ansgar Amsel Verwaltungs UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BKV Windgemeinschaft GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "BKV Windgemeinschaft Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bonum Works UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Brand & Rent GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bürgerwind Eversen/Eichholz GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Bürgerwind Eversen/Eichholz Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BurgFein UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "CyberClue Deutschland GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Dalhoff Management UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Davyro Solutions UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "diwidata GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EDI Putz & Stuck UG (haftungseschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Engill Holding GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fintrio GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fischer Technik im Haus GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FroRamp Handelsagentur UG (haftungsbeschränkt) & C...",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gastro-Erlebnis-DiGabriele UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Gastrowell GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Henkel Vermögens Verwaltungsgesellschaft mbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HHG-Störmede Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Holzbau Striewe GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "HR VV GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kairos Holding GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Klingemann Holding GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kuhlpeter Immobilien GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Kuhlpeter Immobilien Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "KY Robotics GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lenzmeier Holding GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LHF Systeme UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "LOTroSan Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Löwen Wind GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "mi oro UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Mike Brautmeier e.K.",
+   "gericht": "Paderborn",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "NC Perle UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "NOWEX PV Holding GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "O&B Gastro-Solution UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "OEx Performance UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Öko-Power Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Oster Transporte UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Panderra GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Peitz Beteiligungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PMV Maschinen Vertriebsgesellschaft Paderborn mbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rudenko GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "S&N Hausverwaltung GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schulz Maler und Lackierer GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SixSources Ventures GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "spotAR GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "studio herrklausen GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ventus Fortis GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "ViTa Physiotherapie und Athletik 2 GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Volt Elektro-Prüfservice GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wagner Verputz GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Waschwerk GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Waschwerk Verwaltungs GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wencker Beteiligungen GmbH",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WP Borlinghausen GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Xandeo UG (haftungsbeschränkt)",
+   "gericht": "Paderborn",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "YEXIO Bad Lippspringe GmbH & Co. KG",
+   "gericht": "Paderborn",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "1987 Beteiligungsverwaltung GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aesthetify by DR. RICK & DR. NICK GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Akryem Mietwagen GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CARIENTE GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Erb Immobilien GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Globale Pflege 1.0 GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Hashem GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Meykamp Founding GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "mpool Industries III GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MUHIS GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OHS Europe GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RAILOPS Rail Service GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rohstoffhandel Gemici Verwaltungs GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Shutdown-Buddies GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Simplarix GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Skarebo Deutschland GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Touch Clean Objektservice GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Traumfabrik GmbH",
+   "gericht": "Recklinghausen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "APL Elektrotechnik GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Arndt Versicherungen & Finanzen GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Athanora GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "B-UT Sustainable Circular Solutions GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Badis UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Belay Holding GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BFM Holding GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BRÖCHLER Holding UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Deutsche Immobilien Invest GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Digital Ventures UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "DT Allround Objektservice e.K",
+   "gericht": "Siegburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "EK Asset SA01 GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "eurocom Vertriebs GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Flüssiggastechnik Dohnalek UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Forge 45 Holding GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GastroHaus UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Helios Bauelemente GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Immobilien Kittlaus GmbH & Co. KG",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Ingenieurbüro C2 e.K.",
+   "gericht": "Siegburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Kittlaus Verwaltungs GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kreuzburg & Co. UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Mai und Babic UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Matthias Meyer Familien GmbH & Co. KG",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Matthias Meyer Verwaltung GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Maximilian ANU UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "MK5 Holding GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Modellhort GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Modestübchen Pasemann e.K.",
+   "gericht": "Siegburg",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "NOHL Garten- und Landschaftsbau GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "OskimosKl GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Praxis Floris GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rated! AI UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "RheinWest GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rhyze Holding GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schkeit UG (haftungsbeschränkt)",
+   "gericht": "Siegburg",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Seven Senses for AI GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Spenner Herkules Rohstoff Verwaltungs GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SWISSBRANDS GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TM-Beteiligungs GmbH & Co KG",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "tribeta GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "TS Show Jumping GmbH",
+   "gericht": "Siegburg",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WPD Immobilien UG (haftungsbeschränkt) & Co. KG",
+   "gericht": "Siegburg",
+   "rechtsform": "UG & Co. KG"
+  },
+  {
+   "firma": "2becompliant GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "ArborShield UG (haftungsbeschränkt)",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AVK-Verwaltungs GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Bendikowski Immobilien GmbH & Co KG",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Brückenbau Plauen GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "CMW Solutions GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "El Gammal Holding UG (haftungsbeschränkt)",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "G5 GmbH & Co. KG",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Guardian Group GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Guido Heupel Verwaltungs-GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Habicht Immobilien GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "helo UG (haftungsbeschränkt)",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "K.-J. Steingass GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kaffeerösterei Pagnia GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MOC munschek office company UG (haftungsbeschränkt...",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "PetINN Betriebsgesellschaft mbH & Co. KG",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PetINN Verwaltung GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Prince Industrie UG (haftungsbeschränkt)",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Quindrum UG (haftungsbeschränkt)",
+   "gericht": "Siegen",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Rotaprint Europe GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Schneider Haustechnik GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Simon Müller Immobilienvermietung e.K.",
+   "gericht": "Siegen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Spitz Baubetrieb e.K.",
+   "gericht": "Siegen",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Thiesbrummel Fliesenleger GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VAMIA Immobilien GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Versicherungsmakler Heupel GmbH & Co. KG",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "ViBa Holding GmbH",
+   "gericht": "Siegen",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Aerion Capital UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Aerion GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Agteq GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Agteq Verwaltungs GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AquilaSol UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "ATA Bau UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Aventa GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BBK Kamin-Heizkassetten Stromboli GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Blut im Blick UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "BM Vektor e.K.",
+   "gericht": "Steinfurt",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Der-Sanierungs-Meister UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "desbox GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Düsing GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FinCompare GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fometa Holding Group GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Fyleno UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "HollyFlex e.K.",
+   "gericht": "Steinfurt",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "ImplusPartner Audit GmbH Wirtschaftsprüfungsgesell...",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LAI GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LAS Energie GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Libra Energie GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Libra Energie Verwaltungs GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MB Beteiligungs GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "monosIQ GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MW ARNING Wohnen GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Neue Energiesysteme GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "NEXT LEVEL Tennis Academy GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ostendorf oHG",
+   "gericht": "Steinfurt",
+   "rechtsform": "OHG"
+  },
+  {
+   "firma": "Ottmann Immobilien GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "POOLISTA UG (haftungsbeschränkt)",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Porta Air Service Holding GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PRÜFHELDEN GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "RE4ONE GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Richard Böhmann e.K.",
+   "gericht": "Steinfurt",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "SALY Living GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Sebastian Knüp Verwaltungs GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Sloopstein Engineering GmbH & Co. KG",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Sloopstein Engineering Verwaltungs GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Tennessee Mountain American Restaurant GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Thomas Schmidt Holding GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "urbanhive Farming Solutions UG (haftungsbeschränkt...",
+   "gericht": "Steinfurt",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "VENO Bau GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Von Weerden GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wecon Immobilien GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Westermann Beteiligungs-GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "WSI GmbH",
+   "gericht": "Steinfurt",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "3plecon e.K.",
+   "gericht": "Wuppertal",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "8-Natur Inh. Ursula Thiemann e.K.",
+   "gericht": "Wuppertal",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Adler Baugesellschaft GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "AK Verwaltungs GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Alpha Quadrat Bauplanung & Projektmanagement UG (h...",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Avi Cenna UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "AZ Handel UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Bergisch Invest I GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Berlin im Brot GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "BLACKFIN UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "C.S.Heithecker Holdings UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "calmio GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Casa Santa Solutions UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Club Intelligence UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Cordewener Group GmbH & Co KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Darnstädt Ventures UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Dragone GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "DW Interieur Construction UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "EcoVida Holding GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "EiBi GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "El Ouriachi GmbH & Co. KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "El Ouriachi Holding GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "El Ouriachi Verwaltungs GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Ela GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Elektrotechnik Graw GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "FDM Almanya GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Flo-Rider MotoLoft GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "GET-Elektrotechnik GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "H&K Ventures UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Herbst GmbH & Co. KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "Herzog Zerspanungstechnik GmbH & Co. KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "HSMS Capital GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Insightsecho UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "INTEGRA Großküchen GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Kraftverkehr Kohls GmbH & Co. KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "KS Branding GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Lebensraum + Verwaltung GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "LOGINAUTEN GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "MultiKulti Markt GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "NEXA Energie GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "nexora Holding UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Operators Group GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Orion Import-Export und Großhandel GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PERCO Immobilien GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PRESTIPINO GROUP GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PrimeStone GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "PrismA International Marketing GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Restaurant Wipperaue GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Rheinkalk Holding 2 GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "S.Wierzba Beteiligungsgesellschaft UG (haftungsbes...",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Schulgin Consulting e.K.",
+   "gericht": "Wuppertal",
+   "rechtsform": "e.K. (Einzelkaufmann)"
+  },
+  {
+   "firma": "Schwelmer Autopark GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "SE Invest GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Strowick & Eck UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "Stücker Holding UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "VBuB UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "VK One GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "VOXYNOR UG (haftungsbeschränkt)",
+   "gericht": "Wuppertal",
+   "rechtsform": "UG (haftungsbeschränkt)"
+  },
+  {
+   "firma": "WD Spielstätten GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  },
+  {
+   "firma": "Wilhelms Immobilien GmbH & Co. KG",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH & Co. KG"
+  },
+  {
+   "firma": "XZERØX GmbH",
+   "gericht": "Wuppertal",
+   "rechtsform": "GmbH"
+  }
+ ]
+}
