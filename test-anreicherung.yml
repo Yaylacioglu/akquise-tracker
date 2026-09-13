@@ -1,0 +1,175 @@
+name: Test Anreicherung (einmalig)
+
+# Misst, wie gut sich frisch eingetragene Firmen ueber die OpenRegister-API
+# anreichern lassen. Nur von Hand startbar. Verbraucht ~70 der 500 Freikredite.
+# Voraussetzung: Secret OPENREGISTER_API_KEY ist hinterlegt.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Skript schreiben
+        run: |
+          mkdir -p scripts
+          cat > scripts/test-anreicherung.mjs <<'SKRIPT_ENDE'
+          // Einmaliger Messtest: Wie gut laesst sich eine frisch eingetragene Firma
+          // ueber die OpenRegister-API anreichern? Verbraucht rund 70 der 500 Freikredite.
+          //
+          // Ergebnis landet in data/_test-anreicherung.json.
+
+          import { writeFile, readFile, mkdir } from 'node:fs/promises';
+
+          const API = 'https://api.openregister.de';
+          const KEY = process.env.OPENREGISTER_API_KEY;
+          const ZIEL = 'data/_test-anreicherung.json';
+
+          // Registergerichte im Ruhrgebiet — nur diese Firmen werden getestet.
+          const RUHR = new Set(['Essen', 'Dortmund', 'Duisburg', 'Bochum', 'Gelsenkirchen',
+            'Recklinghausen', 'Hagen', 'Hamm', 'Iserlohn', 'Wuppertal']);
+
+          const N_SUCHE = 20;   // Autocomplete, 1 Credit je Firma
+          const N_DETAILS = 5;  // Company Details, 10 Credits je Firma
+
+          if (!KEY) {
+            console.error('OPENREGISTER_API_KEY fehlt. Als GitHub-Secret hinterlegen.');
+            process.exit(1);
+          }
+
+          // Firmennamen vergleichbar machen: Rechtsformzusaetze und Sonderzeichen raus.
+          function norm(s) {
+            return String(s || '').toLowerCase()
+              .replace(/\(haftungsbeschränkt\)/g, ' ')
+              .replace(/\b(gmbh|ug|ag|kg|ohg|mbh|mbb|gbr|egbr|e\.?\s?k\.?|e\.?\s?v\.?|eg|co\.?|und|&)\b/g, ' ')
+              .replace(/[^a-z0-9äöüß]+/g, ' ')
+              .trim();
+          }
+
+          async function api(pfad) {
+            const res = await fetch(API + pfad, { headers: { Authorization: `Bearer ${KEY}` } });
+            const text = await res.text();
+            if (!res.ok) return { fehler: `HTTP ${res.status}`, rumpf: text.slice(0, 300) };
+            try { return JSON.parse(text); } catch { return { fehler: 'kein JSON', rumpf: text.slice(0, 300) }; }
+          }
+
+          async function main() {
+            const index = JSON.parse(await readFile('data/listen.json', 'utf8'));
+            const neueste = index.listen[0];
+            const vorige = index.listen[1];
+            const jetzt = JSON.parse(await readFile(`data/listen/${neueste.datei}`, 'utf8')).firmen;
+
+            let kandidaten = jetzt.filter((f) => RUHR.has(f.gericht));
+            if (vorige) {
+              const alt = new Set(JSON.parse(await readFile(`data/listen/${vorige.datei}`, 'utf8'))
+                .firmen.map((f) => f.firma.toLowerCase()));
+              const nurNeu = kandidaten.filter((f) => !alt.has(f.firma.toLowerCase()));
+              if (nurNeu.length >= N_SUCHE) kandidaten = nurNeu;
+            }
+            // Abgeschnittene Namen ueberspringen, die koennen nicht sauber gesucht werden.
+            kandidaten = kandidaten.filter((f) => !f.firma.trim().endsWith('...'));
+
+            const stichprobe = kandidaten.slice(0, N_SUCHE);
+            console.log(`${kandidaten.length} Kandidaten im Ruhrgebiet, teste ${stichprobe.length}.`);
+
+            const ergebnisse = [];
+            let credits = 0;
+
+            for (const f of stichprobe) {
+              const r = await api('/v1/autocomplete/company?query=' + encodeURIComponent(f.firma));
+              credits += 1;
+              const treffer = (r.results || [])[0] || null;
+              const exakt = treffer ? norm(treffer.name) === norm(f.firma) : false;
+              ergebnisse.push({
+                gesucht: f.firma,
+                gericht: f.gericht,
+                fehler: r.fehler || null,
+                anzahl_treffer: (r.results || []).length,
+                gefunden: treffer ? treffer.name : null,
+                company_id: treffer ? treffer.company_id : null,
+                namens_treffer: exakt,
+                gericht_passt: treffer ? (treffer.register_court || '').includes(f.gericht) : false,
+                adresse: treffer && treffer.address ? treffer.address.formatted_value || null : null,
+                gegenstand: treffer ? treffer.purpose || null : null,
+                register: treffer ? `${treffer.register_type || ''} ${treffer.register_number || ''}`.trim() : null,
+              });
+              await new Promise((r2) => setTimeout(r2, 250)); // freundlich bleiben
+            }
+
+            // Fuer die ersten paar sicheren Treffer die Detailabfrage testen (Telefon, E-Mail)
+            const sicher = ergebnisse.filter((e) => e.namens_treffer && e.company_id).slice(0, N_DETAILS);
+            for (const e of sicher) {
+              const d = await api(`/v0/company/${encodeURIComponent(e.company_id)}`);
+              credits += 10;
+              e.details_fehler = d.fehler || null;
+              const k = d.contact || d.contacts || d;
+              e.telefon = k.phone || null;
+              e.email = k.email || null;
+              e.webseite = k.website || k.source_url || null;
+              e.detail_felder = d.fehler ? null : Object.keys(d).slice(0, 40);
+              await new Promise((r2) => setTimeout(r2, 250));
+            }
+
+            const n = ergebnisse.length;
+            const zahl = (p) => ergebnisse.filter(p).length;
+            const bericht = {
+              getestet_am: new Date().toISOString().slice(0, 10),
+              grundlage: neueste.datei,
+              region: 'Ruhrgebiet',
+              stichprobe: n,
+              credits_verbraucht: credits,
+              quote: {
+                irgendein_treffer: zahl((e) => e.anzahl_treffer > 0),
+                exakter_namenstreffer: zahl((e) => e.namens_treffer),
+                gericht_passt: zahl((e) => e.gericht_passt),
+                mit_adresse: zahl((e) => e.adresse),
+                mit_gegenstand: zahl((e) => e.gegenstand),
+                mit_registernummer: zahl((e) => e.register),
+              },
+              detailtest: {
+                versucht: sicher.length,
+                mit_telefon: sicher.filter((e) => e.telefon).length,
+                mit_email: sicher.filter((e) => e.email).length,
+                fehler: sicher.filter((e) => e.details_fehler).map((e) => e.details_fehler),
+              },
+              einzelergebnisse: ergebnisse,
+            };
+
+            await mkdir('data', { recursive: true });
+            await writeFile(ZIEL, JSON.stringify(bericht, null, 1) + '\n', 'utf8');
+            console.log(JSON.stringify(bericht.quote, null, 1));
+            console.log('Detailtest:', JSON.stringify(bericht.detailtest));
+            console.log(`Credits verbraucht: ${credits}. Bericht in ${ZIEL}.`);
+          }
+
+          main().catch((e) => { console.error(e); process.exit(1); });
+          SKRIPT_ENDE
+
+      - name: Messtest ausfuehren
+        env:
+          OPENREGISTER_API_KEY: ${{ secrets.OPENREGISTER_API_KEY }}
+        run: node scripts/test-anreicherung.mjs
+
+      - name: Bericht committen
+        run: |
+          git add -A data scripts
+          if git diff --cached --quiet; then
+            echo "Kein Bericht erzeugt."
+            exit 1
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Messtest Anreicherung"
+          git push
