@@ -1,0 +1,65 @@
+name: Test Anreicherung
+
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - env:
+          KEY: ${{ secrets.OPENREGISTER_API_KEY }}
+        run: |
+          cat > t.mjs <<'EOF'
+          const KEY = process.env.KEY;
+          if (!KEY) { console.error('Secret OPENREGISTER_API_KEY fehlt'); process.exit(1); }
+          const RUHR = ['Essen','Dortmund','Duisburg','Bochum','Gelsenkirchen','Recklinghausen','Hagen','Hamm','Iserlohn','Wuppertal'];
+          const hole = async (p) => {
+            const r = await fetch('https://api.openregister.de' + p, { headers: { Authorization: 'Bearer ' + KEY } });
+            const t = await r.text();
+            if (!r.ok) return { fehler: 'HTTP ' + r.status, rumpf: t.slice(0, 200) };
+            try { return JSON.parse(t); } catch { return { fehler: 'kein JSON', rumpf: t.slice(0, 200) }; }
+          };
+          const fs = await import('node:fs/promises');
+          const idx = JSON.parse(await fs.readFile('data/listen.json', 'utf8'));
+          const alle = JSON.parse(await fs.readFile('data/listen/' + idx.listen[0].datei, 'utf8')).firmen;
+          const probe = alle.filter(f => RUHR.includes(f.gericht) && !f.firma.trim().endsWith('...')).slice(0, 20);
+          const out = [];
+          for (const f of probe) {
+            const r = await hole('/v1/autocomplete/company?query=' + encodeURIComponent(f.firma));
+            const t = (r.results || [])[0] || null;
+            out.push({ gesucht: f.firma, gericht: f.gericht, fehler: r.fehler || null, rumpf: r.rumpf || null,
+              gefunden: t?.name || null, id: t?.company_id || null,
+              adresse: t?.address?.formatted_value || null, gegenstand: t?.purpose || null,
+              register: t ? (t.register_type || '') + ' ' + (t.register_number || '') : null });
+            await new Promise(s => setTimeout(s, 250));
+          }
+          for (const e of out.filter(e => e.id).slice(0, 5)) {
+            const d = await hole('/v0/company/' + encodeURIComponent(e.id));
+            e.detail_fehler = d.fehler || null;
+            e.telefon = d.phone || d.contact?.phone || null;
+            e.email = d.email || d.contact?.email || null;
+            e.detail_felder = d.fehler ? null : Object.keys(d);
+            await new Promise(s => setTimeout(s, 250));
+          }
+          const z = p => out.filter(p).length;
+          const bericht = { datum: new Date().toISOString().slice(0,10), getestet: out.length,
+            gefunden: z(e => e.gefunden), mit_adresse: z(e => e.adresse), mit_gegenstand: z(e => e.gegenstand),
+            mit_register: z(e => e.register && e.register.trim()),
+            detail_versucht: out.filter(e => 'telefon' in e).length,
+            mit_telefon: z(e => e.telefon), mit_email: z(e => e.email),
+            fehler: [...new Set(out.map(e => e.fehler || e.detail_fehler).filter(Boolean))],
+            einzeln: out };
+          await fs.writeFile('data/_test-anreicherung.json', JSON.stringify(bericht, null, 1));
+          console.log(JSON.stringify(bericht, null, 1).slice(0, 2000));
+          EOF
+          node t.mjs
+          rm t.mjs
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/_test-anreicherung.json
+          git commit -m "Messtest Anreicherung"
+          git push
