@@ -139,6 +139,22 @@
     background:var(--sage-light);color:var(--sage-dark);
   }
   .neuMore{text-align:center;padding:14px;color:var(--ink-faint);font-size:13px;}
+  .neuIcon{
+    flex:none;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);
+    border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600;line-height:1;
+    text-decoration:none;display:inline-flex;align-items:center;min-height:32px;
+  }
+  .neuIcon:hover{border-color:var(--navy);color:var(--navy);background:var(--paper-card);}
+  .neuIcon.del{font-size:14px;padding:6px 11px;}
+  .neuIcon.del:hover{border-color:var(--terracotta-light);background:var(--terracotta-light);color:var(--terracotta-dark);}
+  .neuIcon.back:hover{border-color:var(--sage-light);background:var(--sage-light);color:var(--sage-dark);}
+  .neuHideToggle{
+    display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);
+    cursor:pointer;user-select:none;
+  }
+  .neuHideToggle input{width:15px;height:15px;accent-color:var(--navy);cursor:pointer;}
+  /* Verhindert, dass die breiten Auswahlfelder die Seite seitlich schieben. */
+  .filterRow select,.filterRow input[type=text]{max-width:100%;}
 
   main{padding:24px 28px 60px;max-width:1000px;margin:0 auto;}
 
@@ -412,7 +428,8 @@
       </div>
       <div class="rowBetween" style="margin-bottom:12px;">
         <span class="quickHint" id="neuCount" style="margin:0;"></span>
-        <div style="display:flex;gap:8px;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <label class="neuHideToggle"><input type="checkbox" id="neuZeigeAusgeblendet"> Ausgeblendete <span id="neuHideCount">(0)</span></label>
           <button class="btn sm" id="neuSelectAll">Alle sichtbaren auswählen</button>
           <button class="btn sm" id="neuClear">Auswahl aufheben</button>
         </div>
@@ -1090,6 +1107,39 @@ let neuSelected = new Set();
 
 function neuKey(f){ return (f.firma||'').toLowerCase().trim(); }
 
+/* Ziel des "Infos"-Knopfes. Eine Web-Suche findet zuverlaessig sowohl die
+   Registerportale als auch die Firmenseite selbst — dort steht meist die
+   Telefonnummer, die das Handelsregister nicht hergibt.
+   Soll stattdessen direkt ein bestimmtes Portal geoeffnet werden, nur diese
+   eine Zeile austauschen. */
+function neuSucheUrl(f){
+  // Abgeschnittene Namen enden mit "..." und oft mitten im Wort oder in einer
+  // Klammer. Beides abschneiden, sonst sucht man nach einem Bruchstueck.
+  let name = String(f.firma||'').replace(/\s*\.{3}$/,'').trim();
+  if((name.match(/\(/g)||[]).length > (name.match(/\)/g)||[]).length){
+    name = name.slice(0, name.lastIndexOf('(')).trim();
+  }
+  name = name.replace(/[\s,&\-–]+$/,'').trim();
+  return 'https://www.google.com/search?q=' + encodeURIComponent(`${name} ${f.gericht} Handelsregister`);
+}
+
+/* Ausgeblendete Firmen. Bleiben ueber alle Wochenlisten hinweg ausgeblendet,
+   gespeichert im Browser dieses Geraets. */
+let neuAusgeblendet = new Set();
+const NEU_HIDE_KEY = 'neuAusgeblendet.v1';
+
+function neuLadeAusgeblendet(){
+  try{
+    const roh = localStorage.getItem(NEU_HIDE_KEY);
+    neuAusgeblendet = new Set(roh ? JSON.parse(roh) : []);
+  }catch(e){ neuAusgeblendet = new Set(); }
+}
+function neuSpeichereAusgeblendet(){
+  try{ localStorage.setItem(NEU_HIDE_KEY, JSON.stringify([...neuAusgeblendet])); }
+  catch(e){ console.warn('Ausgeblendete Firmen konnten nicht gespeichert werden', e); }
+}
+neuLadeAusgeblendet();
+
 // Firmennamen vergleichbar machen: Rechtsformzusaetze und Sonderzeichen raus.
 function neuNorm(name){
   return String(name||'')
@@ -1166,7 +1216,11 @@ function neuVisible(){
   const r = document.getElementById('neuRechtsform').value;
   const v = document.getElementById('neuVorhanden').value;
   const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
+  const zeigeAusgeblendete = document.getElementById('neuZeigeAusgeblendet').checked;
   return neuData.firmen.filter(f=>{
+    const versteckt = neuAusgeblendet.has(neuNorm(f.firma));
+    if(versteckt && !zeigeAusgeblendete) return false;
+    if(zeigeAusgeblendete && !versteckt) return false;
     if(g && f.gericht!==g) return false;
     if(r && f.rechtsform!==r) return false;
     if(q && !(f.firma.toLowerCase().includes(q) || f.gericht.toLowerCase().includes(q))) return false;
@@ -1191,13 +1245,18 @@ function renderNeu(){
   }
 
   const bekannt = new Set(contacts.map(c=>neuNorm(c.firma)).filter(Boolean));
-  const offen = neuData.firmen.filter(f=>!bekannt.has(neuNorm(f.firma))).length;
+  const versteckt = neuData.firmen.filter(f=>neuAusgeblendet.has(neuNorm(f.firma))).length;
+  const offen = neuData.firmen.filter(f=>
+    !bekannt.has(neuNorm(f.firma)) && !neuAusgeblendet.has(neuNorm(f.firma))).length;
   badge.textContent = offen;
   badge.classList.toggle('zero', offen===0);
 
+  document.getElementById('neuHideCount').textContent = `(${versteckt})`;
+
   const stand = neuData.stand ? fmtDate(neuData.stand) : '—';
   const kw = neuData.kw ? `KW ${neuData.kw} · ` : '';
-  standEl.textContent = `${kw}${neuData.firmen.length} Firmen · Stand ${stand} · ${offen} noch nicht übernommen`;
+  standEl.textContent = `${kw}${neuData.firmen.length} Firmen · Stand ${stand} · ${offen} offen`
+    + (versteckt ? ` · ${versteckt} ausgeblendet` : '');
 
   const rows = neuVisible();
   document.getElementById('neuCount').textContent =
@@ -1219,6 +1278,11 @@ function renderNeu(){
         <div class="neuMeta">${escapeHtml(f.gericht)} · ${escapeHtml(f.rechtsform)}</div>
       </div>
       ${taken?'<span class="neuTakenTag">im Tracker</span>':''}
+      <a class="neuIcon" href="${escapeHtml(neuSucheUrl(f))}" target="_blank" rel="noopener noreferrer"
+         title="Firma nachschlagen">Infos</a>
+      ${neuAusgeblendet.has(neuNorm(f.firma))
+        ? `<button class="neuIcon back" data-back="${escapeHtml(k)}" title="Wieder einblenden">↩</button>`
+        : `<button class="neuIcon del" data-del="${escapeHtml(k)}" title="Firma ausblenden">✕</button>`}
     </div>`;
   }).join('') + (rows.length>MAX ? `<div class="neuMore">… ${rows.length-MAX} weitere. Grenze die Filter ein, um sie zu sehen.</div>` : '');
 
@@ -1229,10 +1293,30 @@ function renderNeu(){
         `${rows.length} von ${neuData.firmen.length} angezeigt · ${neuSelected.size} ausgewählt`;
     };
   });
+
+  list.querySelectorAll('button[data-del]').forEach(b=>{
+    b.onclick = ()=>{
+      const f = neuData.firmen.find(x=>neuKey(x)===b.dataset.del);
+      if(!f) return;
+      neuAusgeblendet.add(neuNorm(f.firma));
+      neuSelected.delete(b.dataset.del);
+      neuSpeichereAusgeblendet();
+      renderNeu();
+    };
+  });
+  list.querySelectorAll('button[data-back]').forEach(b=>{
+    b.onclick = ()=>{
+      const f = neuData.firmen.find(x=>neuKey(x)===b.dataset.back);
+      if(!f) return;
+      neuAusgeblendet.delete(neuNorm(f.firma));
+      neuSpeichereAusgeblendet();
+      renderNeu();
+    };
+  });
 }
 
 try{
-  ['neuSearch','neuGericht','neuRechtsform','neuVorhanden'].forEach(id=>{
+  ['neuSearch','neuGericht','neuRechtsform','neuVorhanden','neuZeigeAusgeblendet'].forEach(id=>{
     const el = document.getElementById(id);
     el.addEventListener(id==='neuSearch'?'input':'change', renderNeu);
   });
