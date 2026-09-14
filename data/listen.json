@@ -1,6 +1,15 @@
 {
  "listen": [
   {
+   "datei": "2026-09-14.json",
+   "kw": 38,
+   "jahr": 2026,
+   "stand": "2026-09-11",
+   "erstellt": "2026-09-14",
+   "anzahl": 1785,
+   "neu": 572
+  },
+  {
    "datei": "2026-09-07.json",
    "kw": 37,
    "jahr": 2026,
@@ -37,5 +46,5 @@
    "neu": null
   }
  ],
- "aktualisiert": "2026-09-07"
+ "aktualisiert": "2026-09-14"
 }
